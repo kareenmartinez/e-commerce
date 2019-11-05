@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const db = require("./config/db");
 
 const bodyParser = require("body-parser");
 
@@ -13,6 +14,12 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public"));
 });
 
-app.listen(3000, () => {
-  console.log("entrando al sv 3000");
-});
+db.sync()
+  .then(() => {
+    app.listen(3000, () => {
+      console.log("listening on port 3000");
+    });
+  })
+  .catch(error => {
+    console.log(error);
+  });
