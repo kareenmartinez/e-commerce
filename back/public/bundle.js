@@ -32656,7 +32656,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39156,14 +39156,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // const middleware = () => {
+//   return (
+//     thunkMiddleware, // nos permite despachar funciones
+//     promiseMiddleware(),
+//     createLogger()
+//   );
+// };
+// const store = createStore(reducers, applyMiddleware(middleware()));
 
-
-var middleware = function middleware() {
-  return redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"], // nos permite despachar funciones
-  Object(redux_promise_middleware__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(redux_logger__WEBPACK_IMPORTED_MODULE_3__["createLogger"])();
-};
-
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], Object(redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"])(middleware()));
+var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"], // nos permite despachar funciones
+Object(redux_promise_middleware__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(redux_logger__WEBPACK_IMPORTED_MODULE_3__["createLogger"])()];
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"].apply(void 0, middleware));
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ })
