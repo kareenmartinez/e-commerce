@@ -1,6 +1,7 @@
 const S = require("sequelize");
 const db = require("../config/db");
-const Product = class Product extends S.Model {};
+
+class Product extends S.Model {}
 
 Product.init(
   {
@@ -25,12 +26,10 @@ Product.init(
       allowNull: false
     },
     rating: {
-      type: S.INTEGER,
-      allowNull: false
+      type: S.INTEGER
     },
     stock: {
-      type: S.INTEGER,
-      allowNull: false
+      type: S.INTEGER
     }
   },
   {

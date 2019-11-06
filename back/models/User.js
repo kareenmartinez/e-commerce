@@ -1,7 +1,7 @@
 const S = require("sequelize");
 const db = require("../config/db");
 
-const Comment = require("./Comment");
+// const Comment = require("./Comment");
 
 class User extends S.Model {}
 
@@ -38,6 +38,10 @@ User.init(
     password: {
       type: S.STRING,
       allowNull: false
+    },
+    isAdmin: {
+      type: S.BOOLEAN,
+      defaultValue: false
     },
     salt: {
       type: S.STRING

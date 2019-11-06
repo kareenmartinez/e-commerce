@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const db = require("./config/db");
 
+const Product = require("./models/Product");
+
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -14,7 +16,7 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public"));
 });
 
-db.sync()
+db.sync({ force: true })
   .then(() => {
     app.listen(3000, () => {
       console.log("listening on port 3000");
