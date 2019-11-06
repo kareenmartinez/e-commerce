@@ -1,7 +1,6 @@
 const initialState = {
   isFetching: false,
-  didInvalidate: false,
-  nuevoEstado: []
+  didInvalidate: false
 };
 
 export default (state = initialState, actions) => {
@@ -22,8 +21,7 @@ export default (state = initialState, actions) => {
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false,
-        movie: actions.payload.nuevoEstado
+        didInvalidate: false
       };
 
     default:
