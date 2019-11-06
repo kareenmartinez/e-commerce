@@ -76,4 +76,5 @@ db.sync({ force: false })
   });
 
 /* comentario karen */
+/* comentario posibleBardo */
 /* comentario erika */
