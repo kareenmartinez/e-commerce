@@ -25,3 +25,5 @@ db.sync({ force: false })
   .catch(error => {
     console.log(error);
   });
+
+/* comentario karen */
