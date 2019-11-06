@@ -6,19 +6,19 @@ const initialState = {
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `${}_REJECTED`:
+    case `_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${}_PENDING`:
+    case `_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${}_FULFILLED`:
+    case `_FULFILLED`:
       return {
         ...state,
         isFetching: false,
