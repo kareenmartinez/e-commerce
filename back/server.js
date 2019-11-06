@@ -76,3 +76,4 @@ db.sync({ force: false })
   });
 
 /* comentario karen */
+/* comentario erika */
