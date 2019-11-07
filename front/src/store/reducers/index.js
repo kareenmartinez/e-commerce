@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import filterReducer from "./filterReducer";
 import userReducer from "./userReducer";
-import products from "./products";
+import products from "./productsReducer";
 
 const reducers = combineReducers({
   products,
