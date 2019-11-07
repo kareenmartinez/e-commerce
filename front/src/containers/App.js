@@ -1,7 +1,8 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
+import FilterCategoryContainer from "../containers/FilterCategoryContainer.jsx";
 import Header from "../components/Header.jsx";
 import LogInContainer from "../containers/LogInContainer";
-import { Route, Switch } from "react-router-dom";
 import { RegisterPage } from "../components/RegisterPage";
 class App extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/logIn" component={LogInContainer} />
-
+          <Route exact path="/" component={FilterCategoryContainer} />
           <Route exact path="/signup" component={RegisterPage} />
         </Switch>
       </div>
