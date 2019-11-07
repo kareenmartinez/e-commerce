@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
-
+import filterReducer from "./filterReducer";
+import userReducer from "./userReducer";
 import products from "./products";
 
 const reducers = combineReducers({
-  products
+  products,
+  userReducer,
+  filterReducer
 });
 
 export default reducers;

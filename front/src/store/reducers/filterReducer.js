@@ -1,29 +1,31 @@
+import { PRODUCTS_CATEGORIES } from "../constants";
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  user: {}
+  products: []
 };
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
+    case `${PRODUCTS_CATEGORIES}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${actions.type}_PENDING`:
+    case `${PRODUCTS_CATEGORIES}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${actions.type}_FULFILLED`:
+    case `${PRODUCTS_CATEGORIES}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload.user
+        products: actions.payload
       };
 
     default:
