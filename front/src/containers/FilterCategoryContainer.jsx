@@ -11,8 +11,8 @@ Si al presionar un filtro no consigue coincidencias debe mostrar 
 un "not found"
 
 
-los datos bienen de la ruta, y se busca segun la info del
-click en el navbar
+el dato vienen de hacer click en el boton, y con ello busco los
+items que coincidan en la lista
 
 crear dummie y enviarle la data para que renderice
  
@@ -20,7 +20,7 @@ crear dummie y enviarle la data para que renderice
 
 import React from 'react'
 import {connect} from 'react-redux'
- import {fetchProducts} from "../store/actions/filterCategories"
+ import {fetchProducts} from "../store/actions/CategoriesAction"
 import FilterCategory from '../components/FilterCategory'
 
 class FilterCategoryContainer extends React.Component {

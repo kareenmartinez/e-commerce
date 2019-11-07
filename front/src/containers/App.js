@@ -1,11 +1,13 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
+import FilterCategoryContainer from "../containers/FilterCategoryContainer.jsx";
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>hola</h1>
-      </div>
+      <Switch>
+        <Route exact path="/" component={FilterCategoryContainer} />
+      </Switch>
     );
   }
 }
