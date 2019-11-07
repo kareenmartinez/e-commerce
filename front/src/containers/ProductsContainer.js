@@ -15,8 +15,17 @@ class ProductsContainer extends React.Component {
 
   render() {
     const { productsState } = this.props;
+    console.log(this.props);
     return (
-      <div>
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          frexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap"
+        }}
+      >
         <Products productsState={productsState} />
       </div>
     );
@@ -24,7 +33,7 @@ class ProductsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  productsState: state.products
+  productsState: state.productsReducer.products
 });
 
 const mapDispatchToProps = dispatch => {

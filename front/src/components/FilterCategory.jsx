@@ -1,15 +1,14 @@
-import React from 'react'
+// import React from 'react'
 
+// function FilterCategory ({products}) {
 
-function FilterCategory ({products}) {
+//     console.log(products, "hola")
+//     return (
+//         <div>
+//             <h1>holaa</h1>
+//          {console.log("chao", products)}
+//         </div>
+//     )
+// }
 
-    console.log(products, "hola")
-    return (
-        <div>
-            <h1>holaa</h1>
-         {console.log("chao", products)}
-        </div>
-    )
-}
-
-export default FilterCategory
+// export default FilterCategory
