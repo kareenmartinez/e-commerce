@@ -1,7 +1,20 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import Register from "../components/Register";
 
-export default class RegisterContainer extends Component {
+class RegisterContainer extends Component {
   render() {
-    return <div></div>;
+    return <Register />;
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterContainer);
