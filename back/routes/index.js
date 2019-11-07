@@ -12,4 +12,12 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
+const Product = require("../models/Product");
+
+router.get("/products", (req, res, next) => {
+  Product.findAll().then(products => {
+    res.json(products);
+  });
+});
+
 module.exports = router;
