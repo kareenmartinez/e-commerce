@@ -1,27 +1,31 @@
 const initialState = {
   isFetching: false,
-  didInvalidate: false
+  didInvalidate: false,
+  user: {}
+
 };
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `_REJECTED`:
+    case `${actions.type}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `_PENDING`:
+    case `${actions.type}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `_FULFILLED`:
+    case `${actions.type}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false
+        didInvalidate: false,
+        user: actions.payload.user,
+
       };
 
     default:

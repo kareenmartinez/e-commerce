@@ -13,7 +13,7 @@ const middleware = () => {
   );
 };
 
-const store = createStore(reducers, applyMiddleware(middleware()));
+
 
 // const middleware = [
 //   thunkMiddleware, // nos permite despachar funciones
@@ -21,5 +21,5 @@ const store = createStore(reducers, applyMiddleware(middleware()));
 //   createLogger()
 // ];
 
-// const store = createStore(reducers, applyMiddleware(...middleware));
-export default store;
+const store = createStore(reducers, applyMiddleware(...middleware));
+export default store
