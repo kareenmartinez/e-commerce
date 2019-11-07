@@ -2069,201 +2069,6 @@ function pathToRegexp (path, keys, options) {
 
 /***/ }),
 
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!***************************************************!*\
   !*** ./node_modules/prop-types/checkPropTypes.js ***!
@@ -36185,14 +35990,15 @@ if (false) {} else {
 /*!****************************************************************!*\
   !*** ./node_modules/redux-promise-middleware/dist/es/index.js ***!
   \****************************************************************/
-/*! exports provided: ActionType, createPromise, default */
+/*! exports provided: PENDING, FULFILLED, REJECTED, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionType", function() { return ActionType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPromise", function() { return createPromise; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return middleware; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PENDING", function() { return PENDING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FULFILLED", function() { return FULFILLED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED", function() { return REJECTED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return promiseMiddleware; });
 /* harmony import */ var _isPromise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isPromise.js */ "./node_modules/redux-promise-middleware/dist/es/isPromise.js");
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -36201,24 +36007,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /**
- * For TypeScript support: Remember to check and make sure
- * that `index.d.ts` is also up to date with the implementation.
+ * Note to contributors: Please also remember to check and make sure
+ * that `index.d.ts` is also up to date with the implementation when
+ * you add new features or modify existing ones.
  */
-var ActionType = {
-  Pending: 'PENDING',
-  Fulfilled: 'FULFILLED',
-  Rejected: 'REJECTED'
-};
+
+// The default async action types
+var PENDING = 'PENDING';
+var FULFILLED = 'FULFILLED';
+var REJECTED = 'REJECTED';
+var defaultTypes = [PENDING, FULFILLED, REJECTED];
 
 /**
- * Function: createPromise
- * Description: The main createPromise accepts a configuration
+ * Function: promiseMiddleware
+ * Description: The main promiseMiddleware accepts a configuration
  * object and returns the middleware.
  */
-function createPromise() {
+function promiseMiddleware() {
   var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  var defaultTypes = [ActionType.Pending, ActionType.Fulfilled, ActionType.Rejected];
   var PROMISE_TYPE_SUFFIXES = config.promiseTypeSuffixes || defaultTypes;
   var PROMISE_TYPE_DELIMITER = config.promiseTypeDelimiter || '_';
 
@@ -36302,9 +36109,9 @@ function createPromise() {
          */
 
         var _PROMISE_TYPE_SUFFIXE = _slicedToArray(PROMISE_TYPE_SUFFIXES, 3),
-            PENDING = _PROMISE_TYPE_SUFFIXE[0],
-            FULFILLED = _PROMISE_TYPE_SUFFIXE[1],
-            REJECTED = _PROMISE_TYPE_SUFFIXE[2];
+            _PENDING = _PROMISE_TYPE_SUFFIXE[0],
+            _FULFILLED = _PROMISE_TYPE_SUFFIXE[1],
+            _REJECTED = _PROMISE_TYPE_SUFFIXE[2];
 
         /**
          * Function: getAction
@@ -36333,8 +36140,8 @@ function createPromise() {
 
         var getAction = function getAction(newPayload, isRejected) {
           return _extends({
-            // Concatenate the type string property.
-            type: [TYPE, isRejected ? REJECTED : FULFILLED].join(PROMISE_TYPE_DELIMITER)
+            // Concatentate the type string property.
+            type: [TYPE, isRejected ? _REJECTED : _FULFILLED].join(PROMISE_TYPE_DELIMITER)
 
           }, newPayload === null || typeof newPayload === 'undefined' ? {} : {
             payload: newPayload
@@ -36380,8 +36187,8 @@ function createPromise() {
          * any data (for optimistic updates) and/or meta from the original action.
          */
         next(_extends({
-          // Concatenate the type string.
-          type: [TYPE, PENDING].join(PROMISE_TYPE_DELIMITER)
+          // Concatentate the type string.
+          type: [TYPE, _PENDING].join(PROMISE_TYPE_DELIMITER)
 
         }, data !== undefined ? { payload: data } : {}, META !== undefined ? { meta: META } : {}));
 
@@ -36394,23 +36201,6 @@ function createPromise() {
     };
   };
 }
-
-function middleware() {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      dispatch = _ref.dispatch;
-
-  if (typeof dispatch === 'function') {
-    return createPromise()({ dispatch: dispatch });
-  }
-
-  if (process && process.env && "development" !== 'production') {
-    // eslint-disable-next-line no-console
-    console.warn('Redux Promise Middleware: As of version 6.0.0, the middleware library supports both preconfigured and custom configured middleware. To use a custom configuration, use the "createPromise" export and call this function with your configuration property. To use a preconfiguration, use the default export. For more help, check the upgrading guide: https://docs.psb.design/redux-promise-middleware/upgrade-guides/v6\n\nFor custom configuration:\nimport { createPromise } from \'redux-promise-middleware\';\nconst promise = createPromise({ types: { fulfilled: \'success\' } });\napplyMiddleware(promise);\n\nFor preconfiguration:\nimport promise from \'redux-promise-middleware\';\napplyMiddleware(promise);\n    ');
-  }
-
-  return null;
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
