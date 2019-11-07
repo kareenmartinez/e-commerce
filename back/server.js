@@ -62,7 +62,7 @@ passport.deserializeUser(function (id, done) {
 app.use('/api', routes);
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public"));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 db.sync({ force: false })
