@@ -1,29 +1,31 @@
+import { REGISTER } from "../constants";
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  user: {}
+  register: []
 };
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
+    case `${REGISTER}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${actions.type}_PENDING`:
+    case `${REGISTER}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${actions.type}_FULFILLED`:
+    case `${REGISTER}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload.user
+        register: actions.payload.register
       };
 
     default:
