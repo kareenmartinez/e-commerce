@@ -107,8 +107,8 @@ export default function Header() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <Link to="/categories"> 
-                                <MenuItem onClick={handleClose}>Peru</MenuItem>
+                                <Link to="/categories">
+                                    <MenuItem onClick={handleClose}>Peru</MenuItem>
                                 </Link>
                                 <MenuItem onClick={handleClose}>Brazil</MenuItem>
                                 <MenuItem onClick={handleClose}>Argentina</MenuItem>
