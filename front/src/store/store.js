@@ -14,6 +14,7 @@ import reducers from "./reducers";
 // };
 
 // const store = createStore(reducers, applyMiddleware(middleware()));
+// export default store;
 
 const middleware = [
   thunkMiddleware, // nos permite despachar funciones
@@ -22,4 +23,4 @@ const middleware = [
 ];
 
 const store = createStore(reducers, applyMiddleware(...middleware));
-export default store;
+export default store
