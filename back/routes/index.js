@@ -1,4 +1,14 @@
-const express = require('express')
-const router = express()
+const express = require("express");
+const router = express();
+const Products = require("../models/Product");
 
-module.exports = router
+router.get("/products", function(req, res) {
+  // direccion api/products
+  Products.findAll()
+    .then(products => res.json(products))
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
+module.exports = router;
