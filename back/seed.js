@@ -74,7 +74,7 @@ const productos = [
     name: "Vatapa",
     price: 500,
     img:
-      "https://files.slack.com/files-pri/T09TGMK7A-FQ63XGBNH/2ef323166c5245015c11494840adc4ad.jpg",
+      "https://panelinha-sitenovo.s3-sa-east-1.amazonaws.com/receita/1399345200000-Vatapa-baiano.jpg",
     country: "Brazil",
     description:
       "Is an Afro-Brazilian dish made from bread, shrimp, coconut milk, finely ground peanuts and palm oil mashed into a creamy paste."
