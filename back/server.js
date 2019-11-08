@@ -68,11 +68,7 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-<<<<<<< HEAD
 db.sync()
-=======
-db.sync({ force: true })
->>>>>>> 7f24769e841acd6703b601b7dc03386e36c52a05
   .then(() => {
     app.listen(3000, () => {
       console.log("listening on port 3000");
