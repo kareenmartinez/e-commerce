@@ -38709,7 +38709,7 @@ var flexbox = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(flexBasis
 /*!*******************************************************!*\
   !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
-/*! exports provided: borders, breakpoints, compose, css, display, flexbox, palette, positions, shadows, sizing, spacing, style, typography, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, color, bgcolor, position, zIndex, top, right, bottom, left, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
+/*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86962,21 +86962,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LogIn; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Input */ "./node_modules/@material-ui/core/esm/Input/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 
 
 
-var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])(function (theme) {
+
+var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(function (theme) {
   return {
     container: {
-      display: 'flex',
-      flexWrap: 'wrap'
+      display: "flex",
+      flexWrap: "wrap"
     },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200
+    input: {
+      margin: theme.spacing(1)
     }
   };
 });
@@ -86988,19 +86988,22 @@ function LogIn(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: onSubmit,
     method: "POST"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onChange: handleEmail,
-    name: "email",
-    type: "email",
-    placeholder: "Enter email"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "Email",
+    className: classes.input,
+    inputProps: {
+      "aria-label": "description"
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onChange: handlePassword,
-    name: "password",
-    type: "text",
-    placeholder: "Password"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit",
-    value: "submit"
+    placeholder: "Password",
+    className: classes.input,
+    inputProps: {
+      "aria-label": "description"
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+    type: "submit"
   }, "Submit")));
 }
 
@@ -87651,19 +87654,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var logIn = function logIn(email, password) {
+
+var logUser = function logUser(user) {
+  console.log('ENTER LOGUSER');
   return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
-    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logIn', {
-      email: email,
-      password: password
-    }).then(function (res) {
-      return res.data;
-    }).then(function (user) {
-      dispatch(logUser(user));
-    })["catch"](function (err) {
-      console.log(err, 'hola, soy tu dolor de cabeza');
-    })
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_USER"],
+    user: user
+  };
+};
+
+var logIn = function logIn(email, password) {
+  return function (dispatch) {
+    return {
+      type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
+      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logIn', {
+        email: email,
+        password: password
+      }).then(function (res) {
+        return console.log(res.data);
+      }).then(function (user) {
+        console.log(user, "aiudenme");
+        dispatch(logUser(user));
+      })["catch"](function (err) {
+        console.log(err, 'hola, soy tu dolor de cabeza');
+      })
+    };
   };
 };
 
@@ -87673,7 +87688,7 @@ var logIn = function logIn(email, password) {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN */
+/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, LOG_USER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87682,10 +87697,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVED_PRODUCTS", function() { return RECEIVED_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCTS_CATEGORIES", function() { return PRODUCTS_CATEGORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN", function() { return LOG_IN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_USER", function() { return LOG_USER; });
 var REGISTER = "REGISTER";
 var RECEIVED_PRODUCTS = "RECEIVED_PRODUCTS";
 var PRODUCTS_CATEGORIES = "PRODUCTS_CATEGORIES";
 var LOG_IN = "LOG_IN";
+var LOG_USER = "LOG_USER";
 
 /***/ }),
 
