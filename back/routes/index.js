@@ -2,7 +2,17 @@ const express = require("express");
 const router = express();
 const User = require("../models/User");
 
-router.post("/signup", (req, res, next) => {
+// router.post("/signup", (req, res, next) => {
+//   User.create(req.body)
+//     .then(user => {
+//       res.send(user);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
+
+router.post("/signup", function(req, res, next) {
   User.create(req.body)
     .then(user => {
       res.send(user);

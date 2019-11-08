@@ -7,7 +7,7 @@ import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-// import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -52,7 +52,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Header() {
+export default function Header(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -64,6 +64,7 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  console.log(props);
   return (
     <div>
       <div className={classes.jumbotron}>
@@ -79,6 +80,7 @@ export default function Header() {
           </Typography>
         </Grid>
       </div>
+      <br />
       <div>
         <Grid
           style={{
@@ -114,22 +116,25 @@ export default function Header() {
               </Menu>
             </div>
           </Grid>
+
           <Grid item="md-4">
             <div className={classes.search}>
-              {/* <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div> */}
-
               <InputBase
+                onChange={props.handleChange}
                 placeholder="Search…"
+                value={props.search}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
                 inputProps={{ "aria-label": "search" }}
               />
+              <Button onClick={props.handleSubmit}>
+                <SearchIcon />
+              </Button>
             </div>
           </Grid>
+
           <div
             style={{
               display: "flex",

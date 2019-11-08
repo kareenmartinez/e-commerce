@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 400,
     maxHeigth: 600,
-    border: 10
+    border: 0
   },
   media: {
     height: 300,
@@ -45,11 +45,6 @@ const Products = function(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
       </Card>
     </div>
   ));

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
-import { FormControl } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -13,56 +13,68 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Register() {
+export default function Register(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <FormControl>
+      <form onSubmit={props.handleSubmit}>
         <Input
+          onChange={props.handleChangeName}
           className={classes.input}
           placeholder="First name"
           inputProps={{
             "aria-label": "description"
           }}
+          value={props.name}
+          name="name"
         />
-      </FormControl>
-      <FormControl>
         <Input
+          onChange={props.handleChangeLastName}
           placeholder="Last name"
           className={classes.input}
           inputProps={{
             "aria-label": "description"
           }}
+          value={props.lastname}
+          name="lastname"
         />
-      </FormControl>
-      <FormControl>
         <Input
+          onChange={props.handleChangeDirection}
           className={classes.input}
           placeholder="Address"
           inputProps={{
             "aria-label": "description"
           }}
+          value={props.direction}
+          name="direction"
         />
-      </FormControl>
-      <FormControl>
+
         <Input
+          onChange={props.handleChangeEmail}
           placeholder="Email"
           className={classes.input}
           inputProps={{
             "aria-label": "description"
           }}
+          value={props.email}
+          name="email"
+          type="email"
         />
-      </FormControl>
-      <FormControl>
         <Input
+          onChange={props.handleChangePassword}
           placeholder="Password"
           className={classes.input}
           inputProps={{
             "aria-label": "description"
           }}
+          value={props.password}
+          name="password"
+          type="password"
         />
-      </FormControl>
+
+        <Button type="submit">Submit</Button>
+      </form>
     </div>
   );
 }
