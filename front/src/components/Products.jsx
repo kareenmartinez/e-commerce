@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -31,21 +32,26 @@ const Products = function(props) {
 
   return productsState.map(item => (
     <div style={{ order: "1" }} key={item.name}>
-      <Card className={classes.card}>
-        <CardActionArea className={classes.height}>
-          <CardMedia
-            className={classes.media}
-            component="img"
-            height="140"
-            image={item.img}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {item.name}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Link to={`/product/${item.name}`}>
+        <Card className={classes.card}>
+          <CardActionArea className={classes.height}>
+            <CardMedia
+              className={classes.media}
+              component="img"
+              height="140"
+              image={item.img}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h8" component="h2">
+                {item.name}
+              </Typography>
+              <Typography gutterBottom variant="h8" component="h3">
+                $ {item.price}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     </div>
   ));
 };
