@@ -3,7 +3,7 @@ const router = express();
 const User = require("../models/User");
 
 router.post("/signup", (req, res, next) => {
-  console.log(req.user, "HOLAAAA AUXILIOO");
+  console.log(req.body, "HOLAAAA AUXILIOO");
   User.create(req.body)
     .then(user => {
       res.send(user);

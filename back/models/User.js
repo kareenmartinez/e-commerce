@@ -10,38 +10,31 @@ User.init(
     name: {
       type: S.STRING,
       allowNull: false,
-      validate: {
-        isEmpty: false
-      }
+      
     },
     lastName: {
       type: S.STRING,
       allowNull: false,
-      validate: {
-        isEmpty: false
-      }
+      
     },
     email: {
       type: S.STRING,
       allowNull: false,
-      validate: {
-        isEmail: true
-      }
+      
+    },
+    isAdmin:{
+      type: S.BOOLEAN,
+      allowNull:true,
+      defaultValue: false
     },
     direction: {
       type: S.STRING,
       allowNull: false,
-      validate: {
-        isEmpty: false
-      }
+      
     },
     password: {
       type: S.STRING,
       allowNull: false
-    },
-    isAdmin: {
-      type: S.BOOLEAN,
-      defaultValue: false
     },
     salt: {
       type: S.STRING

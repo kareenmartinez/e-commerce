@@ -25,17 +25,9 @@ class RegisterContainer extends Component {
   handleSubmit(event) {
     console.log("ENTRO AL BOTON");
     event.preventDefault();
-    this.props
-      .createUser([
-        this.state.name,
-        this.state.email,
-        this.state.password,
-        this.state.lastName,
-        this.state.direction
-      ])
-      .then(() => {
-        this.props.history.push("/login");
-      });
+    this.props.fetchRegister(this.state).then(() => {
+      this.props.history.push("/login");
+    });
   }
 
   handleChangeName(event) {
@@ -84,7 +76,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => {
   return {
-    createUser: register => dispatch(fetchRegister(register))
+    fetchRegister: register => dispatch(fetchRegister(register))
   };
 };
 

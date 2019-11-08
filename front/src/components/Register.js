@@ -16,8 +16,6 @@ const useStyles = makeStyles(theme => ({
 export default function Register(props) {
   const classes = useStyles();
 
-  console.log("PROPSSSSSSS:", props);
-
   return (
     <div className={classes.container}>
       <form onSubmit={props.handleSubmit}>

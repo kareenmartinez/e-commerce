@@ -58281,7 +58281,6 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["ma
 });
 function Register(props) {
   var classes = useStyles();
-  console.log("PROPSSSSSSS:", props);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.container
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -58788,7 +58787,7 @@ function (_Component) {
 
       console.log("ENTRO AL BOTON");
       event.preventDefault();
-      this.props.createUser([this.state.name, this.state.email, this.state.password, this.state.lastName, this.state.direction]).then(function () {
+      this.props.fetchRegister(this.state).then(function () {
         _this2.props.history.push("/login");
       });
     }
@@ -58861,7 +58860,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createUser: function createUser(register) {
+    fetchRegister: function fetchRegister(register) {
       return dispatch(Object(_store_actions_registerAction__WEBPACK_IMPORTED_MODULE_3__["fetchRegister"])(register));
     }
   };
@@ -58974,12 +58973,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 
 
-var fetchRegister = function fetchRegister(register) {
+
+var sign = function sign(register) {
+  console.log("passport apesta", register, "demasiado");
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
-    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", register).then(function (register) {
-      console.log(register);
-    })
+    register: register
+  };
+};
+
+var fetchRegister = function fetchRegister(info) {
+  return function (dispatch) {
+    return {
+      type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
+      payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", info).then(function (res) {
+        return res.data;
+      }).then(function (register) {
+        dispatch(sign(register));
+      })["catch"](function (err) {
+        console.log(err, "passport me va a sacar canas");
+      })
+    };
   };
 };
 
@@ -59111,7 +59125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  registerReducer: _registerReducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  registerReducer: _registerReducer__WEBPACK_IMPORTED_MODULE_4__["registerReducer"],
   products: _products__WEBPACK_IMPORTED_MODULE_3__["default"],
   userReducer: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   filterReducer: _filterReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -59177,11 +59191,12 @@ var initialState = {
 /*!***********************************************!*\
   !*** ./src/store/reducers/registerReducer.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: registerReducer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerReducer", function() { return registerReducer; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -59195,7 +59210,7 @@ var initialState = {
   didInvalidate: false,
   register: []
 };
-/* harmony default export */ __webpack_exports__["default"] = (function () {
+function registerReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
 
@@ -59222,7 +59237,7 @@ var initialState = {
     default:
       return state;
   }
-});
+}
 
 /***/ }),
 
