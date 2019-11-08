@@ -31,6 +31,7 @@ export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
                 <Input
                     onChange={handlePassword}
                     placeholder="Password"
+                    type="password"
                     className={classes.input}
                     inputProps={{
                         "aria-label": "description"

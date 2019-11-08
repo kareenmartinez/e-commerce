@@ -151,8 +151,10 @@ export default function Header() {
                             </Link>
                         </Grid>
                         <Grid item="md-2">
+                            <Link to="/signup">
+                                <Button>Sign Up</Button>
+                            </Link>
 
-                            <Button>Sign Up</Button>
                         </Grid>
 
                     </div>
