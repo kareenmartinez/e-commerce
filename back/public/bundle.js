@@ -87664,18 +87664,21 @@ var logUser = function logUser(user) {
 };
 
 var logIn = function logIn(email, password) {
-  return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
-    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logIn', {
-      email: email,
-      password: password
-    }).then(function (res) {
-      return res.data;
-    }).then(function (user) {
-      dispatch(logUser(user));
-    })["catch"](function (err) {
-      console.log(err, 'hola, soy tu dolor de cabeza');
-    })
+  return function (dispatch) {
+    return {
+      type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
+      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logIn', {
+        email: email,
+        password: password
+      }).then(function (res) {
+        return console.log(res.data);
+      }).then(function (user) {
+        console.log(user, "aiudenme");
+        dispatch(logUser(user));
+      })["catch"](function (err) {
+        console.log(err, 'hola, soy tu dolor de cabeza');
+      })
+    };
   };
 };
 

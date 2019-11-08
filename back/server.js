@@ -10,6 +10,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const Product = require("./models/Product");
+const User = require("./models/User");
 
 const bodyParser = require("body-parser");
 

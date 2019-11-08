@@ -8,12 +8,14 @@ const logUser = (user) => {
         user: user
     }
 }
-export const logIn = (email, password) => ({
+export const logIn = (email, password) => dispatch => ({
     type: LOG_IN,
     payload: (axios.post('/api/logIn', { email: email, password: password })
-        .then(res => res.data
+        .then(res => console.log(res.data)
+
         )
         .then(user => {
+            console.log(user, "aiudenme")
             dispatch(logUser(user));
         }).catch((err) => { console.log(err, 'hola, soy tu dolor de cabeza') }))
 })
