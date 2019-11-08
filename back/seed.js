@@ -25,7 +25,8 @@ const productos = [
   {
     name: "Empanadas",
     price: 45,
-    img: "https://web.whatsapp.com/e3ea2b72-b9c3-4d61-9a43-0284eb6dcee6",
+    img:
+      "https://t1.rg.ltmcdn.com/es/images/5/8/4/img_empanadas_de_carne_cortada_a_cuchillo_7485_600.jpg",
     country: "Argentina",
     description: "aaa"
   },
@@ -67,7 +68,7 @@ const productos = [
     name: "Feijoada",
     price: 130,
     img:
-      "https://files.slack.com/files-pri/T09TGMK7A-FQ89VHYF8/feijoada-3-sm.jpg",
+      "https://images-gmi-pmc.edge-generalmills.com/8a38b3a2-6b88-4f0f-ae46-e39d7fd8dacf.jpg",
     country: "Brazil",
     description:
       "Is a dish made with beans and fresh pork or beef. In Brazil, it is usually made with black beans (feijoada à brasileira). The stew is best prepared over low heat in a thick clay pot."
@@ -76,7 +77,7 @@ const productos = [
     name: "Vatapa",
     price: 500,
     img:
-      "https://panelinha-sitenovo.s3-sa-east-1.amazonaws.com/receita/1399345200000-Vatapa-baiano.jpg",
+      "http://www.hojetemfrango.com.br/wp-content/uploads/2019/02/shutterstock_1193208283.jpg",
     country: "Brazil",
     description:
       "Is an Afro-Brazilian dish made from bread, shrimp, coconut milk, finely ground peanuts and palm oil mashed into a creamy paste."

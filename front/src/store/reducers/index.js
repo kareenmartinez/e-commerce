@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
 import filterReducer from "./filterReducer";
 import userReducer from "./userReducer";
-import products from "./products";
+import productsReducer from "./productsReducer";
 import { registerReducer } from "./registerReducer";
+import searchReducer from "./searchReducer";
 
 const reducers = combineReducers({
   registerReducer,
-  products,
+  productsReducer,
   userReducer,
-  filterReducer
+  filterReducer,
+  searchReducer
 });
 
 export default reducers;
