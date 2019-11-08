@@ -10,6 +10,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const Product = require("./models/Product");
+const User = require("./models/User");
 
 const bodyParser = require("body-parser");
 
@@ -35,7 +36,7 @@ passport.use(
       usernameField: "email", // input name for username
       passwordField: "password" // input name for password
     },
-    function(inputEmail, inputPassword, done) {
+    function (inputEmail, inputPassword, done) {
       User.findOne({ where: { email: inputEmail } }) // searching for the User
         .then(user => {
           if (!user) {
@@ -52,12 +53,12 @@ passport.use(
 );
 
 // serialize: how we save the user and stored in session object by express-session
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
 // deserialize: how we look for the user
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function (id, done) {
   User.findByPk(id).then(user => done(null, user));
 });
 
@@ -67,7 +68,11 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+<<<<<<< HEAD
 db.sync()
+=======
+db.sync({ force: true })
+>>>>>>> 7f24769e841acd6703b601b7dc03386e36c52a05
   .then(() => {
     app.listen(3000, () => {
       console.log("listening on port 3000");

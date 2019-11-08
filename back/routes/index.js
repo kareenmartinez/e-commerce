@@ -1,18 +1,13 @@
 const express = require("express");
 const router = express();
+
+const Product = require("../models/Product");
 const User = require("../models/User");
 
-// router.post("/signup", (req, res, next) => {
-//   User.create(req.body)
-//     .then(user => {
-//       res.send(user);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
+const passport = require("passport");
 
-router.post("/signup", function(req, res, next) {
+router.post("/signup", (req, res, next) => {
+  console.log(req.body, "HOLAAAA AUXILIOO");
   User.create(req.body)
     .then(user => {
       res.send(user);
@@ -22,7 +17,10 @@ router.post("/signup", function(req, res, next) {
     });
 });
 
-const Product = require("../models/Product");
+router.post("/logIn", passport.authenticate("local"), function(req, res) {
+  console.log(req.user);
+  res.send(req.user);
+});
 
 router.get("/products", (req, res, next) => {
   Product.findAll().then(products => {

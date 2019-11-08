@@ -37,7 +37,7 @@ export default function Register(props) {
             "aria-label": "description"
           }}
           value={props.lastname}
-          name="lastname"
+          name="lastName"
         />
         <Input
           onChange={props.handleChangeDirection}

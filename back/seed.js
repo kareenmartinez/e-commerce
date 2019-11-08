@@ -1,6 +1,8 @@
 const db = require("./config/db");
 const Product = require("./models/Product");
 
+const User = require("./models/User");
+
 const productos = [
   {
     name: "Aji de gallina",
@@ -81,6 +83,7 @@ const productos = [
       "Is an Afro-Brazilian dish made from bread, shrimp, coconut milk, finely ground peanuts and palm oil mashed into a creamy paste."
   }
 ];
+
 
 Product.bulkCreate(productos).then(() => {
   console.log("created products");
