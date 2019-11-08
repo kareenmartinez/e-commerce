@@ -1,32 +1,44 @@
 import React from "react";
 
-export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
-  return (
-    <div>
-      <form onSubmit={onSubmit} method="POST">
-        <div>
-          <label>Email address</label>
-          <input
-            onChange={handleEmail}
-            name="email"
-            type="email"
-            placeholder="Enter email"
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            onChange={handlePassword}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </div>
+import { makeStyles } from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import { Button } from '@material-ui/core';
 
-        <button type="submit" value="submit">
-          Submit
-        </button>
-      </form>
+const useStyles = makeStyles(theme => ({
+    container: {
+        display: "flex",
+        flexWrap: "wrap"
+    },
+    input: {
+        margin: theme.spacing(1)
+    }
+}));
+export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
+
+    const classes = useStyles();
+    return (
+
+
+        <div>
+            <form onSubmit={onSubmit} method="POST"  >
+                <Input
+                    onChange={handleEmail}
+                    placeholder="Email"
+                    className={classes.input}
+                    inputProps={{
+                        "aria-label": "description"
+                    }}
+                />
+                <Input
+                    onChange={handlePassword}
+                    placeholder="Password"
+                    className={classes.input}
+                    inputProps={{
+                        "aria-label": "description"
+                    }}
+                />
+                <Button type="submit">Submit</Button>
+            </form>
     </div>
   );
 }

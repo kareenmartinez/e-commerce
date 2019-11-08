@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express();
+
+const Product = require("../models/Product");
 const User = require("../models/User");
+
+const passport = require("passport");
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body, "HOLAAAA AUXILIOO");
@@ -13,7 +17,10 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-const Product = require("../models/Product");
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
+  console.log(req.user)
+  res.send(req.user);
+});
 
 router.get("/products", (req, res, next) => {
   Product.findAll().then(products => {
