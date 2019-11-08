@@ -58211,7 +58211,7 @@ function LogIn(_ref) {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: handlePassword,
     name: "password",
-    type: "text",
+    type: "password",
     placeholder: "Password"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
@@ -58302,7 +58302,7 @@ function Register(props) {
       "aria-label": "description"
     },
     value: props.lastname,
-    name: "lastname"
+    name: "lastName"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     onChange: props.handleChangeDirection,
     className: classes.input,
@@ -58973,27 +58973,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 
 
-
-var sign = function sign(register) {
-  console.log("passport apesta", register, "demasiado");
+var fetchRegister = function fetchRegister(register) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
-    register: register
-  };
-};
-
-var fetchRegister = function fetchRegister(info) {
-  return function (dispatch) {
-    return {
-      type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
-      payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", info).then(function (res) {
-        return res.data;
-      }).then(function (register) {
-        dispatch(sign(register));
-      })["catch"](function (err) {
-        console.log(err, "passport me va a sacar canas");
-      })
-    };
+    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", register).then(function (res) {
+      return res.data;
+    })["catch"](function (err) {
+      console.log(err, "passport me va a sacar canas");
+    })
   };
 };
 
