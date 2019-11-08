@@ -1,9 +1,12 @@
 import axios from "axios";
 import { REGISTER } from "../constants";
 
-export const fetchRegister = user => ({
+export const fetchRegister = register => ({
   type: REGISTER,
-  payload: axios.post("/api/signup", user).then(user => {
-    console.log(user);
-  })
+  payload: axios
+    .post("/api/signup", register)
+    .then(res => res.data)
+    .catch(err => {
+      console.log(err, "passport me va a sacar canas");
+    })
 });
