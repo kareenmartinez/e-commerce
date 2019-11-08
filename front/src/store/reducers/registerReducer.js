@@ -6,7 +6,7 @@ const initialState = {
   register: []
 };
 
-export default (state = initialState, actions) => {
+export function registerReducer(state = initialState, actions) {
   switch (actions.type) {
     case `${REGISTER}_REJECTED`:
       return {
@@ -31,4 +31,4 @@ export default (state = initialState, actions) => {
     default:
       return state;
   }
-};
+}

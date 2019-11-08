@@ -152,7 +152,7 @@ export default function Header() {
                         </Grid>
                         <Grid item="md-2">
 
-                            <Button>Sign Up</Button>
+                            <Link to="/signup"><Button>Sign Up</Button></Link>
                         </Grid>
 
                     </div>

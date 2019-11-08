@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProducts } from "../store/actions/CategoriesAction";
+import { fetchProducts } from "../store/actions/categoriesAction";
 import FilterCategory from "../components/FilterCategory";
 
 class FilterCategoryContainer extends React.Component {

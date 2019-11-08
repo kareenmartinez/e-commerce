@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
+
     const classes = useStyles();
     return (
 
@@ -38,6 +39,6 @@ export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
                 />
                 <Button type="submit">Submit</Button>
             </form>
-        </div>
-    )
+    </div>
+  );
 }
