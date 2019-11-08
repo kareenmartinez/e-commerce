@@ -1,7 +1,9 @@
+import { LOG_USER, LOG_IN } from "../actions/userAction";
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  user: {}
+  user: []
 };
 
 export default (state = initialState, actions) => {
