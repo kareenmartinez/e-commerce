@@ -1,31 +1,31 @@
-import { LOG_USER, LOG_IN } from "../actions/userAction";
+import { RECEIVED_PRODUCTS } from "../constants";
 
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  user: []
+  products: []
 };
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
+    case `${RECEIVED_PRODUCTS}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${actions.type}_PENDING`:
+    case `${RECEIVED_PRODUCTS}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${actions.type}_FULFILLED`:
+    case `${RECEIVED_PRODUCTS}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload.user
+        products: actions.payload
       };
 
     default:
