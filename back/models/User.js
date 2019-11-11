@@ -4,7 +4,7 @@ const crypto = require("crypto");
 
 // const Comment = require("./Comment");
 
-class User extends S.Model { }
+class User extends S.Model {}
 
 User.init(
   {
@@ -19,10 +19,14 @@ User.init(
     email: {
       type: S.STRING,
       allowNull: false,
-
+      unique: true,
       validate: {
+<<<<<<< HEAD
+        isEmail: true
+=======
         isEmail: true,
 
+>>>>>>> aa36e3e846cfc987cfe6cb4e281960eb89351f93
       }
     },
     isAdmin: {
@@ -52,14 +56,14 @@ User.addHook("beforeCreate", user => {
   user.password = user.hashPassword(user.password);
 });
 
-User.prototype.hashPassword = function (password) {
+User.prototype.hashPassword = function(password) {
   return crypto
     .createHmac("sha1", this.salt)
     .update(password)
     .digest("hex");
 };
 
-User.prototype.validPassword = function (password) {
+User.prototype.validPassword = function(password) {
   return this.password === this.hashPassword(password);
 };
 // User.hasMany(Comment, { as: "user" });
