@@ -22,7 +22,7 @@ User.init(
 
       validate: {
         isEmail: true,
-        isUnique: true
+
       }
     },
     isAdmin: {

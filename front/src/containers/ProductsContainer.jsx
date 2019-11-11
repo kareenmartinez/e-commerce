@@ -6,12 +6,31 @@ import { fetchProducts } from "../store/actions/productsAction";
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      // input: 0
+
+    };
+    this.handleAdd = this.handleAdd.bind(this);
+    // this.handleRemove = this.handleRemove.bind(this);
   }
 
   componentDidMount() {
     this.props.mostrarProductos();
   }
+  // handleAdd() {
+  //   this.setState({ input: this.state.input + 1 })
+
+  // }
+  // handleRemove() {
+  //   if (this.state.input > 0) { this.setState({ input: this.state.input - 1 }) }
+
+
+  // }
+  handleAdd(e) {
+    e.preventDefault()
+
+  }
+
 
   render() {
     const { productsState } = this.props;
@@ -26,7 +45,7 @@ class ProductsContainer extends React.Component {
           flexWrap: "wrap"
         }}
       >
-        <Products productsState={productsState} />
+        <Products productsState={productsState} handleAdd={this.handleAdd} />
       </div>
     );
   }

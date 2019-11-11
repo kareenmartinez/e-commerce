@@ -7,7 +7,20 @@ import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
+import { connect } from "react-redux";
+
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: {}
+    }
+  }
+  componentDidMount() {
+
+    this.setState({ user: this.props.user })
+    console.log(this.state.user)
+  }
   render() {
     return (
       <div>
@@ -31,5 +44,14 @@ class App extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state.userReducer.payload, "holaaaa kareen")
+  return {
+    user: state.userReducer
+  };
+};
 
-export default App;
+export default connect(
+  mapStateToProps,
+  null
+)(App);
