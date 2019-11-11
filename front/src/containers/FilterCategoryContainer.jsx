@@ -9,55 +9,51 @@ productos de la categoría nueva.
 
 Si al presionar un filtro no consigue coincidencias debe mostrar 
 un "not found"
-
-
-el dato vienen de hacer click en el boton, y con ello busco los
-items que coincidan en la lista
-
-crear dummie y enviarle la data para que renderice
- 
- *  */
+*/
 
 import React from 'react'
 import {connect} from 'react-redux'
- import {fetchProducts} from "../store/actions/CategoriesAction"
+import {fetchProducts} from "../store/actions/CategoriesAction"
 import FilterCategory from '../components/FilterCategory'
 
 class FilterCategoryContainer extends React.Component {
-
-  constructor(){
-    super()
-    this.state={
-      products:[]
-    }
+  constructor(props) {
+    super(props);
   }
-componentDidMount(){
-  const fetch= this.props.fetchProducts()
-  this.setState({products: fetch})
+  componentDidMount() {
+    this.props.fetchProducts(this.props.match.params.country);
+  }
+
+  render() {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}
+      >
+        <FilterCategory products={this.props.products} />
+      </div>
+    );
+  }
 }
-    render() {
-        return (
-            <div>
-              <h1>hola</h1>
-                <FilterCategory products={this.state.products}/>
-            </div>
-        )
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: item => {
+      dispatch(fetchProducts(item));
     }
+  };
 };
- const mapDispatchToProps = dispatch => {
-   return {
-     fetchProducts: () => {
-       dispatch(fetchProducts());
-     }
-   }
-}
 
+const mapStateToProps = state => ({
+  products: state.filterReducer.productsCategory
+});
 
- const mapStateToProps = state => ({
-  products: state.filterReducer.products
- });
-
- export default connect(     mapStateToProps,
-     mapDispatchToProps
-  )(FilterCategoryContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterCategoryContainer);
   

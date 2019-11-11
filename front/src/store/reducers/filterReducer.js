@@ -3,7 +3,7 @@ import { PRODUCTS_CATEGORIES } from "../constants";
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  products: []
+  productsCategory: []
 };
 
 export default (state = initialState, actions) => {
@@ -25,7 +25,7 @@ export default (state = initialState, actions) => {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        products: actions.payload
+        productsCategory: actions.payload
       };
 
     default:

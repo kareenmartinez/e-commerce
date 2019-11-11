@@ -1,18 +1,27 @@
 const express = require("express");
 const router = express();
-<<<<<<< HEAD
-const Products = require("../models/Product");
+const Product = require("../models/Product");
 
 router.get("/products", function(req, res) {
   // direccion api/products
-  Products.findAll()
+  Product.findAll()
     .then(products => res.json(products))
     .catch(function(err) {
       console.log(err);
     });
 });
 
-=======
+router.get("/category/:country", function(req, res) {
+  // direccion api/
+  Product.findAll({
+    where: {
+      country: req.params.country
+    }
+  })
+    .then(products => res.json(products))
+    .catch(function(err) {
+      console.log(err);
+    });
+});
 
->>>>>>> fe21a2841979f5f3e64d700aeff881000d7af725
 module.exports = router;

@@ -11,7 +11,11 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/logIn" component={LogInContainer} />
-          <Route exact path="/" component={FilterCategoryContainer} />
+          <Route
+            exact
+            path="/categories/:country"
+            component={FilterCategoryContainer}
+          />
           <Route exact path="/signup" component={RegisterPage} />
         </Switch>
       </div>
