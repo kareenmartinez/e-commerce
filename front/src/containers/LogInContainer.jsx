@@ -3,7 +3,10 @@ import LogIn from "../components/LogIn";
 import { logIn } from "../store/actions/userAction";
 
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import { withRouter } from "react-router";
+=======
+>>>>>>> aa36e3e846cfc987cfe6cb4e281960eb89351f93
 
 class LogInContainer extends Component {
   constructor(props) {
@@ -19,10 +22,18 @@ class LogInContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
     this.props.logIn(this.state.email, this.state.password).then(res => {
       this.props.history.push("/");
     });
   }
+=======
+    console.log(this.state.email, this.state.password);
+    this.props.logIn(this.state.email, this.state.password)
+
+  };
+
+>>>>>>> aa36e3e846cfc987cfe6cb4e281960eb89351f93
   handleEmail(e) {
     console.log(e.target.value);
     this.setState({ email: e.target.value });
@@ -55,9 +66,16 @@ const mapStateToProps = state => {
   };
 };
 
+<<<<<<< HEAD
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(LogInContainer)
 );
+=======
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogInContainer);
+>>>>>>> aa36e3e846cfc987cfe6cb4e281960eb89351f93

@@ -6,8 +6,24 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
+import { fetchUser } from "../store/actions/userAction"
+
+import store from "../store/store"
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+  }
+  componentDidMount() {
+
+
+    store.dispatch(fetchUser())
+
+
+
+
+  }
   render() {
     return (
       <div>
@@ -30,5 +46,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

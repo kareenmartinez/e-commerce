@@ -21,7 +21,12 @@ User.init(
       allowNull: false,
       unique: true,
       validate: {
+<<<<<<< HEAD
         isEmail: true
+=======
+        isEmail: true,
+
+>>>>>>> aa36e3e846cfc987cfe6cb4e281960eb89351f93
       }
     },
     isAdmin: {
