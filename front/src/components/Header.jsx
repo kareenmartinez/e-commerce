@@ -1,14 +1,14 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-
 import InputBase from "@material-ui/core/InputBase";
+import logo from "./loguish.png";
+import scooter from "./scooter.png";
 
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
 import SearchIcon from "@material-ui/icons/Search";
-
+import { fetchProducts } from "../store/actions/CategoriesAction";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -52,7 +52,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Header(props) {
+function Header({ handleChange, handleSubmit, search, fetchProducts }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -63,20 +63,41 @@ export default function Header(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const closeAndFetch = country => {
+    handleClose();
+    fetchProducts(country);
+  };
+  const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
+  countries.sort();
 
   return (
     <div>
-      <div className={classes.jumbotron} style={{ borderRadius: "7px" }}>
+      <div className={classes.jumbotron}>
         <Grid
           container
           direction="column"
           alignItems="center"
           item="md-12"
-          style={{ height: "100%", justifyContent: "center" }}
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
         >
-          <Typography style={{ fontFamily: "courier", fontSize: "40px" }}>
-            SUPER RESTAURANTE
-          </Typography>
+          <Link style={{ textDecoration: "none", color: "white" }} to="/">
+            <Grid style={{ order: "1" }} className="col-md-6">
+              <img style={{ height: "60px", width: "70px" }} src={logo} />
+            </Grid>
+          </Link>
+
+          <Grid style={{ order: "5" }} className="col-md-6">
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+              <Typography style={{ fontFamily: "courier", fontSize: "40px" }}>
+                SUPER RESTAURANTE
+              </Typography>
+            </Link>
+          </Grid>
         </Grid>
       </div>
       <br />
@@ -105,13 +126,21 @@ export default function Header(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <Link to="/categories">
-                  <MenuItem onClick={handleClose}>Peru</MenuItem>
-                </Link>
-                <MenuItem onClick={handleClose}>Brazil</MenuItem>
-                <MenuItem onClick={handleClose}>Argentina</MenuItem>
-
-                <MenuItem onClick={handleClose}>Mexico</MenuItem>
+                {countries.map(pais => (
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={{ pathname: `/categories/${pais}` }}
+                    key={pais}
+                  >
+                    <MenuItem
+                      onClick={e => {
+                        closeAndFetch(pais);
+                      }}
+                    >
+                      {pais}
+                    </MenuItem>
+                  </Link>
+                ))}
               </Menu>
             </div>
           </Grid>
@@ -119,16 +148,16 @@ export default function Header(props) {
           <Grid item="md-4">
             <div className={classes.search}>
               <InputBase
-                onChange={props.handleChange}
-                placeholder="  Search…"
-                value={props.search}
+                onChange={handleChange}
+                placeholder="Search…"
+                value={search}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
                 inputProps={{ "aria-label": "search" }}
               />
-              <Button onClick={props.handleSubmit}>
+              <Button onClick={handleSubmit}>
                 <SearchIcon />
               </Button>
             </div>
@@ -141,18 +170,33 @@ export default function Header(props) {
             }}
           >
             <Grid item="md-2">
-              <Link to="/logIn">
+              <Link style={{ textDecoration: "none" }} to="/logIn">
                 <Button>Log In</Button>
               </Link>
             </Grid>
-            <Link to="/signup">
+            <Link style={{ textDecoration: "none" }} to="/signup">
               <Grid item="md-2">
                 <Button>Sign Up</Button>
               </Grid>
             </Link>
+            <Grid item="md-2">
+              <Button>
+                <img src={scooter} style={{ height: "30px", width: "30px" }} />
+              </Button>
+            </Grid>
           </div>
         </Grid>
       </div>
     </div>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  fetchProducts: item => {
+    dispatch(fetchProducts(item));
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

@@ -3,7 +3,8 @@ import { REGISTER } from "../constants";
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  register: []
+  register: [],
+  isUnique: false
 };
 
 export function registerReducer(state = initialState, actions) {
@@ -12,7 +13,8 @@ export function registerReducer(state = initialState, actions) {
       return {
         ...state,
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: true,
+        isUnique: false
       };
     case `${REGISTER}_PENDING`:
       return {
@@ -25,7 +27,8 @@ export function registerReducer(state = initialState, actions) {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        register: actions.payload.register
+        register: actions.payload.register,
+        isUnique: true
       };
 
     default:
