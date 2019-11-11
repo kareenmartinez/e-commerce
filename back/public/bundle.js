@@ -89194,6 +89194,11 @@ var fetchRegister = function fetchRegister(register) {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
     payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", register).then(function (res) {
+      if (res.data === "ERROR") {
+        alert("This email is already in use, please try a different one");
+        return "";
+      }
+
       return res.data;
     })["catch"](function (err) {
       console.log(err);
@@ -89457,8 +89462,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   isFetching: false,
   didInvalidate: false,
-  register: [],
-  isUnique: false
+  register: []
 };
 function registerReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
