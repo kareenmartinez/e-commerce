@@ -20,8 +20,7 @@ User.init(
       type: S.STRING,
       allowNull: false,
       validate: {
-        isEmail: true,
-        isUnique: true
+        isEmail: true
       }
     },
     isAdmin: {

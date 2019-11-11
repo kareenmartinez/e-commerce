@@ -87339,7 +87339,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _RegisterContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RegisterContainer */ "./src/containers/RegisterContainer.js");
 /* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
-/* harmony import */ var _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer */ "./src/containers/FilterCategoryContainer.js");
+/* harmony import */ var _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer */ "./src/containers/FilterCategoryContainer.jsx");
 /* harmony import */ var _LogInContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LogInContainer */ "./src/containers/LogInContainer.jsx");
 /* harmony import */ var _ProductContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProductContainer */ "./src/containers/ProductContainer.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -87410,10 +87410,10 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./src/containers/FilterCategoryContainer.js":
-/*!***************************************************!*\
-  !*** ./src/containers/FilterCategoryContainer.js ***!
-  \***************************************************/
+/***/ "./src/containers/FilterCategoryContainer.jsx":
+/*!****************************************************!*\
+  !*** ./src/containers/FilterCategoryContainer.jsx ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -87422,7 +87422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_categoriesAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions/categoriesAction */ "./src/store/actions/categoriesAction.js");
+/* harmony import */ var _store_actions_CategoriesAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions/CategoriesAction */ "./src/store/actions/CategoriesAction.js");
 /* harmony import */ var _components_FilterCategory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/FilterCategory */ "./src/components/FilterCategory.jsx");
 /* harmony import */ var _components_FilterCategory__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_FilterCategory__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -87488,7 +87488,7 @@ function (_React$Component) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchProducts: function fetchProducts() {
-      dispatch(Object(_store_actions_categoriesAction__WEBPACK_IMPORTED_MODULE_2__["fetchProducts"])());
+      dispatch(Object(_store_actions_CategoriesAction__WEBPACK_IMPORTED_MODULE_2__["fetchProducts"])());
     }
   };
 };
@@ -88077,9 +88077,9 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 
 /***/ }),
 
-/***/ "./src/store/actions/categoriesAction.js":
+/***/ "./src/store/actions/CategoriesAction.js":
 /*!***********************************************!*\
-  !*** ./src/store/actions/categoriesAction.js ***!
+  !*** ./src/store/actions/CategoriesAction.js ***!
   \***********************************************/
 /*! exports provided: fetchProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
