@@ -1,30 +1,29 @@
-import { SEARCH_PRODUCTS } from "../constants";
+import { FETCH_PRODUCT } from "../constants";
 
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  search: ""
+  search: {}
 };
 
 export default (state = initialState, actions) => {
   console.log(actions);
-  console.log(SEARCH_PRODUCTS);
 
   switch (actions.type) {
-    case `${SEARCH_PRODUCTS}_REJECTED`:
+    case `${FETCH_PRODUCT}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${SEARCH_PRODUCTS}_PENDING`:
+    case `${FETCH_PRODUCT}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${SEARCH_PRODUCTS}_FULFILLED`:
-      console.log(actions.payload);
+    case `${FETCH_PRODUCT}_FULFILLED`:
+      console.log(actions);
 
       return {
         ...state,
