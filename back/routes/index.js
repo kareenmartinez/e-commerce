@@ -4,12 +4,30 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 const passport = require("passport");
+function isLogedIn(req, res, next) {
+  if (req.isAuthenticated()) { // passport method that check if a user is authenticated or not
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
+function isLoged(req, res, next) {
+  if (req.isAuthenticated()) { // passport method that check if a user is authenticated or not
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
+  res.send(req.user);
+});
 
 router.get("/products", function (req, res) {
   // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });
@@ -37,14 +55,17 @@ router.get("/category/:country", function (req, res) {
       console.log(err);
     });
 });
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
-  res.send(req.user);
-});
+
 
 router.get("/products", (req, res, next) => {
   Product.findAll().then(products => {
     res.json(products);
   });
+});
+router.get('/logOut', (req, res) => {
+  req.logout(); // passport method for logout
+  res.sendStatus(202)
+
 });
 
 router.get("/product/:name", (req, res, next) => {
@@ -61,5 +82,8 @@ router.get("/product/:name", (req, res, next) => {
     res.send(singleProduct);
   });
 });
-
+router.get('/auth/me', (req, res) => {
+  console.log(req.user, "HOLAAAAAA")
+  res.send(req.user)
+})
 module.exports = router;
