@@ -19,8 +19,17 @@ class App extends React.Component {
           <Route exact path="/signup" component={RegisterContainer} />
           {/* <Route exact path="/" component={FilterCategoryContainer} /> */}
           <Route exact path="/logIn" component={LogInContainer} />
+<<<<<<< HEAD
+          <Route
+            exact
+            path="/categories/:country"
+            component={FilterCategoryContainer}
+          />
+          <Route exact path="/signup" component={RegisterPage} />
+=======
           <Route exact path="/" component={ProductsContainer} />
           <Route exact path="/product" component={ProductContainer} />
+>>>>>>> 93489add3e3e748a9c40e49f970647329ead6300
         </Switch>
       </div>
     );

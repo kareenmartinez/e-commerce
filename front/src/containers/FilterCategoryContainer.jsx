@@ -1,41 +1,59 @@
-// import React from "react";
-// import { connect } from "react-redux";
-// import { fetchProducts } from "../store/actions/categoriesAction";
-// import FilterCategory from "../components/FilterCategory";
+/**Natalia 2- Como usuario no logueado quiero poder 
+ * filtrar productos por categoría para acortar la búsqueda
+ * 
+ * Descripcion:
+Si presionamos una categoría debe mostrar los productos de la 
+categoría seleccionada, si, presiono otra categoría, debería dejar 
+de mostrar los productos de la categoría anterior y mostrar los 
+productos de la categoría nueva.
 
-// class FilterCategoryContainer extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       products: []
-//     };
-//   }
-//   componentDidMount() {
-//     const fetch = this.props.fetchProducts();
-//     this.setState({ products: fetch });
-//   }
-//   render() {
-//     return (
-//       <div>
-//         <h1>hola</h1>
-//         <FilterCategory products={this.state.products} />
-//       </div>
-//     );
-//   }
-// }
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchProducts: () => {
-//       dispatch(fetchProducts());
-//     }
-//   };
-// };
+Si al presionar un filtro no consigue coincidencias debe mostrar 
+un "not found"
+*/
 
-// const mapStateToProps = state => ({
-//   products: state.filterReducer.products
-// });
+import React from 'react'
+import {connect} from 'react-redux'
+import {fetchProducts} from "../store/actions/CategoriesAction"
+import FilterCategory from '../components/FilterCategory'
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(FilterCategoryContainer);
+class FilterCategoryContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    this.props.fetchProducts(this.props.match.params.country);
+  }
+
+  render() {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}
+      >
+        <FilterCategory products={this.props.products} />
+      </div>
+    );
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: item => {
+      dispatch(fetchProducts(item));
+    }
+  };
+};
+
+const mapStateToProps = state => ({
+  products: state.filterReducer.productsCategory
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterCategoryContainer);
+  
