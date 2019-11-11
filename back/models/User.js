@@ -10,21 +10,11 @@ User.init(
   {
     name: {
       type: S.STRING,
-<<<<<<< HEAD
-      allowNull: false,
-
-    },
-    lastName: {
-      type: S.STRING,
-      allowNull: false,
-
-=======
       allowNull: false
     },
     lastName: {
       type: S.STRING,
       allowNull: false
->>>>>>> 1a6a3b62f54d136dc892941351ff5ebca3ebcc6f
     },
     email: {
       type: S.STRING,
@@ -32,9 +22,8 @@ User.init(
 
       validate: {
         isEmail: true,
-        isUnique: true,
+        isUnique: true
       }
-
     },
     isAdmin: {
       type: S.BOOLEAN,
@@ -43,8 +32,7 @@ User.init(
     },
     direction: {
       type: S.STRING,
-      allowNull: false,
-
+      allowNull: false
     },
     password: {
       type: S.STRING,
