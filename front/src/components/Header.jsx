@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Header(props) {
+function Header(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
