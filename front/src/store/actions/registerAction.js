@@ -7,6 +7,6 @@ export const fetchRegister = register => ({
     .post("/api/signup", register)
     .then(res => res.data)
     .catch(err => {
-      console.log(err, "passport me va a sacar canas");
+      console.log(err);
     })
 });

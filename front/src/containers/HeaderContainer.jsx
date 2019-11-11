@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "../components/Header";
 import { connect } from "react-redux";
-import { searchData } from "../store/actions/searchAction";
+import { fetchProduct } from "../store/actions/searchAction";
+import { withRouter } from "react-router";
+//me permite usar el history
 
 class HeaderContainer extends React.Component {
   constructor(props) {
@@ -15,7 +17,9 @@ class HeaderContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.mostrarBusqueda(this.state);
+    console.log(this.state.search);
+    this.props.mostrarBusqueda(this.state.search);
+    this.props.history.push(`/product/${this.state.search}`);
     console.log("se apreto el boton");
   }
 
@@ -41,12 +45,14 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => {
   return {
     mostrarBusqueda: item => {
-      dispatch(searchData(item));
+      dispatch(fetchProduct(item));
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HeaderContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(HeaderContainer)
+);

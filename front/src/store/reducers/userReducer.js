@@ -7,27 +7,15 @@ const initialState = {
 };
 
 export default (state = initialState, actions) => {
+  console.log("ENTRE AL REDUCER");
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
+    case "LOG_USER":
       return {
         ...state,
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: true,
+        user: actions.user
       };
-    case `${actions.type}_PENDING`:
-      return {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
-      };
-    case `${actions.type}_FULFILLED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: false,
-        user: actions.payload.user
-      };
-
     default:
       return state;
   }

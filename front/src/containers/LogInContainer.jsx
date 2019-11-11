@@ -3,6 +3,7 @@ import LogIn from "../components/LogIn";
 import { logIn } from "../store/actions/userAction";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 class LogInContainer extends Component {
   constructor(props) {
@@ -18,10 +19,8 @@ class LogInContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state.email, this.state.password);
     this.props.logIn(this.state.email, this.state.password).then(res => {
-      console.log(res);
-      this.props.history.push("/products");
+      this.props.history.push("/");
     });
   }
   handleEmail(e) {
@@ -56,7 +55,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LogInContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(LogInContainer)
+);
