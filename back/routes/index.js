@@ -5,15 +5,14 @@ const User = require("../models/User");
 
 const passport = require("passport");
 
-router.get("/products", function (req, res) {
+router.get("/products", function(req, res) {
   // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
-    .catch(function (err) {
-      console.log(err)
-    })
-})
-
+    .catch(function(err) {
+      console.log(err);
+    });
+});
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body.email, "HOLAAAA AUXILIOO no me VALIDAAAA");
@@ -26,7 +25,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function (req, res) {
+router.get("/category/:country", function(req, res) {
   // direccion api/
   Product.findAll({
     where: {
@@ -34,12 +33,11 @@ router.get("/category/:country", function (req, res) {
     }
   })
     .then(products => res.json(products))
-    .catch(function (err) {
+    .catch(function(err) {
       console.log(err);
-    })
-})
-  ;
-router.post("/logIn", passport.authenticate("local"), function (req, res) {
+    });
+});
+router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
 });
 
@@ -49,4 +47,4 @@ router.get("/products", (req, res, next) => {
   });
 });
 
-module.exports = router
+module.exports = router;
