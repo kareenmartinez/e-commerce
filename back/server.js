@@ -8,6 +8,11 @@ const cookieParser = require("cookie-parser"); // req.cookies
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Product = require("./models/Product");
+<<<<<<< HEAD
+=======
+const User = require("./models/User");
+
+>>>>>>> 93489add3e3e748a9c40e49f970647329ead6300
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -64,7 +69,7 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-db.sync({ force: false })
+db.sync()
   .then(() => {
     app.listen(3000, () => {
       console.log("listening on port 3000");

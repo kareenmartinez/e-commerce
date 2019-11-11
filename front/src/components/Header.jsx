@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-// import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search';
 import { fetchProducts } from "../store/actions/CategoriesAction";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -86,6 +86,7 @@ function Header({ fetchProducts }) {
           </Typography>
         </Grid>
       </div>
+      <br />
       <div>
         <Grid
           style={{
@@ -126,21 +127,23 @@ function Header({ fetchProducts }) {
             </div>
           </Grid>
           <Grid item="md-4">
-            <div className={classes.search}>
-              {/* <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div> */}
+          <div className={classes.search}>
+            <InputBase
+              onChange={props.handleChange}
+              placeholder="Search…"
+              value={props.search}
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+            <Button onClick={props.handleSubmit}>
+              <SearchIcon />
+            </Button>
+          </div>
+        </Grid>
 
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
-          </Grid>
           <div
             style={{
               display: "flex",
@@ -153,7 +156,9 @@ function Header({ fetchProducts }) {
               </Link>
             </Grid>
             <Grid item="md-2">
-              <Button>Sign Up</Button>
+              <Link to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
             </Grid>
           </div>
         </Grid>

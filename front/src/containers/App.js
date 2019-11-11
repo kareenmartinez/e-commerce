@@ -1,22 +1,35 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import FilterCategoryContainer from "../containers/FilterCategoryContainer.jsx";
-import Header from "../components/Header.jsx";
-import LogInContainer from "../containers/LogInContainer";
-import { RegisterPage } from "../components/RegisterPage";
+import HeaderContainer from "./HeaderContainer";
+import { Route, Switch } from "react-router-dom";
+import RegisterContainer from "./RegisterContainer";
+import ProductsContainer from "./ProductsContainer";
+import FilterCategoryContainer from "./FilterCategoryContainer";
+import LogInContainer from "./LogInContainer";
+import ProductContainer from "./ProductContainer";
+
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <HeaderContainer />
+        <hr />
+
+        <br />
         <Switch>
+          <Route exact path="/signup" component={RegisterContainer} />
+          {/* <Route exact path="/" component={FilterCategoryContainer} /> */}
           <Route exact path="/logIn" component={LogInContainer} />
+<<<<<<< HEAD
           <Route
             exact
             path="/categories/:country"
             component={FilterCategoryContainer}
           />
           <Route exact path="/signup" component={RegisterPage} />
+=======
+          <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/product" component={ProductContainer} />
+>>>>>>> 93489add3e3e748a9c40e49f970647329ead6300
         </Switch>
       </div>
     );

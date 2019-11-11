@@ -5,14 +5,6 @@ import { createLogger } from "redux-logger";
 
 import reducers from "./reducers";
 
-// const middleware = () => {
-//   return (
-//     thunkMiddleware, // nos permite despachar funciones
-//     promiseMiddleware(),
-//     createLogger()
-//   );
-// };
-
 const middleware = [
   thunkMiddleware, // nos permite despachar funciones
   promiseMiddleware(),
