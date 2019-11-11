@@ -5,7 +5,7 @@ const User = require("../models/User");
 
 const passport = require("passport");
 
-router.get("/products", function(req, res) {
+router.get("/products", function (req, res) {
   // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
@@ -25,7 +25,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   // direccion api/
   Product.findAll({
     where: {
@@ -33,7 +33,7 @@ router.get("/category/:country", function(req, res) {
     }
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });
