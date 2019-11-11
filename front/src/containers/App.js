@@ -17,7 +17,6 @@ class App extends React.Component {
         <br />
         <Switch>
           <Route exact path="/signup" component={RegisterContainer} />
-          {/* <Route exact path="/" component={FilterCategoryContainer} /> */}
           <Route exact path="/logIn" component={LogInContainer} />
           <Route
             exact
@@ -25,7 +24,7 @@ class App extends React.Component {
             component={FilterCategoryContainer}
           />
           <Route exact path="/" component={ProductsContainer} />
-          <Route exact path="/product" component={ProductContainer} />
+          <Route exact path="/product/:name" component={ProductContainer} />
         </Switch>
       </div>
     );

@@ -10,14 +10,27 @@ class ProductsContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <Product></Product>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          backgroundColor: "black",
+          color: "white",
+          borderRadius: "7px"
+        }}
+      >
+        <Product busqueda={this.props.busqueda} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  singleProduct: state.productsReducer.products,
+  busqueda: state.searchReducer.search,
+  cargandoBusqueda: state.productsReducer,
+  cargandoProduct: state.productsReducer
+});
 
 const mapDispatchToProps = dispatch => {
   return {};
