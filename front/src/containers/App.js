@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderContainer from "./HeaderContainer";
 import { Route, Switch } from "react-router-dom";
-import RegisterContainer from "./RegisterContainer";
+import RegisterContainer from "./RegisterContainer.js";
 import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
