@@ -1,14 +1,11 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-
 import InputBase from "@material-ui/core/InputBase";
-
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
-import SearchIcon from "@material-ui/icons/Search";
-
+import SearchIcon from '@material-ui/icons/Search';
+import { fetchProducts } from "../store/actions/CategoriesAction";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -52,19 +49,28 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Header(props) {
+function Header({ fetchProducts }) {
+
+  //console.log(req.user.id, "ssssssssssssssss")
+
+
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
-
+  const closeAndFetch = country => {
+    handleClose();
+    fetchProducts(country);
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  //categorias en el menu del header
+  const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
+  countries.sort();
 
-  console.log(props);
   return (
     <div>
       <div className={classes.jumbotron}>
@@ -106,34 +112,37 @@ export default function Header(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <Link to="/categories">
-                  <MenuItem onClick={handleClose}>Peru</MenuItem>
-                </Link>
-                <MenuItem onClick={handleClose}>Brazil</MenuItem>
-                <MenuItem onClick={handleClose}>Argentina</MenuItem>
-
-                <MenuItem onClick={handleClose}>Mexico</MenuItem>
+                {countries.map(pais => (
+                  <Link style={{textDecoration:"none", color:"black"}}to={{ pathname: `/categories/${pais}` }} key={pais}>
+                    <MenuItem
+                      onClick={e => {
+                        closeAndFetch(pais);
+                      }}
+                    >
+                      {pais}
+                    </MenuItem>
+                  </Link>
+                ))}
               </Menu>
             </div>
           </Grid>
-
           <Grid item="md-4">
-            <div className={classes.search}>
-              <InputBase
-                onChange={props.handleChange}
-                placeholder="Search…"
-                value={props.search}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-              <Button onClick={props.handleSubmit}>
-                <SearchIcon />
-              </Button>
-            </div>
-          </Grid>
+          <div className={classes.search}>
+            <InputBase
+              onChange={props.handleChange}
+              placeholder="Search…"
+              value={props.search}
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+            <Button onClick={props.handleSubmit}>
+              <SearchIcon />
+            </Button>
+          </div>
+        </Grid>
 
           <div
             style={{
@@ -157,3 +166,13 @@ export default function Header(props) {
     </div>
   );
 }
+const mapDispatchToProps = dispatch => ({
+  fetchProducts: item => {
+    dispatch(fetchProducts(item));
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

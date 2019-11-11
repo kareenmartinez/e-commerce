@@ -5,13 +5,14 @@ const db = require("./config/db");
 const routes = require("./routes");
 const session = require("express-session"); // req.session || https://www.tutorialspoint.com/expressjs/expressjs_sessions.htm
 const cookieParser = require("cookie-parser"); // req.cookies
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
 const Product = require("./models/Product");
+<<<<<<< HEAD
+=======
 const User = require("./models/User");
 
+>>>>>>> 93489add3e3e748a9c40e49f970647329ead6300
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
