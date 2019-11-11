@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
-import logo from "../logo.svg"
+import logo from "./loguish.png"
+import scooter from "./scooter.png"
 
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -79,11 +80,14 @@ function Header({handleChange,handleSubmit,search, fetchProducts}) {
                     item="md-12"
                     style={{ height: "100%", display: "flex", flexDirection: "row", justifyContent: "center" }}
                 >
-                    <Grid className="col-md-6">
-                        <img src={logo}></img>
-                    </Grid>
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+                        <Grid style={{ order: '1' }} className="col-md-6">
+                            <img style={{ height: "60px", width: "70px" }} src={logo} />
+                        </Grid>
+                    </Link>
 
-                    <Grid className="col-md-6">
+
+                    <Grid style={{ order: '5' }} className="col-md-6">
                         <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                             <Typography style={{ fontFamily: "courier", fontSize: "40px" }}>
                                 SUPER RESTAURANTE</Typography>
@@ -172,6 +176,9 @@ function Header({handleChange,handleSubmit,search, fetchProducts}) {
                             </Grid>
 
                         </Link>
+                        <Grid item="md-2">
+                            <Button> <img src={scooter} style={{ height: "30px", width: "30px" }} /></Button>
+                        </Grid>
 
                     </div>
                 </Grid>
