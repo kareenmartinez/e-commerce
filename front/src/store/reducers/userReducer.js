@@ -1,4 +1,4 @@
-import { LOG_USER, LOG_IN } from "../actions/userAction";
+import { LOG_USER } from "../constants";
 
 const initialState = {
   isFetching: false,
@@ -8,24 +8,12 @@ const initialState = {
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: true
-      };
-    case `${actions.type}_PENDING`:
-      return {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
-      };
-    case `${actions.type}_FULFILLED`:
+    case `${LOG_USER}`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload.user
+        user: actions.payload
       };
 
     default:
