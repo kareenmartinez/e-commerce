@@ -88417,7 +88417,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   isFetching: false,
   didInvalidate: false,
-  register: []
+  register: [],
+  isUnique: false
 };
 function registerReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -88427,7 +88428,8 @@ function registerReducer() {
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REGISTER"], "_REJECTED"):
       return _objectSpread({}, state, {
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: true,
+        isUnique: false
       });
 
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REGISTER"], "_PENDING"):
@@ -88440,7 +88442,8 @@ function registerReducer() {
       return _objectSpread({}, state, {
         isFetching: false,
         didInvalidate: false,
-        register: actions.payload.register
+        register: actions.payload.register,
+        isUnique: true
       });
 
     default:

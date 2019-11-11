@@ -12,6 +12,7 @@ class RegisterContainer extends Component {
       direction: "",
       email: "",
       password: ""
+      // isUnique: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,9 +23,14 @@ class RegisterContainer extends Component {
     this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
+  //componentWillUnmount(){
+  //  this.setState= isUnique=
+  //}
+
   handleSubmit(event) {
     console.log("ENTRO AL BOTON");
     event.preventDefault();
+
     this.props
       .createUser([
         this.state.name,
@@ -63,6 +69,7 @@ class RegisterContainer extends Component {
     return (
       <div>
         <Register
+          isUnique={this.props.state.isUnique}
           handleSubmit={this.handleSubmit}
           handleChangeName={this.handleChangeName}
           handleChangeLastName={this.handleChangeLastName}
@@ -80,7 +87,9 @@ class RegisterContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isUnique: state.registerReducer.isUnique
+});
 
 const mapDispatchToProps = dispatch => {
   return {

@@ -7,7 +7,7 @@ const User = require("../models/User");
 const passport = require("passport");
 
 router.post("/signup", (req, res, next) => {
-  console.log(req.body, "HOLAAAA AUXILIOO");
+  console.log(req.body.email, "HOLAAAA AUXILIOO no me VALIDAAAA");
   User.create(req.body)
     .then(user => {
       res.send(user);
