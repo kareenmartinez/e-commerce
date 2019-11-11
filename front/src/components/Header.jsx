@@ -64,10 +64,9 @@ export default function Header(props) {
     setAnchorEl(null);
   };
 
-  console.log(props);
   return (
     <div>
-      <div className={classes.jumbotron}>
+      <div className={classes.jumbotron} style={{ borderRadius: "7px" }}>
         <Grid
           container
           direction="column"
@@ -121,7 +120,7 @@ export default function Header(props) {
             <div className={classes.search}>
               <InputBase
                 onChange={props.handleChange}
-                placeholder="Search…"
+                placeholder="  Search…"
                 value={props.search}
                 classes={{
                   root: classes.inputRoot,
@@ -146,9 +145,11 @@ export default function Header(props) {
                 <Button>Log In</Button>
               </Link>
             </Grid>
-            <Grid item="md-2">
-              <Button>Sign Up</Button>
-            </Grid>
+            <Link to="/signup">
+              <Grid item="md-2">
+                <Button>Sign Up</Button>
+              </Grid>
+            </Link>
           </div>
         </Grid>
       </div>

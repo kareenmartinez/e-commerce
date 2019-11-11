@@ -8,4 +8,6 @@ export const LOG_IN = "LOG_IN";
 
 export const LOG_USER = "LOG_USER";
 
-export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+// export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+
+export const FETCH_PRODUCT = "FETCH_PRODUCT";

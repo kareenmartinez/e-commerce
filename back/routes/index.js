@@ -7,7 +7,7 @@ const User = require("../models/User");
 const passport = require("passport");
 
 router.post("/signup", (req, res, next) => {
-  console.log(req.body, "HOLAAAA AUXILIOO");
+  console.log(req.body);
   User.create(req.body)
     .then(user => {
       res.send(user);
@@ -25,6 +25,21 @@ router.post("/logIn", passport.authenticate("local"), function(req, res) {
 router.get("/products", (req, res, next) => {
   Product.findAll().then(products => {
     res.json(products);
+  });
+});
+
+router.get("/product/:name", (req, res, next) => {
+  console.log("---------------------------------------------------");
+  console.log(req.params.name);
+  // console.log(req.body);
+  console.log("---------------------------------------------------");
+
+  Product.findOne({
+    where: {
+      name: req.params.name
+    }
+  }).then(singleProduct => {
+    res.send(singleProduct);
   });
 });
 
