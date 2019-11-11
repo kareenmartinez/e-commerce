@@ -8,11 +8,8 @@ const cookieParser = require("cookie-parser"); // req.cookies
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Product = require("./models/Product");
-<<<<<<< HEAD
-=======
 const User = require("./models/User");
 
->>>>>>> 93489add3e3e748a9c40e49f970647329ead6300
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -37,7 +34,7 @@ passport.use(
       usernameField: "email", // input name for username
       passwordField: "password" // input name for password
     },
-    function(inputEmail, inputPassword, done) {
+    function (inputEmail, inputPassword, done) {
       User.findOne({ where: { email: inputEmail } }) // searching for the User
         .then(user => {
           if (!user) {
@@ -54,12 +51,12 @@ passport.use(
 );
 
 // serialize: how we save the user and stored in session object by express-session
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
 // deserialize: how we look for the user
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function (id, done) {
   User.findByPk(id).then(user => done(null, user));
 });
 
