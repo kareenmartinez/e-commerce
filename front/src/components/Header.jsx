@@ -52,7 +52,7 @@ const useStyles = makeStyles({
     }
 });
 
-function Header(props) {
+function Header({handleChange,handleSubmit,search, fetchProducts}) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -63,10 +63,13 @@ function Header(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const closeAndFetch = country => {
+      handleClose();
+      fetchProducts(country);
+    };
     const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
     countries.sort();
 
-    console.log(props);
     return (
         <div>
             <div className={classes.jumbotron}>
@@ -141,16 +144,16 @@ function Header(props) {
                     <Grid item="md-4">
                         <div className={classes.search}>
                             <InputBase
-                                onChange={props.handleChange}
+                                onChange={handleChange}
                                 placeholder="Search…"
-                                value={props.search}
+                                value={search}
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput
                                 }}
                                 inputProps={{ "aria-label": "search" }}
                             />
-                            <Button onClick={props.handleSubmit}>
+                            <Button onClick={handleSubmit}>
                                 <SearchIcon />
                             </Button>
                         </div>

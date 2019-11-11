@@ -22,9 +22,8 @@ User.init(
 
       validate: {
         isEmail: true,
-        isUnique: true,
+        isUnique: true
       }
-
     },
     isAdmin: {
       type: S.BOOLEAN,
@@ -33,8 +32,7 @@ User.init(
     },
     direction: {
       type: S.STRING,
-      allowNull: false,
-
+      allowNull: false
     },
     password: {
       type: S.STRING,

@@ -87059,7 +87059,11 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["ma
   }
 });
 
-function Header(props) {
+function Header(_ref) {
+  var handleChange = _ref.handleChange,
+      handleSubmit = _ref.handleSubmit,
+      search = _ref.search,
+      fetchProducts = _ref.fetchProducts;
   var classes = useStyles();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
@@ -87075,9 +87079,13 @@ function Header(props) {
     setAnchorEl(null);
   };
 
+  var closeAndFetch = function closeAndFetch(country) {
+    handleClose();
+    fetchProducts(country);
+  };
+
   var countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
-  console.log(props);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.jumbotron
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -87163,9 +87171,9 @@ function Header(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.search
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    onChange: props.handleChange,
+    onChange: handleChange,
     placeholder: "Search\u2026",
-    value: props.search,
+    value: search,
     classes: {
       root: classes.inputRoot,
       input: classes.inputInput
@@ -87174,7 +87182,7 @@ function Header(props) {
       "aria-label": "search"
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    onClick: props.handleSubmit
+    onClick: handleSubmit
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_8___default.a, null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       display: "flex",
@@ -87507,7 +87515,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _RegisterContainer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RegisterContainer.js */ "./src/containers/RegisterContainer.js");
 /* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
-/* harmony import */ var _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer */ "./src/containers/FilterCategoryContainer.js");
+/* harmony import */ var _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer.jsx */ "./src/containers/FilterCategoryContainer.jsx");
 /* harmony import */ var _LogInContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LogInContainer */ "./src/containers/LogInContainer.jsx");
 /* harmony import */ var _ProductContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProductContainer */ "./src/containers/ProductContainer.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -87562,7 +87570,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/categories/:country",
-        component: _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
@@ -87582,10 +87590,10 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./src/containers/FilterCategoryContainer.js":
-/*!***************************************************!*\
-  !*** ./src/containers/FilterCategoryContainer.js ***!
-  \***************************************************/
+/***/ "./src/containers/FilterCategoryContainer.jsx":
+/*!****************************************************!*\
+  !*** ./src/containers/FilterCategoryContainer.jsx ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -87614,6 +87622,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/**Natalia 2- Como usuario no logueado quiero poder 
+ * filtrar productos por categoría para acortar la búsqueda
+ * 
+ * Descripcion:
+Si presionamos una categoría debe mostrar los productos de la 
+categoría seleccionada, si, presiono otra categoría, debería dejar 
+de mostrar los productos de la categoría anterior y mostrar los 
+productos de la categoría nueva.
+
+Si al presionar un filtro no consigue coincidencias debe mostrar 
+un "not found"
+*/
 
 
 
@@ -87624,31 +87644,30 @@ var FilterCategoryContainer =
 function (_React$Component) {
   _inherits(FilterCategoryContainer, _React$Component);
 
-  function FilterCategoryContainer() {
-    var _this;
-
+  function FilterCategoryContainer(props) {
     _classCallCheck(this, FilterCategoryContainer);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FilterCategoryContainer).call(this));
-    _this.state = {
-      products: []
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(FilterCategoryContainer).call(this, props));
   }
 
   _createClass(FilterCategoryContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var fetch = this.props.fetchProducts();
-      this.setState({
-        products: fetch
-      });
+      this.props.fetchProducts(this.props.match.params.country);
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "hola"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FilterCategory__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        products: this.state.products
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FilterCategory__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        products: this.props.products
       }));
     }
   }]);
@@ -87658,15 +87677,15 @@ function (_React$Component) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchProducts: function fetchProducts() {
-      dispatch(Object(_store_actions_CategoriesAction__WEBPACK_IMPORTED_MODULE_2__["fetchProducts"])());
+    fetchProducts: function fetchProducts(item) {
+      dispatch(Object(_store_actions_CategoriesAction__WEBPACK_IMPORTED_MODULE_2__["fetchProducts"])(item));
     }
   };
 };
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    products: state.filterReducer.products
+    products: state.filterReducer.productsCategory
   };
 };
 

@@ -9,16 +9,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const Product = require("./models/Product");
 const User = require("./models/User");
-
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(express.static(path.join(__dirname, "/public")));
-
 app.use(cookieParser());
-
 app.use(
   session({
     secret: "pepinillo",
