@@ -1,10 +1,18 @@
 const express = require("express");
 const router = express();
-
 const Product = require("../models/Product");
 const User = require("../models/User");
 
 const passport = require("passport");
+
+router.get("/products", function(req, res) {
+  // direccion api/products
+  Product.findAll()
+    .then(products => res.json(products))
+    .catch(function(err) {
+      console.log(err);
+    });
+});
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body.email, "HOLAAAA AUXILIOO no me VALIDAAAA");

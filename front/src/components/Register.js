@@ -18,7 +18,7 @@ export default function Register(props) {
 
   return (
     <div className={classes.container}>
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={props.handleSubmit} method="POST">
         <Input
           onChange={props.handleChangeName}
           className={classes.input}

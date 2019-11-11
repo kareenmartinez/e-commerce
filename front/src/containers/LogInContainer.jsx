@@ -3,6 +3,7 @@ import LogIn from "../components/LogIn";
 import { logIn } from "../store/actions/userAction";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router"
 
 class LogInContainer extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(LogInContainer);
+)(LogInContainer));
