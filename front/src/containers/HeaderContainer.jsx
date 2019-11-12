@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { connect } from "react-redux";
 import { fetchProduct } from "../store/actions/searchAction";
 import { withRouter } from "react-router";
+import { logout } from "../store/actions/logoutAction";
 //me permite usar el history
 
 class HeaderContainer extends React.Component {
@@ -33,6 +34,7 @@ class HeaderContainer extends React.Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           search={this.state.search}
+          logout={this.props.logout}
         />
       </div>
     );
@@ -47,6 +49,9 @@ const mapDispatchToProps = dispatch => {
   return {
     mostrarBusqueda: item => {
       dispatch(fetchProduct(item));
+    },
+    logout: () => {
+      dispatch(logout());
     }
   };
 };

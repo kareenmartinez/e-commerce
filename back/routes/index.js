@@ -7,12 +7,18 @@ const Op = Sequelize.Op
 
 const passport = require("passport");
 
+
+
 router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
 
+router.get("/logOut", (req, res) => {
+  req.logout(); // passport method for logout
+  res.sendStatus(202);
+});
+
 router.get("/products", function (req, res) {
-  // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
     .catch(function (err) {
@@ -21,19 +27,16 @@ router.get("/products", function (req, res) {
 });
 
 router.post("/signup", (req, res, next) => {
-  console.log(req.body.email, "HOLAAAA AUXILIOO no me VALIDAAAA");
   User.create(req.body)
     .then(user => {
       res.send(user);
     })
     .catch(err => {
       console.log(err);
-      res.send("ERROR");
     });
 });
 
 router.get("/category/:country", function (req, res) {
-  // direccion api/
   Product.findAll({
     where: {
       country: req.params.country
@@ -50,20 +53,16 @@ router.get("/products", (req, res, next) => {
     res.json(products);
   });
 });
-router.get("/logOut", (req, res) => {
-  req.logout(); // passport method for logout
-  res.sendStatus(202);
-});
 
 router.get("/product/:name", (req, res, next) => {
-  console.log("---------------------------------------------------");
+  const nameProduct = req.params.name;
   console.log(req.params.name);
-  console.log("---------------------------------------------------");
-  const product = req.params.name
+
   Product.findOne({
     where: {
+      // name: req.params.name
       name: {
-        [Op.iLike]: `%${product}%`
+        [Op.iLike]: `%${nameProduct}%`
       }
     }
   }).then(singleProduct => {
