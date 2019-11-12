@@ -8,6 +8,6 @@ export const LOG_IN = "LOG_IN";
 
 export const FETCH_USER = "FETCH_USER";
 
-// export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
-
 export const FETCH_PRODUCT = "FETCH_PRODUCT";
+
+export const LOG_OUT = "LOG_OUT";

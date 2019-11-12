@@ -52,7 +52,14 @@ const useStyles = makeStyles({
   }
 });
 
-function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
+function Header({
+  handleChange,
+  handleSubmit,
+  search,
+  fetchProducts,
+  user,
+  logout
+}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -174,9 +181,11 @@ function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
             {user.email === undefined ? (
               console.log("noooooooo hay user")
             ) : (
-              <Grid item="md-2">
-                <Button>Log Out</Button>
-              </Grid>
+              <Link to="/">
+                <Grid item="md-2">
+                  <Button onClick={logout}>Log Out</Button>
+                </Grid>
+              </Link>
             )}
 
             {user.email === undefined ? (
