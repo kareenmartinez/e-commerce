@@ -7,7 +7,9 @@ import { fetchProduct } from "../store/actions/searchAction";
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+  }
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name)
   }
 
   componentDidMount() {
