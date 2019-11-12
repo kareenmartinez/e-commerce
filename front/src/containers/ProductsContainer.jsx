@@ -9,31 +9,17 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // input: 0
-
-    };
-    this.handleAdd = this.handleAdd.bind(this);
-    // this.handleRemove = this.handleRemove.bind(this);
+    this.state = {};
+    this.probando = this.probando.bind(this);
   }
 
   componentDidMount() {
     this.props.mostrarProductos();
   }
-  // handleAdd() {
-  //   this.setState({ input: this.state.input + 1 })
 
-  // }
-  // handleRemove() {
-  //   if (this.state.input > 0) { this.setState({ input: this.state.input - 1 }) }
-
-
-  // }
-  handleAdd(e) {
-    e.preventDefault()
-
+  probando() {
+    console.log("se apreto");
   }
-
 
   render() {
     const { productsState } = this.props;
@@ -48,6 +34,9 @@ class ProductsContainer extends React.Component {
         </div>
       );
     }
+
+    console.log(this.props.productsState);
+    console.log(this.props.cargandoBusqueda);
 
     return (
       <div
@@ -65,7 +54,7 @@ class ProductsContainer extends React.Component {
         <Products
           productsState={productsState}
           mostrarBusqueda={this.props.mostrarBusqueda}
-          handleAdd={this.handleAdd}
+          probando={this.probando}
         />
       </div>
     );
@@ -83,6 +72,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchProducts());
     },
     mostrarBusqueda: item => {
+      console.log(item);
       dispatch(fetchProduct(item));
     }
   };
