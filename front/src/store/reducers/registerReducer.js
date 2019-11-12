@@ -3,8 +3,7 @@ import { REGISTER } from "../constants";
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  register: [],
-  isUnique: false
+  register: []
 };
 
 export function registerReducer(state = initialState, actions) {

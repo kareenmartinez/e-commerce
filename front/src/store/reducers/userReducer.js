@@ -1,19 +1,25 @@
-import { LOG_USER } from "../constants";
+import { LOG_IN, FETCH_USER } from "../constants";
 
 const initialState = {
-  isFetching: false,
-  didInvalidate: false,
   user: []
 };
 
 export default (state = initialState, actions) => {
+  console.log("ENTRE AL REDUCER");
   switch (actions.type) {
-    case `${LOG_USER}`:
+    case LOG_IN:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload
+        user: actions.user
+      };
+    case FETCH_USER:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        user: actions.user
       };
 
     default:

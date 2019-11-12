@@ -6,19 +6,19 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
+import { fetchUser } from "../store/actions/userAction";
+
+import store from "../store/store";
 
 import { connect } from "react-redux";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: []
-    };
   }
-
-  componentDidMount() {}
-
+  componentDidMount() {
+    store.dispatch(fetchUser());
+  }
   render() {
     return (
       <div>

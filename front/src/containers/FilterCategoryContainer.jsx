@@ -1,3 +1,16 @@
+/**Natalia 2- Como usuario no logueado quiero poder 
+ * filtrar productos por categoría para acortar la búsqueda
+ * 
+ * Descripcion:
+Si presionamos una categoría debe mostrar los productos de la 
+categoría seleccionada, si, presiono otra categoría, debería dejar 
+de mostrar los productos de la categoría anterior y mostrar los 
+productos de la categoría nueva.
+
+Si al presionar un filtro no consigue coincidencias debe mostrar 
+un "not found"
+*/
+
 import React from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/actions/CategoriesAction";
