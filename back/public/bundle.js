@@ -88756,6 +88756,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Product */ "./src/components/Product.jsx");
+/* harmony import */ var _store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/searchAction */ "./src/store/actions/searchAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88778,22 +88779,24 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ProductsContainer =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(ProductsContainer, _React$Component);
 
   function ProductsContainer(props) {
-    var _this;
-
     _classCallCheck(this, ProductsContainer);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
   }
 
   _createClass(ProductsContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProduct(this.props.match.params.name);
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88815,15 +88818,16 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    singleProduct: state.productsReducer.products,
-    busqueda: state.searchReducer.search,
-    cargandoBusqueda: state.productsReducer,
-    cargandoProduct: state.productsReducer
+    busqueda: state.searchReducer.search
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchProduct: function fetchProduct(item) {
+      dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__["fetchProduct"])(item));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductsContainer));

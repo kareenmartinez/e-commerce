@@ -28,14 +28,14 @@ const productos = [
     img:
       "https://t1.rg.ltmcdn.com/es/images/5/8/4/img_empanadas_de_carne_cortada_a_cuchillo_7485_600.jpg",
     country: "Argentina",
-    description: "aaa"
+    description: "CODIGO ROJO!! NOS QUEDAMOS SIN DESCRIPCIÓN PARA LAS EMPANADAS AAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH "
   },
   {
     name: "Ravioles",
     price: 200,
     img: "http://biencasero.clarin.com/advf/imagenes/522748b9dbac2.jpg",
     country: "Argentina",
-    description: "aaa"
+    description: "Si les soy sincera, no tenia ganas de buscar contenido para los ravioles, aprovechare este espacion para decir que: Karen es lo mas :)"
   },
   {
     name: "taco salad tradicional",
