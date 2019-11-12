@@ -89611,7 +89611,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var fetchProducts = function fetchProducts(country) {
   return {
-    pe: _constants__WEBPACK_IMPORTED_MODULE_1__["PRODUCTS_CATEGORIES"],
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["PRODUCTS_CATEGORIES"],
     payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/category/".concat(country)).then(function (res) {
       return res.data;
     })["catch"](function (error) {
