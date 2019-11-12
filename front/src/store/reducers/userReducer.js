@@ -1,31 +1,45 @@
-import { LOG_USER, LOG_IN } from "../actions/userAction";
+import { LOG_IN, FETCH_USER, LOG_OUT } from "../constants";
 
 const initialState = {
-  isFetching: false,
-  didInvalidate: false,
   user: []
 };
 
 export default (state = initialState, actions) => {
+  console.log("ENTRE AL REDUCER");
   switch (actions.type) {
-    case `${actions.type}_REJECTED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: true
-      };
-    case `${actions.type}_PENDING`:
-      return {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
-      };
-    case `${actions.type}_FULFILLED`:
+    case LOG_IN:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        user: actions.payload.user
+        user: actions.user
+      };
+    case FETCH_USER:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        user: actions.user
+      };
+
+    case `${LOG_OUT}_REJECTED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false
+      };
+    case `${LOG_OUT}_PENDING`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false
+      };
+    case `${LOG_OUT}_FULFILLED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        user: {}
       };
 
     default:

@@ -1,12 +1,12 @@
 const db = require("./config/db");
-const {Product, User, Comment} = require("./models");
+const { Product, User, Comment } = require("./models");
 
 const productos = [
   {
     name: "Aji de gallina",
     price: 340,
     img:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTHnaN0frWeNNOoHm-3zaapRx-y_gb2FC9U8HkNt6aXjBi77QK&s",
+      "https://prod.media.wapa.pe/1200x630/wapa/imagen/2019/09/10/noticia-1568131822-preparar-aji-gallina-quinua.png",
     country: "Peru",
     description:
       "Chicken chili is a typical dish of Peruvian cuisine, specifically from the coast, which consists of a chili or thick cream with frayed chicken breast."
@@ -26,14 +26,16 @@ const productos = [
     img:
       "https://t1.rg.ltmcdn.com/es/images/5/8/4/img_empanadas_de_carne_cortada_a_cuchillo_7485_600.jpg",
     country: "Argentina",
-    description: "aaa"
+    description:
+      "CODIGO ROJO!! NOS QUEDAMOS SIN DESCRIPCIÓN PARA LAS EMPANADAS AAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH "
   },
   {
     name: "Ravioles",
     price: 200,
     img: "http://biencasero.clarin.com/advf/imagenes/522748b9dbac2.jpg",
     country: "Argentina",
-    description: "aaa"
+    description:
+      "Si les soy sincera, no tenia ganas de buscar contenido para los ravioles, aprovechare este espacion para decir que: Karen es lo mas :)"
   },
   {
     name: "taco salad tradicional",
@@ -122,30 +124,16 @@ const comments = [
   }
 ];
 
-/* Product.bulkCreate(productos).then(() => {
+Product.bulkCreate(productos).then(() => {
   console.log("created products");
 });
 
 User.bulkCreate(user).then(() => {
   console.log("created user");
-});   */
-
- Comment.bulkCreate(comments).then(() => {
-  console.log("created comments");
-});   
-/* Comment.create({
-  comment: "muy rico!!",
-  rating: 3,
-  productId: 1,
-  userId: 2
-}).then(() => console.log("creado"));
-
-Comment.create({
-  comment: "horrible!!",
-  rating: 0,
-  userId: 2,
-  productId: 1
-}).then(comment => {
-  
 });
- */
+
+// este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
+//comment, comentando los bulk de arriba
+//Comment.bulkCreate(comments).then(() => {
+//   console.log("created comments");
+// });

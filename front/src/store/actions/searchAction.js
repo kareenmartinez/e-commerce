@@ -1,15 +1,13 @@
-import { SEARCH_PRODUCTS } from "../constants";
+import { FETCH_PRODUCT } from "../constants";
+import axios from "axios";
 
-// export const searchData = search => {
-//   console.log(search.search);
-
-//   return {
-//     type: SEARCH_PRODUCTS,
-//     payload: search.search
-//   };
-// };
-
-export const searchData = search => ({
-  type: SEARCH_PRODUCTS,
-  payload: search.search
-});
+export const fetchProduct = data => {
+  console.log(data);
+  return {
+    type: FETCH_PRODUCT,
+    payload: axios
+      .get(`/api/product/${data}`)
+      .then(res => res.data)
+      .catch(error => Promise.reject(error))
+  };
+};

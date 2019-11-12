@@ -3,12 +3,25 @@ import HeaderContainer from "./HeaderContainer";
 import { Route, Switch } from "react-router-dom";
 import RegisterContainer from "./RegisterContainer.js";
 import ProductsContainer from "./ProductsContainer";
-import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
+import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
+import { fetchUser } from "../store/actions/userAction";
+import OrderContainer from "./OrderContainer"
+import store from "../store/store";
+
+import { connect } from "react-redux";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    store.dispatch(fetchUser());
+  }
+
   render() {
     return (
       <div>
@@ -25,11 +38,29 @@ class App extends React.Component {
             path="/categories/:country"
             component={FilterCategoryContainer}
           />
-          <Route exact path="/product" component={ProductContainer} />
+          <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/order" component={OrderContainer} />
+          <Route exact path="/product/:name" component={ProductContainer} />
         </Switch>
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    products: state.filterReducer.productsCategory,
+    user: state.userReducer.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

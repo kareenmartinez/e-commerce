@@ -1,4 +1,4 @@
-import axios  from "axios";
+import axios from "axios";
 import { PRODUCTS_CATEGORIES } from "../constants";
 
 export const fetchProducts = country => ({

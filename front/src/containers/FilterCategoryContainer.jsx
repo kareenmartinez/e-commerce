@@ -11,10 +11,10 @@ Si al presionar un filtro no consigue coincidencias debe mostrar 
 un "not found"
 */
 
-import React from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts} from "../store/actions/CategoriesAction"
-import FilterCategory from '../components/FilterCategory'
+import React from "react";
+import { connect } from "react-redux";
+import { fetchProducts } from "../store/actions/CategoriesAction";
+import FilterCategory from "../components/FilterCategory";
 
 class FilterCategoryContainer extends React.Component {
   constructor(props) {
@@ -56,4 +56,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(FilterCategoryContainer);
-  

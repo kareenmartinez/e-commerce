@@ -1,7 +1,6 @@
 const S = require("sequelize");
 const db = require("../config/db");
 const crypto = require("crypto");
-const Comment = require("./Comment");
 
 class User extends S.Model {}
 
@@ -18,10 +17,9 @@ User.init(
     email: {
       type: S.STRING,
       allowNull: false,
-
+      unique: true,
       validate: {
-        isEmail: true,
-        isUnique: true
+        isEmail: true
       }
     },
     isAdmin: {
@@ -46,7 +44,6 @@ User.init(
     modelName: "user"
   }
 );
-
 
 User.addHook("beforeCreate", user => {
   user.salt = crypto.randomBytes(20).toString("hex");

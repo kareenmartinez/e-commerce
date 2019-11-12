@@ -2,6 +2,9 @@ import React from "react";
 import Products from "../components/Products";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/actions/productsAction";
+import { fetchProduct } from "../store/actions/searchAction";
+
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 
 
@@ -16,9 +19,25 @@ class ProductsContainer extends React.Component {
     this.props.mostrarProductos();
   }
 
+  
+
   render() {
     const { productsState } = this.props;
-    console.log(this.props);
+
+    if (this.props.cargandoBusqueda.isFetching) {
+      return (
+        <div style={{ textAlign: "center" }}>
+          <CircularProgress
+            disableShrink
+            style={{ width: "3cm", padding: "5%" }}
+          />
+        </div>
+      );
+    }
+
+    console.log(this.props.productsState);
+    console.log(this.props.cargandoBusqueda);
+
     return (
       <div
         className="container"
@@ -26,24 +45,35 @@ class ProductsContainer extends React.Component {
           display: "flex",
           frexDirection: "row",
           justifyContent: "space-around",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
+          borderRadius: "7px",
+
+          backgroundColor: "black"
         }}
       >
-        <Products productsState={productsState} />
-
+        <Products
+          productsState={productsState}
+          mostrarBusqueda={this.props.mostrarBusqueda}
+          
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  productsState: state.productsReducer.products
+  productsState: state.productsReducer.products,
+  cargandoBusqueda: state.productsReducer
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     mostrarProductos: () => {
       dispatch(fetchProducts());
+    },
+    mostrarBusqueda: item => {
+      console.log(item);
+      dispatch(fetchProduct(item));
     }
   };
 };

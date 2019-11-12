@@ -3,26 +3,47 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 import Valoration from "../components/Valoration";
 
+import { fetchProduct } from "../store/actions/searchAction";
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+  }
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name)
   }
 
+  
+
   render() {
+    console.log(this.props.busqueda);
+
     return (
-      <div>
-        <Product></Product>
-        
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          backgroundColor: "black",
+          color: "white",
+          borderRadius: "7px"
+        }}
+      >
+        <Product busqueda={this.props.busqueda} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  busqueda: state.searchReducer.search
+});
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchProduct: item => {
+      dispatch(fetchProduct(item));
+    }
+  };
 };
 
 export default connect(
