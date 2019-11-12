@@ -87915,7 +87915,8 @@ function Header(_ref) {
       search = _ref.search,
       fetchProducts = _ref.fetchProducts,
       user = _ref.user,
-      logout = _ref.logout;
+      logout = _ref.logout,
+      userFacebook = _ref.userFacebook;
   var classes = useStyles();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
@@ -87938,7 +87939,7 @@ function Header(_ref) {
 
   var countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
-  console.log(user);
+  console.log(userFacebook);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.jumbotron,
     style: {
@@ -88044,7 +88045,7 @@ function Header(_ref) {
       display: "flex",
       flexDirection: "row"
     }
-  }, user.email === undefined ? console.log("noooooooo hay user") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+  }, user.email === undefined ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     to: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
@@ -88796,7 +88797,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log(state);
   return {
     products: state.filterReducer.productsCategory,
     user: state.userReducer.user
@@ -88821,6 +88821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_facebook_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-facebook-login */ "./node_modules/react-facebook-login/dist/facebook-login-with-button.js");
 /* harmony import */ var react_facebook_login__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_facebook_login__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/facebookAction */ "./src/store/actions/facebookAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88838,6 +88839,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -88874,7 +88876,8 @@ function (_React$Component) {
   }, {
     key: "responseFacebook",
     value: function responseFacebook(response) {
-      console.log(response);
+      console.log(response.accessToken);
+      this.props.fetchUserFacebook(response.accessToken);
     }
   }, {
     key: "render",
@@ -88903,7 +88906,11 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchUserFacebook: function fetchUserFacebook(item) {
+      dispatch(Object(_store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_3__["fetchUserFacebook"])(item));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(FacebookContainer));
@@ -89095,7 +89102,8 @@ function (_React$Component) {
         handleSubmit: this.handleSubmit,
         handleChange: this.handleChange,
         search: this.state.search,
-        logout: this.props.logout
+        logout: this.props.logout,
+        userFacebook: this.props.userFacebook
       }));
     }
   }]);
@@ -89105,7 +89113,8 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    user: state.userReducer.user
+    user: state.userReducer.user,
+    userFacebook: state.facebookReducer.user
   };
 };
 
@@ -89738,6 +89747,27 @@ var fetchProducts = function fetchProducts(country) {
 
 /***/ }),
 
+/***/ "./src/store/actions/facebookAction.js":
+/*!*********************************************!*\
+  !*** ./src/store/actions/facebookAction.js ***!
+  \*********************************************/
+/*! exports provided: fetchUserFacebook */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserFacebook", function() { return fetchUserFacebook; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+
+var fetchUserFacebook = function fetchUserFacebook(user) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["USER_FACEBOOK"],
+    payload: user
+  };
+};
+
+/***/ }),
+
 /***/ "./src/store/actions/logoutAction.js":
 /*!*******************************************!*\
   !*** ./src/store/actions/logoutAction.js ***!
@@ -89949,6 +89979,47 @@ var USER_FACEBOOK = "USER_FACEBOOK";
 
 /***/ }),
 
+/***/ "./src/store/reducers/facebookReducer.js":
+/*!***********************************************!*\
+  !*** ./src/store/reducers/facebookReducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var initialState = {
+  isFetching: false,
+  didInvalidate: false,
+  user: ""
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var actions = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (actions.type) {
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["USER_FACEBOOK"]:
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        user: actions.payload
+      });
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./src/store/reducers/filterReducer.js":
 /*!*********************************************!*\
   !*** ./src/store/reducers/filterReducer.js ***!
@@ -90017,6 +90088,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productsReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./productsReducer */ "./src/store/reducers/productsReducer.js");
 /* harmony import */ var _registerReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./registerReducer */ "./src/store/reducers/registerReducer.js");
 /* harmony import */ var _searchReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./searchReducer */ "./src/store/reducers/searchReducer.js");
+/* harmony import */ var _facebookReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./facebookReducer */ "./src/store/reducers/facebookReducer.js");
+
 
 
 
@@ -90028,7 +90101,8 @@ var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   productsReducer: _productsReducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   userReducer: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   filterReducer: _filterReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  searchReducer: _searchReducer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  searchReducer: _searchReducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  facebookReducer: _facebookReducer__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (reducers);
 

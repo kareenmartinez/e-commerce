@@ -8,7 +8,7 @@ import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
 import { fetchUser } from "../store/actions/userAction";
-import OrderContainer from "./OrderContainer"
+import OrderContainer from "./OrderContainer";
 import store from "../store/store";
 
 import { connect } from "react-redux";
@@ -51,8 +51,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     products: state.filterReducer.productsCategory,
     user: state.userReducer.user

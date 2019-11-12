@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import FacebookLogin from "react-facebook-login";
 
+import { fetchUserFacebook } from "../store/actions/facebookAction";
+
 class FacebookContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,8 @@ class FacebookContainer extends React.Component {
   }
 
   responseFacebook(response) {
-    console.log(response);
+    console.log(response.accessToken);
+    this.props.fetchUserFacebook(response.accessToken);
   }
 
   render() {
@@ -49,7 +52,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchUserFacebook: item => {
+      dispatch(fetchUserFacebook(item));
+    }
+  };
 };
 
 export default connect(
