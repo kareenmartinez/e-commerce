@@ -2,14 +2,14 @@ const express = require("express");
 const router = express();
 const Product = require("../models/Product");
 const User = require("../models/User");
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op
 
 const passport = require("passport");
 
-const S = require("sequelize");
 
-const Op = S.Op;
 
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
 
@@ -18,10 +18,10 @@ router.get("/logOut", (req, res) => {
   res.sendStatus(202);
 });
 
-router.get("/products", function(req, res) {
+router.get("/products", function (req, res) {
   Product.findAll()
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });
@@ -36,14 +36,14 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   Product.findAll({
     where: {
       country: req.params.country
     }
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });

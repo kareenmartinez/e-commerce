@@ -8,7 +8,7 @@ import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
 import { fetchUser } from "../store/actions/userAction";
-
+import OrderContainer from "./OrderContainer"
 import store from "../store/store";
 
 import { connect } from "react-redux";
@@ -38,6 +38,7 @@ class App extends React.Component {
             component={FilterCategoryContainer}
           />
           <Route exact path="/" component={ProductsContainer} />
+          <Route exact path="/order" component={OrderContainer} />
           <Route exact path="/product/:name" component={ProductContainer} />
         </Switch>
       </div>
