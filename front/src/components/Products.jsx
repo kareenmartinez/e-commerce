@@ -11,6 +11,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import Container from "@material-ui/core/Container"
+
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 
@@ -71,24 +73,20 @@ const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
             <div>
 
               <Button
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyConten: "flex-end",
-                  alignItems: "flex-end"
-                }}
+
                 onClick={handleAdd}
                 type="submit"
               >
                 <img
                   src={scooter}
                   style={{
-                    display: "flex",
-                    alignSelf: "flex-end",
                     height: "30px",
                     width: "30px"
                   }}
                 />
+
+
+
               </Button>
 
 
