@@ -6,20 +6,20 @@ import { fetchProduct } from "../store/actions/searchAction";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+
+
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.probando = this.probando.bind(this);
   }
 
   componentDidMount() {
     this.props.mostrarProductos();
   }
 
-  probando() {
-    console.log("se apreto");
-  }
+  
 
   render() {
     const { productsState } = this.props;
@@ -54,7 +54,7 @@ class ProductsContainer extends React.Component {
         <Products
           productsState={productsState}
           mostrarBusqueda={this.props.mostrarBusqueda}
-          probando={this.probando}
+          
         />
       </div>
     );
