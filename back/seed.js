@@ -1,7 +1,5 @@
 const db = require("./config/db");
-const Product = require("./models/Product");
-
-const User = require("./models/User");
+const {Product, User, Comment} = require("./models");
 
 const productos = [
   {
@@ -84,7 +82,70 @@ const productos = [
   }
 ];
 
+const user = [
+  {
+    name: "Fernando",
+    lastName: "Perez",
+    email: "coco@coco.gmail",
+    isAdmin: false,
+    direction: "Arenales 2034",
+    password: 1234
+  },
+  {
+    name: "Teresa",
+    lastName: "Gomez",
+    email: "tere@tere.gmail",
+    isAdmin: false,
+    direction: "Juan B Justo 2432",
+    password: 1234
+  }
+];
 
-Product.bulkCreate(productos).then(() => {
+const comments = [
+  {
+    comment: "muy rico!!",
+    rating: 3,
+    productId: 1,
+    userId: 2
+  },
+  {
+    comment: "excelente!!",
+    rating: 5,
+    productId: 1,
+    userId: 1
+  },
+  {
+    comment: "muy malo!!",
+    rating: 0,
+    productId: 2,
+    userId: 2
+  }
+];
+
+/* Product.bulkCreate(productos).then(() => {
   console.log("created products");
 });
+
+User.bulkCreate(user).then(() => {
+  console.log("created user");
+});   */
+
+ Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});   
+/* Comment.create({
+  comment: "muy rico!!",
+  rating: 3,
+  productId: 1,
+  userId: 2
+}).then(() => console.log("creado"));
+
+Comment.create({
+  comment: "horrible!!",
+  rating: 0,
+  userId: 2,
+  productId: 1
+}).then(comment => {
+  
+});
+ */

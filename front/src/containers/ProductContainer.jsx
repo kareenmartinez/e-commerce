@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
+import Valoration from "../components/Valoration";
 
 class ProductsContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class ProductsContainer extends React.Component {
     return (
       <div>
         <Product></Product>
+        
       </div>
     );
   }

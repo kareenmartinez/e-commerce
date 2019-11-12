@@ -27,9 +27,7 @@ const useStyles = makeStyles({
 
 const Products = function(props) {
   const classes = useStyles();
-
   const { productsState } = props;
-
   return productsState.map(item => (
     <div style={{ order: "1" }} key={item.name}>
       <Link to={`/product/${item.name}`}>

@@ -7,6 +7,7 @@ import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
+
 class App extends React.Component {
   render() {
     return (
@@ -16,15 +17,14 @@ class App extends React.Component {
 
         <br />
         <Switch>
+          <Route exact path="/" component={ProductsContainer} />
           <Route exact path="/signup" component={RegisterContainer} />
-          {/* <Route exact path="/" component={FilterCategoryContainer} /> */}
           <Route exact path="/logIn" component={LogInContainer} />
           <Route
             exact
             path="/categories/:country"
             component={FilterCategoryContainer}
           />
-          <Route exact path="/" component={ProductsContainer} />
           <Route exact path="/product" component={ProductContainer} />
         </Switch>
       </div>

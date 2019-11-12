@@ -1,8 +1,8 @@
 const S = require("sequelize");
 const db = require("../config/db");
 
-class Comment extends S.Model {}
 
+class Comment extends S.Model {}
 Comment.init(
   {
     comment: {

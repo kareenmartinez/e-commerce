@@ -3,6 +3,9 @@ import Products from "../components/Products";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/actions/productsAction";
 
+
+
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +30,7 @@ class ProductsContainer extends React.Component {
         }}
       >
         <Products productsState={productsState} />
+
       </div>
     );
   }

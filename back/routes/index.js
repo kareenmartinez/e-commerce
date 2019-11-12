@@ -1,20 +1,26 @@
 const express = require("express");
 const router = express();
-const Product = require("../models/Product");
-const User = require("../models/User");
+const {Product, Comment, User} = require("../models");
 
 const passport = require("passport");
 
-router.get("/products", function(req, res) {
+/* router.get("/products", function(req, res) {
   // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
-    .catch(function(err) {   console.log(err);
+    .catch(function(err) {
+      console.log(err);
+    });
+}); */
+
+router.get("/valorations", function(req, res) {
+  // direccion api/products
+  Comment.findAll()
+    .then(valorations => res.json(valorations))
+    .catch(function(err) {
+      console.log(err);
     });
 });
-
-
-
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body.email, "HOLAAAA AUXILIOO no me VALIDAAAA");
@@ -32,12 +38,19 @@ router.get("/category/:country", function(req, res) {
   Product.findAll({
     where: {
       country: req.params.country
-    }
+    },
+    include: [{
+      model: Comment, as: "commentsP",
+      include: [{
+        model: User
+    }]
+  }]
   })
     .then(products => res.json(products))
     .catch(function(err) {
       console.log(err);
-    })});
+    });
+});
 router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
 });
