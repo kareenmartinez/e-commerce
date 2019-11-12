@@ -13,6 +13,8 @@ import store from "../store/store";
 
 import { connect } from "react-redux";
 
+// import { fetchUserFacebook } from "../store/actions/facebookAction";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,7 @@ class App extends React.Component {
 
   componentDidMount() {
     store.dispatch(fetchUser());
+    // store.dispatch(fetchUserFacebook(this.props.userFacebook));
   }
 
   render() {
@@ -52,8 +55,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    products: state.filterReducer.productsCategory,
-    user: state.userReducer.user
+    // userFacebook: state.facebookReducer.payload
   };
 };
 

@@ -78,8 +78,6 @@ function Header({
   const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
 
-  console.log(userFacebook);
-
   return (
     <div>
       <div className={classes.jumbotron} style={{ borderRadius: "7px" }}>
@@ -179,19 +177,13 @@ function Header({
               flexDirection: "row"
             }}
           >
-            {/* {userFacebook === undefined ? (
-              ""
-            ) : (
+            {userFacebook ? (
               <Link to="/">
                 <Grid item="md-2">
                   <Button onClick={logout}>Log Out</Button>
                 </Grid>
               </Link>
-            )} */}
-
-            {user.email === undefined ? (
-              ""
-            ) : (
+            ) : !user.email ? null : (
               <Link to="/">
                 <Grid item="md-2">
                   <Button onClick={logout}>Log Out</Button>
@@ -199,45 +191,21 @@ function Header({
               </Link>
             )}
 
-            {/* {userFacebook === undefined ? (
+            {userFacebook ? null : !user.email ? (
               <Grid item="md-2">
                 <Link style={{ textDecoration: "none" }} to="/logIn">
                   <Button>Log In</Button>
                 </Link>
               </Grid>
-            ) : (
-              ""
-            )} */}
+            ) : null}
 
-            {user.email === undefined ? (
-              <Grid item="md-2">
-                <Link style={{ textDecoration: "none" }} to="/logIn">
-                  <Button>Log In</Button>
-                </Link>
-              </Grid>
-            ) : (
-              ""
-            )}
-
-            {/* {userFacebook === undefined ? (
+            {userFacebook ? null : !user.email ? (
               <Link style={{ textDecoration: "none" }} to="/signup">
                 <Grid item="md-2">
                   <Button>Sign Up</Button>
                 </Grid>
               </Link>
-            ) : (
-              ""
-            )} */}
-
-            {user.email === undefined ? (
-              <Link style={{ textDecoration: "none" }} to="/signup">
-                <Grid item="md-2">
-                  <Button>Sign Up</Button>
-                </Grid>
-              </Link>
-            ) : (
-              ""
-            )}
+            ) : null}
 
             <Link style={{ textDecoration: "none" }} to="/order">
               <Grid item="md-2">

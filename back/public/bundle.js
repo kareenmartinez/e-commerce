@@ -87939,7 +87939,6 @@ function Header(_ref) {
 
   var countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
-  console.log(userFacebook);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.jumbotron,
     style: {
@@ -88045,27 +88044,33 @@ function Header(_ref) {
       display: "flex",
       flexDirection: "row"
     }
-  }, user.email === undefined ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+  }, userFacebook ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     to: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
     onClick: logout
-  }, "Log Out"))), user.email === undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, "Log Out"))) : !user.email ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+    to: "/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    item: "md-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    onClick: logout
+  }, "Log Out"))), userFacebook ? null : !user.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     style: {
       textDecoration: "none"
     },
     to: "/logIn"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Log In"))) : "", user.email === undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Log In"))) : null, userFacebook ? null : !user.email ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     style: {
       textDecoration: "none"
     },
     to: "/signup"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Sign Up"))) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Sign Up"))) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     style: {
       textDecoration: "none"
     },
@@ -88740,7 +88745,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+ // import { fetchUserFacebook } from "../store/actions/facebookAction";
 
 var App =
 /*#__PURE__*/
@@ -88756,7 +88761,7 @@ function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])());
+      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])()); // store.dispatch(fetchUserFacebook(this.props.userFacebook));
     }
   }, {
     key: "render",
@@ -88797,9 +88802,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    products: state.filterReducer.productsCategory,
-    user: state.userReducer.user
+  return {// userFacebook: state.facebookReducer.payload
   };
 };
 
