@@ -1,13 +1,12 @@
 import { LOG_IN, FETCH_USER } from "../constants";
 
 const initialState = {
-
   user: []
 };
 
 export default (state = initialState, actions) => {
+  console.log("ENTRE AL REDUCER");
   switch (actions.type) {
-
     case LOG_IN:
       return {
         ...state,

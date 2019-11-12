@@ -1,19 +1,23 @@
 import { LOG_IN, FETCH_USER } from "../constants";
 import axios from "axios";
 
-const logUser = user => {
-  console.log("ENTER LOGUSER");
+export const logUser = user => {
+  console.log(user);
+
+  console.log("----------------------------");
   return {
     type: LOG_IN,
     user: user
   };
 };
-const fetcheo = (user) => {
+
+const fetcheo = user => {
   return {
     type: FETCH_USER,
     user: user
-  }
-}
+  };
+};
+
 export const logIn = (email, password) => dispatch => ({
   type: LOG_IN,
   payload: axios
@@ -21,18 +25,19 @@ export const logIn = (email, password) => dispatch => ({
     .then(res => res.data)
     .then(user => {
       dispatch(logUser(user));
-
     })
     .catch(err => {
-      console.log(err, "hola, soy tu dolor de cabeza");
+      console.log(err);
     })
 });
 export const fetchUser = () => dispatch => ({
-  payload: axios.get("/api/auth/me").then(res => res.data).then(user => {
-    dispatch(fetcheo(user))
-  }).catch(err => {
-    console.log(err, "hola, necesito un abrazo");
-  })
-}
-
-)
+  payload: axios
+    .get("/api/auth/me")
+    .then(res => res.data)
+    .then(user => {
+      dispatch(fetcheo(user));
+    })
+    .catch(err => {
+      console.log(err, "hola, necesito un abrazo");
+    })
+});

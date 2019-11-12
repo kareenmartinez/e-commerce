@@ -18,10 +18,10 @@ class LogInContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state.email, this.state.password);
-    this.props.logIn(this.state.email, this.state.password)
 
-  };
+    console.log(this.state.email, this.state.password);
+    this.props.logIn(this.state.email, this.state.password);
+  }
 
   handleEmail(e) {
     console.log(e.target.value);

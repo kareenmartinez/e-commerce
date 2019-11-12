@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 
 import { fetchProduct } from "../store/actions/searchAction";
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,13 @@ class ProductsContainer extends React.Component {
     this.props.fetchProduct(this.props.match.params.name)
   }
 
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name);
+  }
+
   render() {
+    console.log(this.props.busqueda);
+
     return (
       <div
         style={{
@@ -29,9 +36,7 @@ class ProductsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
-
-  busqueda: state.searchReducer.search,
+  busqueda: state.searchReducer.search
 });
 
 const mapDispatchToProps = dispatch => {
