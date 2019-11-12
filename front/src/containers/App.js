@@ -6,6 +6,7 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
+
 import { fetchUser } from "../store/actions/userAction";
 
 import store from "../store/store";

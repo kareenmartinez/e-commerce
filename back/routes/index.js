@@ -56,7 +56,7 @@ router.get("/products", (req, res, next) => {
 
 router.get("/product/:name", (req, res, next) => {
   const nameProduct = req.params.name;
-  console.log(req.params.name);
+  // console.log(req.params.name);
 
   Product.findOne({
     where: {
@@ -72,7 +72,6 @@ router.get("/product/:name", (req, res, next) => {
 });
 
 router.get("/auth/me", (req, res) => {
-  console.log(req.user, "HOLAAAAAA");
   res.send(req.user);
 });
 
