@@ -52,7 +52,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Header({ handleChange, handleSubmit, search, fetchProducts }) {
+function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -70,9 +70,11 @@ function Header({ handleChange, handleSubmit, search, fetchProducts }) {
   const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
 
+  console.log(user);
+
   return (
     <div>
-      <div className={classes.jumbotron}>
+      <div className={classes.jumbotron} style={{ borderRadius: "7px" }}>
         <Grid
           container
           direction="column"
@@ -169,16 +171,34 @@ function Header({ handleChange, handleSubmit, search, fetchProducts }) {
               flexDirection: "row"
             }}
           >
-            <Grid item="md-2">
-              <Link style={{ textDecoration: "none" }} to="/logIn">
-                <Button>Log In</Button>
-              </Link>
-            </Grid>
-            <Link style={{ textDecoration: "none" }} to="/signup">
+            {user.email === undefined ? (
+              console.log("noooooooo hay user")
+            ) : (
               <Grid item="md-2">
-                <Button>Sign Up</Button>
+                <Button>Log Out</Button>
               </Grid>
-            </Link>
+            )}
+
+            {user.email === undefined ? (
+              <Grid item="md-2">
+                <Link style={{ textDecoration: "none" }} to="/logIn">
+                  <Button>Log In</Button>
+                </Link>
+              </Grid>
+            ) : (
+              ""
+            )}
+
+            {user.email === undefined ? (
+              <Link style={{ textDecoration: "none" }} to="/signup">
+                <Grid item="md-2">
+                  <Button>Sign Up</Button>
+                </Grid>
+              </Link>
+            ) : (
+              ""
+            )}
+
             <Grid item="md-2">
               <Button>
                 <img src={scooter} style={{ height: "30px", width: "30px" }} />
@@ -190,6 +210,13 @@ function Header({ handleChange, handleSubmit, search, fetchProducts }) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   fetchProducts: item => {
     dispatch(fetchProducts(item));
@@ -197,6 +224,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Header);

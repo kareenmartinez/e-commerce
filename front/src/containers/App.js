@@ -6,23 +6,18 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
-import { fetchUser } from "../store/actions/userAction"
+import { fetchUser } from "../store/actions/userAction";
 
-import store from "../store/store"
+import store from "../store/store";
+
+import { connect } from "react-redux";
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
-
+    super(props);
   }
   componentDidMount() {
-
-
-    store.dispatch(fetchUser())
-
-
-
-
+    store.dispatch(fetchUser());
   }
   render() {
     return (
@@ -47,5 +42,20 @@ class App extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {};
+};
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    products: state.filterReducer.productsCategory,
+    user: state.userReducer.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
