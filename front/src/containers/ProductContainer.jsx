@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
+import Valoration from "../components/Valoration";
 
 import { fetchProduct } from "../store/actions/searchAction";
 
@@ -12,9 +13,7 @@ class ProductsContainer extends React.Component {
     this.props.fetchProduct(this.props.match.params.name)
   }
 
-  componentDidMount() {
-    this.props.fetchProduct(this.props.match.params.name);
-  }
+  
 
   render() {
     console.log(this.props.busqueda);
