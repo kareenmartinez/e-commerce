@@ -2,13 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
 
+import { fetchProduct } from "../store/actions/searchAction";
+
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+  }
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name)
+  }
+
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name);
   }
 
   render() {
+    console.log(this.props.busqueda);
+
     return (
       <div
         style={{
@@ -26,14 +36,15 @@ class ProductsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleProduct: state.productsReducer.products,
-  busqueda: state.searchReducer.search,
-  cargandoBusqueda: state.productsReducer,
-  cargandoProduct: state.productsReducer
+  busqueda: state.searchReducer.search
 });
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchProduct: item => {
+      dispatch(fetchProduct(item));
+    }
+  };
 };
 
 export default connect(

@@ -29,7 +29,7 @@ const Product = function({ busqueda }) {
             style={{
               height: "450px",
               width: "500px",
-              borderRadius: "7px",
+              borderRadius: "10px",
               padding: "1cm"
             }}
           />

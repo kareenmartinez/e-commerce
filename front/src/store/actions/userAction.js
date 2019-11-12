@@ -1,8 +1,10 @@
 import { LOG_IN, FETCH_USER } from "../constants";
 import axios from "axios";
 
-const logUser = user => {
-  console.log("ENTER LOGUSER");
+export const logUser = user => {
+  console.log(user);
+
+  console.log("----------------------------");
   return {
     type: LOG_IN,
     user: user
@@ -23,7 +25,7 @@ export const logIn = (email, password) => dispatch => ({
       dispatch(logUser(user));
     })
     .catch(err => {
-      console.log(err, "hola, soy tu dolor de cabeza");
+      console.log(err);
     })
 });
 export const fetchUser = () => dispatch => ({

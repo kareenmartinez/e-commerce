@@ -20,7 +20,6 @@ class HeaderContainer extends React.Component {
     console.log(this.state.search);
     this.props.mostrarBusqueda(this.state.search);
     this.props.history.push(`/product/${this.state.search}`);
-    console.log("se apreto el boton");
   }
 
   handleChange(event) {
@@ -40,7 +39,9 @@ class HeaderContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  user: state.userReducer.user
+});
 
 const mapDispatchToProps = dispatch => {
   return {

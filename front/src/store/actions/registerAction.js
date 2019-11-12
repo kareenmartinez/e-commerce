@@ -7,10 +7,12 @@ export const fetchRegister = register => ({
     .post("/api/signup", register)
     .then(res => {
       if (res.data === "ERROR") {
-        alert("This email is already in use, please try a different one");
-        return "";
+        return alert(
+          "This email is already in use, please try a different one"
+        );
+      } else {
+        return res.data;
       }
-      return res.data;
     })
     .catch(err => {
       console.log(err);

@@ -33177,7 +33177,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
+/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37613,7 +37613,7 @@ var flexbox = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(flexBasis
 /*!*******************************************************!*\
   !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
-/*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
+/*! exports provided: borders, breakpoints, compose, css, display, flexbox, palette, positions, shadows, sizing, spacing, style, typography, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, color, bgcolor, position, zIndex, top, right, bottom, left, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79421,7 +79421,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87786,7 +87786,8 @@ function Header(_ref) {
   var handleChange = _ref.handleChange,
       handleSubmit = _ref.handleSubmit,
       search = _ref.search,
-      fetchProducts = _ref.fetchProducts;
+      fetchProducts = _ref.fetchProducts,
+      user = _ref.user;
   var classes = useStyles();
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(null),
@@ -87809,8 +87810,12 @@ function Header(_ref) {
 
   var countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
+  console.log(user);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: classes.jumbotron
+    className: classes.jumbotron,
+    style: {
+      borderRadius: "7px"
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     container: true,
     direction: "column",
@@ -87911,21 +87916,23 @@ function Header(_ref) {
       display: "flex",
       flexDirection: "row"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, user.email === undefined ? console.log("noooooooo hay user") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    item: "md-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Log Out")), user.email === undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     style: {
       textDecoration: "none"
     },
     to: "/logIn"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Log In"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Log In"))) : "", user.email === undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__["Link"], {
     style: {
       textDecoration: "none"
     },
     to: "/signup"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Sign Up"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Sign Up"))) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__["default"], {
     item: "md-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: _scooter_png__WEBPACK_IMPORTED_MODULE_5___default.a,
@@ -87936,6 +87943,12 @@ function Header(_ref) {
   })))))));
 }
 
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.userReducer.user
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchProducts: function fetchProducts(item) {
@@ -87944,7 +87957,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(Header));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Header));
 
 /***/ }),
 
@@ -88056,7 +88069,7 @@ var Product = function Product(_ref) {
     style: {
       height: "450px",
       width: "500px",
-      borderRadius: "7px",
+      borderRadius: "10px",
       padding: "1cm"
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -88120,8 +88133,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import RemoveCircleOutlineRoundedIcon from '@material-ui/icons/RemoveCircleOutlineRounded';
-// import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 
 
@@ -88142,7 +88153,8 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["ma
 
 var Products = function Products(_ref) {
   var productsState = _ref.productsState,
-      handleAdd = _ref.handleAdd;
+      handleAdd = _ref.handleAdd,
+      mostrarBusqueda = _ref.mostrarBusqueda;
   var classes = useStyles();
   return productsState.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88154,10 +88166,11 @@ var Products = function Products(_ref) {
       className: classes.card
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       style: {
-        textDecoration: 'none',
-        color: 'black'
+        textDecoration: "none",
+        color: "black"
       },
-      to: "/product/".concat(item.name)
+      to: "/product/".concat(item.name),
+      onClick: mostrarBusqueda(item.name)
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: classes.height
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -88339,11 +88352,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _RegisterContainer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RegisterContainer.js */ "./src/containers/RegisterContainer.js");
 /* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
-/* harmony import */ var _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer.jsx */ "./src/containers/FilterCategoryContainer.jsx");
+/* harmony import */ var _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer */ "./src/containers/FilterCategoryContainer.jsx");
 /* harmony import */ var _LogInContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LogInContainer */ "./src/containers/LogInContainer.jsx");
 /* harmony import */ var _ProductContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProductContainer */ "./src/containers/ProductContainer.jsx");
 /* harmony import */ var _store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/actions/userAction */ "./src/store/actions/userAction.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store/store */ "./src/store/store.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88361,6 +88375,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -88403,7 +88418,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/categories/:country",
-        component: _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
@@ -88419,7 +88434,19 @@ function (_React$Component) {
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (App);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  console.log(state);
+  return {
+    products: state.filterReducer.productsCategory,
+    user: state.userReducer.user
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_10__["connect"])(mapStateToProps, mapDispatchToProps)(App));
 
 /***/ }),
 
@@ -88591,7 +88618,6 @@ function (_React$Component) {
       console.log(this.state.search);
       this.props.mostrarBusqueda(this.state.search);
       this.props.history.push("/product/".concat(this.state.search));
-      console.log("se apreto el boton");
     }
   }, {
     key: "handleChange",
@@ -88615,7 +88641,9 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    user: state.userReducer.user
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -88756,6 +88784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Product */ "./src/components/Product.jsx");
+/* harmony import */ var _store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/searchAction */ "./src/store/actions/searchAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88778,24 +88807,32 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ProductsContainer =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(ProductsContainer, _React$Component);
 
   function ProductsContainer(props) {
-    var _this;
-
     _classCallCheck(this, ProductsContainer);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
   }
 
   _createClass(ProductsContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProduct(this.props.match.params.name);
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProduct(this.props.match.params.name);
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log(this.props.busqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
@@ -88815,15 +88852,16 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    singleProduct: state.productsReducer.products,
-    busqueda: state.searchReducer.search,
-    cargandoBusqueda: state.productsReducer,
-    cargandoProduct: state.productsReducer
+    busqueda: state.searchReducer.search
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchProduct: function fetchProduct(item) {
+      dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__["fetchProduct"])(item));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductsContainer));
@@ -88882,10 +88920,8 @@ function (_React$Component) {
     _classCallCheck(this, ProductsContainer);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
-    _this.state = {// input: 0
-    };
-    _this.handleAdd = _this.handleAdd.bind(_assertThisInitialized(_this)); // this.handleRemove = this.handleRemove.bind(this);
-
+    _this.state = {};
+    _this.probando = _this.probando.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -88893,17 +88929,11 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.mostrarProductos();
-    } // handleAdd() {
-    //   this.setState({ input: this.state.input + 1 })
-    // }
-    // handleRemove() {
-    //   if (this.state.input > 0) { this.setState({ input: this.state.input - 1 }) }
-    // }
-
+    }
   }, {
-    key: "handleAdd",
-    value: function handleAdd(e) {
-      e.preventDefault();
+    key: "probando",
+    value: function probando() {
+      console.log("se apreto");
     }
   }, {
     key: "render",
@@ -88924,6 +88954,8 @@ function (_React$Component) {
         }));
       }
 
+      console.log(this.props.productsState);
+      console.log(this.props.cargandoBusqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container",
         style: {
@@ -88937,7 +88969,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Products__WEBPACK_IMPORTED_MODULE_1__["default"], {
         productsState: productsState,
         mostrarBusqueda: this.props.mostrarBusqueda,
-        handleAdd: this.handleAdd
+        probando: this.probando
       }));
     }
   }]);
@@ -88958,6 +88990,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       dispatch(Object(_store_actions_productsAction__WEBPACK_IMPORTED_MODULE_3__["fetchProducts"])());
     },
     mostrarBusqueda: function mostrarBusqueda(item) {
+      console.log(item);
       dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_4__["fetchProduct"])(item));
     }
   };
@@ -89170,7 +89203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var fetchProducts = function fetchProducts(country) {
   return {
-    pe: _constants__WEBPACK_IMPORTED_MODULE_1__["PRODUCTS_CATEGORIES"],
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["PRODUCTS_CATEGORIES"],
     payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/category/".concat(country)).then(function (res) {
       return res.data;
     })["catch"](function (error) {
@@ -89199,8 +89232,7 @@ __webpack_require__.r(__webpack_exports__);
 var fetchProducts = function fetchProducts() {
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["RECEIVED_PRODUCTS"],
-    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a //respuesta
-    .get("/api/products").then(function (res) {
+    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/products").then(function (res) {
       return res.data;
     })["catch"](function (error) {
       return Promise.reject(error);
@@ -89230,11 +89262,10 @@ var fetchRegister = function fetchRegister(register) {
     type: _constants__WEBPACK_IMPORTED_MODULE_1__["REGISTER"],
     payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/signup", register).then(function (res) {
       if (res.data === "ERROR") {
-        alert("This email is already in use, please try a different one");
-        return "";
+        return alert("This email is already in use, please try a different one");
+      } else {
+        return res.data;
       }
-
-      return res.data;
     })["catch"](function (err) {
       console.log(err);
     })
@@ -89276,11 +89307,12 @@ var fetchProduct = function fetchProduct(data) {
 /*!*****************************************!*\
   !*** ./src/store/actions/userAction.js ***!
   \*****************************************/
-/*! exports provided: logIn, fetchUser */
+/*! exports provided: logUser, logIn, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logUser", function() { return logUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
@@ -89288,9 +89320,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
 var logUser = function logUser(user) {
-  console.log("ENTER LOGUSER");
+  console.log(user);
+  console.log("----------------------------");
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
     user: user
@@ -89316,7 +89348,7 @@ var logIn = function logIn(email, password) {
       }).then(function (user) {
         dispatch(logUser(user));
       })["catch"](function (err) {
-        console.log(err, "hola, soy tu dolor de cabeza");
+        console.log(err);
       })
     };
   };
@@ -89581,6 +89613,7 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("ENTRPPPPOO");
   console.log(actions);
 
   switch (actions.type) {
@@ -89597,7 +89630,7 @@ var initialState = {
       });
 
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCT"], "_FULFILLED"):
-      console.log(actions);
+      console.log(actions.payload);
       return _objectSpread({}, state, {
         isFetching: false,
         didInvalidate: false,

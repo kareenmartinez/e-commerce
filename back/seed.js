@@ -8,7 +8,7 @@ const productos = [
     name: "Aji de gallina",
     price: 340,
     img:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTHnaN0frWeNNOoHm-3zaapRx-y_gb2FC9U8HkNt6aXjBi77QK&s",
+      "https://prod.media.wapa.pe/1200x630/wapa/imagen/2019/09/10/noticia-1568131822-preparar-aji-gallina-quinua.png",
     country: "Peru",
     description:
       "Chicken chili is a typical dish of Peruvian cuisine, specifically from the coast, which consists of a chili or thick cream with frayed chicken breast."
@@ -28,14 +28,14 @@ const productos = [
     img:
       "https://t1.rg.ltmcdn.com/es/images/5/8/4/img_empanadas_de_carne_cortada_a_cuchillo_7485_600.jpg",
     country: "Argentina",
-    description: "aaa"
+    description: "CODIGO ROJO!! NOS QUEDAMOS SIN DESCRIPCIÓN PARA LAS EMPANADAS AAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH "
   },
   {
     name: "Ravioles",
     price: 200,
     img: "http://biencasero.clarin.com/advf/imagenes/522748b9dbac2.jpg",
     country: "Argentina",
-    description: "aaa"
+    description: "Si les soy sincera, no tenia ganas de buscar contenido para los ravioles, aprovechare este espacion para decir que: Karen es lo mas :)"
   },
   {
     name: "taco salad tradicional",
@@ -83,7 +83,6 @@ const productos = [
       "Is an Afro-Brazilian dish made from bread, shrimp, coconut milk, finely ground peanuts and palm oil mashed into a creamy paste."
   }
 ];
-
 
 Product.bulkCreate(productos).then(() => {
   console.log("created products");
