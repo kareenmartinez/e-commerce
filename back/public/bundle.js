@@ -33177,7 +33177,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
+/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37613,7 +37613,7 @@ var flexbox = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(flexBasis
 /*!*******************************************************!*\
   !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
-/*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
+/*! exports provided: borders, breakpoints, compose, css, display, flexbox, palette, positions, shadows, sizing, spacing, style, typography, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, color, bgcolor, position, zIndex, top, right, bottom, left, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79421,7 +79421,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88133,8 +88133,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import RemoveCircleOutlineRoundedIcon from '@material-ui/icons/RemoveCircleOutlineRounded';
-// import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 
 
@@ -88155,7 +88153,8 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["ma
 
 var Products = function Products(_ref) {
   var productsState = _ref.productsState,
-      handleAdd = _ref.handleAdd;
+      handleAdd = _ref.handleAdd,
+      mostrarBusqueda = _ref.mostrarBusqueda;
   var classes = useStyles();
   return productsState.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88167,10 +88166,11 @@ var Products = function Products(_ref) {
       className: classes.card
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       style: {
-        textDecoration: 'none',
-        color: 'black'
+        textDecoration: "none",
+        color: "black"
       },
-      to: "/product/".concat(item.name)
+      to: "/product/".concat(item.name),
+      onClick: mostrarBusqueda(item.name)
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActionArea__WEBPACK_IMPORTED_MODULE_5__["default"], {
       className: classes.height
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -88352,7 +88352,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _RegisterContainer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RegisterContainer.js */ "./src/containers/RegisterContainer.js");
 /* harmony import */ var _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductsContainer */ "./src/containers/ProductsContainer.jsx");
-/* harmony import */ var _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer.jsx */ "./src/containers/FilterCategoryContainer.jsx");
+/* harmony import */ var _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FilterCategoryContainer */ "./src/containers/FilterCategoryContainer.jsx");
 /* harmony import */ var _LogInContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LogInContainer */ "./src/containers/LogInContainer.jsx");
 /* harmony import */ var _ProductContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ProductContainer */ "./src/containers/ProductContainer.jsx");
 /* harmony import */ var _store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/actions/userAction */ "./src/store/actions/userAction.js");
@@ -88418,7 +88418,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/categories/:country",
-        component: _FilterCategoryContainer_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
@@ -88604,8 +88604,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(HeaderContainer).call(this, props));
     _this.state = {
-      search: "",
-      userState: ""
+      search: ""
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -88630,7 +88629,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.userState);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
         handleSubmit: this.handleSubmit,
         handleChange: this.handleChange,
@@ -88827,10 +88825,13 @@ function (_React$Component) {
 
   _createClass(ProductsContainer, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      this.props.fetchProduct(this.props.match.params.name);
+    }
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props.busqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
@@ -88850,14 +88851,13 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    singleProduct: state.productsReducer.products,
     busqueda: state.searchReducer.search
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    mostrarProducto: function mostrarProducto(item) {
+    fetchProduct: function fetchProduct(item) {
       dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__["fetchProduct"])(item));
     }
   };
@@ -88919,10 +88919,8 @@ function (_React$Component) {
     _classCallCheck(this, ProductsContainer);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
-    _this.state = {// input: 0
-    };
-    _this.handleAdd = _this.handleAdd.bind(_assertThisInitialized(_this)); // this.handleRemove = this.handleRemove.bind(this);
-
+    _this.state = {};
+    _this.probando = _this.probando.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -88930,17 +88928,11 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.mostrarProductos();
-    } // handleAdd() {
-    //   this.setState({ input: this.state.input + 1 })
-    // }
-    // handleRemove() {
-    //   if (this.state.input > 0) { this.setState({ input: this.state.input - 1 }) }
-    // }
-
+    }
   }, {
-    key: "handleAdd",
-    value: function handleAdd(e) {
-      e.preventDefault();
+    key: "probando",
+    value: function probando() {
+      console.log("se apreto");
     }
   }, {
     key: "render",
@@ -88961,6 +88953,8 @@ function (_React$Component) {
         }));
       }
 
+      console.log(this.props.productsState);
+      console.log(this.props.cargandoBusqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container",
         style: {
@@ -88974,7 +88968,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Products__WEBPACK_IMPORTED_MODULE_1__["default"], {
         productsState: productsState,
         mostrarBusqueda: this.props.mostrarBusqueda,
-        handleAdd: this.handleAdd
+        probando: this.probando
       }));
     }
   }]);
@@ -88995,6 +88989,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       dispatch(Object(_store_actions_productsAction__WEBPACK_IMPORTED_MODULE_3__["fetchProducts"])());
     },
     mostrarBusqueda: function mostrarBusqueda(item) {
+      console.log(item);
       dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_4__["fetchProduct"])(item));
     }
   };
@@ -89618,6 +89613,7 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("ENTRPPPPOO");
   console.log(actions);
 
   switch (actions.type) {
@@ -89634,7 +89630,7 @@ var initialState = {
       });
 
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCT"], "_FULFILLED"):
-      console.log(actions);
+      console.log(actions.payload);
       return _objectSpread({}, state, {
         isFetching: false,
         didInvalidate: false,

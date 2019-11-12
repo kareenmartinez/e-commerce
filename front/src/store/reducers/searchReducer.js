@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export default (state = initialState, actions) => {
+  console.log("ENTRPPPPOO");
   console.log(actions);
 
   switch (actions.type) {
@@ -23,7 +24,7 @@ export default (state = initialState, actions) => {
         didInvalidate: false
       };
     case `${FETCH_PRODUCT}_FULFILLED`:
-      console.log(actions);
+      console.log(actions.payload);
 
       return {
         ...state,

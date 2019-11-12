@@ -3,7 +3,7 @@ import HeaderContainer from "./HeaderContainer";
 import { Route, Switch } from "react-router-dom";
 import RegisterContainer from "./RegisterContainer.js";
 import ProductsContainer from "./ProductsContainer";
-import FilterCategoryContainer from "./FilterCategoryContainer.jsx";
+import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 import { fetchUser } from "../store/actions/userAction";
@@ -16,9 +16,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     store.dispatch(fetchUser());
   }
+
   render() {
     return (
       <div>

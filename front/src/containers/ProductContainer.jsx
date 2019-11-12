@@ -10,9 +10,13 @@ class ProductsContainer extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.name);
+  }
 
   render() {
+    console.log(this.props.busqueda);
+
     return (
       <div
         style={{
@@ -30,13 +34,12 @@ class ProductsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  singleProduct: state.productsReducer.products,
   busqueda: state.searchReducer.search
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    mostrarProducto: item => {
+    fetchProduct: item => {
       dispatch(fetchProduct(item));
     }
   };
