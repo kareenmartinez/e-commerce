@@ -33177,7 +33177,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
+/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34009,6 +34009,34 @@ function debounce(func) {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/utils/deprecatedPropType.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/utils/deprecatedPropType.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function deprecatedPropType(validator, reason) {
+  if (false) {}
+
+  return function (props, propName, componentName, location, propFullName) {
+    var componentNameSafe = componentName || '<<anonymous>>';
+    var propFullNameSafe = propFullName || propName;
+
+    if (typeof props[propName] !== 'undefined') {
+      return new Error("The ".concat(location, " `").concat(propFullNameSafe, "` of ") + "`".concat(componentNameSafe, "` is deprecated. ").concat(reason));
+    }
+
+    return null;
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (deprecatedPropType);
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/utils/focusVisible.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/utils/focusVisible.js ***!
@@ -34202,6 +34230,62 @@ function getScrollbarSize() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (getScrollbarSize);
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/utils/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/utils/index.js ***!
+  \***********************************************************/
+/*! exports provided: capitalize, deprecatedPropType, isMuiElement, ownerDocument, ownerWindow, requirePropFactory, setRef, unsupportedProp, useEventCallback, useForkRef, useIsFocusVisible */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _capitalize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./capitalize */ "./node_modules/@material-ui/core/esm/utils/capitalize.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "capitalize", function() { return _capitalize__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _deprecatedPropType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./deprecatedPropType */ "./node_modules/@material-ui/core/esm/utils/deprecatedPropType.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "deprecatedPropType", function() { return _deprecatedPropType__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _isMuiElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isMuiElement */ "./node_modules/@material-ui/core/esm/utils/isMuiElement.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isMuiElement", function() { return _isMuiElement__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _ownerDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ownerDocument */ "./node_modules/@material-ui/core/esm/utils/ownerDocument.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ownerDocument", function() { return _ownerDocument__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _ownerWindow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ownerWindow */ "./node_modules/@material-ui/core/esm/utils/ownerWindow.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ownerWindow", function() { return _ownerWindow__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _requirePropFactory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requirePropFactory */ "./node_modules/@material-ui/core/esm/utils/requirePropFactory.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "requirePropFactory", function() { return _requirePropFactory__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _setRef__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./setRef */ "./node_modules/@material-ui/core/esm/utils/setRef.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setRef", function() { return _setRef__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+/* harmony import */ var _unsupportedProp__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./unsupportedProp */ "./node_modules/@material-ui/core/esm/utils/unsupportedProp.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "unsupportedProp", function() { return _unsupportedProp__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+
+/* harmony import */ var _useEventCallback__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./useEventCallback */ "./node_modules/@material-ui/core/esm/utils/useEventCallback.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useEventCallback", function() { return _useEventCallback__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+
+/* harmony import */ var _useForkRef__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./useForkRef */ "./node_modules/@material-ui/core/esm/utils/useForkRef.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useForkRef", function() { return _useForkRef__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+
+/* harmony import */ var _focusVisible__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./focusVisible */ "./node_modules/@material-ui/core/esm/utils/focusVisible.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useIsFocusVisible", function() { return _focusVisible__WEBPACK_IMPORTED_MODULE_10__["useIsFocusVisible"]; });
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***/ }),
 
@@ -34856,6 +34940,616 @@ function createSvgIcon(path, displayName) {
   }
 
   Component.muiName = _SvgIcon.default.muiName;
+  return Component;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/esm/Rating/Rating.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/esm/Rating/Rating.js ***!
+  \************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/utils */ "./node_modules/@material-ui/core/esm/utils/index.js");
+/* harmony import */ var _internal_svg_icons_Star__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../internal/svg-icons/Star */ "./node_modules/@material-ui/lab/esm/internal/svg-icons/Star.js");
+
+
+
+
+
+
+
+
+
+
+function clamp(value, min, max) {
+  if (value < min) {
+    return min;
+  }
+
+  if (value > max) {
+    return max;
+  }
+
+  return value;
+}
+
+function getDecimalPrecision(num) {
+  var decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+
+function roundValueToPrecision(value, precision) {
+  var nearest = Math.round(value / precision) * precision;
+  return Number(nearest.toFixed(getDecimalPrecision(precision)));
+}
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      display: 'inline-flex',
+      position: 'relative',
+      fontSize: theme.typography.pxToRem(24),
+      color: '#ffb400',
+      cursor: 'pointer',
+      '&$disabled': {
+        opacity: 0.5,
+        pointerEvents: 'none'
+      },
+      '&$focusVisible $iconActive': {
+        outline: '1px solid #999'
+      }
+    },
+
+    /* Styles applied to the root element if `size="small"`. */
+    sizeSmall: {
+      fontSize: theme.typography.pxToRem(18)
+    },
+
+    /* Styles applied to the root element if `size="large"`. */
+    sizeLarge: {
+      fontSize: theme.typography.pxToRem(30)
+    },
+
+    /* Styles applied to the root element if `readOnly={true}`. */
+    readOnly: {
+      pointerEvents: 'none'
+    },
+
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled: {},
+
+    /* Pseudo-class applied to the root element if keyboard focused. */
+    focusVisible: {},
+
+    /* Visually hide an element. */
+    visuallyhidden: {
+      border: 0,
+      clip: 'rect(0 0 0 0)',
+      height: 1,
+      margin: -1,
+      overflow: 'hidden',
+      padding: 0,
+      position: 'absolute',
+      top: 20,
+      width: 1
+    },
+
+    /* Styles applied to the pristine label. */
+    pristine: {
+      'input:focus ~ &': {
+        top: 0,
+        bottom: 0,
+        position: 'absolute',
+        outline: '1px solid #999',
+        width: '100%'
+      }
+    },
+
+    /* Styles applied to the label elements. */
+    label: {
+      cursor: 'inherit'
+    },
+
+    /* Styles applied to the icon wrapping elements. */
+    icon: {
+      display: 'flex',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest
+      })
+    },
+
+    /* Styles applied to the icon wrapping elements when empty. */
+    iconEmpty: {
+      color: theme.palette.action.disabled
+    },
+
+    /* Styles applied to the icon wrapping elements when filled. */
+    iconFilled: {},
+
+    /* Styles applied to the icon wrapping elements when hover. */
+    iconHover: {},
+
+    /* Styles applied to the icon wrapping elements when focus. */
+    iconFocus: {},
+
+    /* Styles applied to the icon wrapping elements when active. */
+    iconActive: {
+      transform: 'scale(1.2)'
+    },
+
+    /* Styles applied to the icon wrapping elements when decimals are necessary. */
+    decimal: {
+      position: 'relative'
+    }
+  };
+};
+
+function IconContainer(props) {
+  var value = props.value,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["value"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", other);
+}
+
+ true ? IconContainer.propTypes = {
+  value: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number.isRequired
+} : undefined;
+var defaultIcon = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_internal_svg_icons_Star__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  fontSize: "inherit"
+});
+
+function defaultLabelText(value) {
+  return "".concat(value, " Star").concat(value !== 1 ? 's' : '');
+}
+
+var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Rating(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$disabled = props.disabled,
+      disabled = _props$disabled === void 0 ? false : _props$disabled,
+      emptyIcon = props.emptyIcon,
+      _props$getLabelText = props.getLabelText,
+      getLabelText = _props$getLabelText === void 0 ? defaultLabelText : _props$getLabelText,
+      _props$icon = props.icon,
+      icon = _props$icon === void 0 ? defaultIcon : _props$icon,
+      _props$IconContainerC = props.IconContainerComponent,
+      IconContainerComponent = _props$IconContainerC === void 0 ? IconContainer : _props$IconContainerC,
+      _props$max = props.max,
+      max = _props$max === void 0 ? 5 : _props$max,
+      name = props.name,
+      onChange = props.onChange,
+      onChangeActive = props.onChangeActive,
+      onMouseLeave = props.onMouseLeave,
+      onMouseMove = props.onMouseMove,
+      _props$precision = props.precision,
+      precision = _props$precision === void 0 ? 1 : _props$precision,
+      _props$readOnly = props.readOnly,
+      readOnly = _props$readOnly === void 0 ? false : _props$readOnly,
+      _props$size = props.size,
+      size = _props$size === void 0 ? 'medium' : _props$size,
+      _props$value = props.value,
+      valueProp2 = _props$value === void 0 ? null : _props$value,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "disabled", "emptyIcon", "getLabelText", "icon", "IconContainerComponent", "max", "name", "onChange", "onChangeActive", "onMouseLeave", "onMouseMove", "precision", "readOnly", "size", "value"]);
+
+  var valueProp = roundValueToPrecision(valueProp2, precision);
+  var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
+    hover: -1,
+    focus: -1
+  }),
+      _React$useState$ = _React$useState[0],
+      hover = _React$useState$.hover,
+      focus = _React$useState$.focus,
+      setState = _React$useState[1];
+
+  var value = valueProp;
+
+  if (hover !== -1) {
+    value = hover;
+  }
+
+  if (focus !== -1) {
+    value = focus;
+  }
+
+  var _useIsFocusVisible = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useIsFocusVisible"])(),
+      isFocusVisible = _useIsFocusVisible.isFocusVisible,
+      onBlurVisible = _useIsFocusVisible.onBlurVisible,
+      focusVisibleRef = _useIsFocusVisible.ref;
+
+  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
+      focusVisible = _React$useState2[0],
+      setFocusVisible = _React$useState2[1];
+
+  var rootRef = react__WEBPACK_IMPORTED_MODULE_2___default.a.useRef();
+  var handleFocusRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(focusVisibleRef, rootRef);
+  var handleRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(handleFocusRef, ref);
+
+  var handleMouseMove = function handleMouseMove(event) {
+    if (onMouseMove) {
+      onMouseMove(event);
+    }
+
+    var rootNode = rootRef.current;
+
+    var _rootNode$getBounding = rootNode.getBoundingClientRect(),
+        right = _rootNode$getBounding.right,
+        left = _rootNode$getBounding.left;
+
+    var _rootNode$firstChild$ = rootNode.firstChild.getBoundingClientRect(),
+        width = _rootNode$firstChild$.width;
+
+    var percent;
+
+    if (theme.direction === 'rtl') {
+      percent = (right - event.clientX) / (width * max);
+    } else {
+      percent = (event.clientX - left) / (width * max);
+    }
+
+    var newHover = roundValueToPrecision(max * percent + precision / 2, precision);
+    newHover = clamp(newHover, precision, max);
+    setState(function (prev) {
+      return prev.hover === newHover && prev.focus === newHover ? prev : {
+        hover: newHover,
+        focus: newHover
+      };
+    });
+    setFocusVisible(false);
+
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
+    }
+  };
+
+  var handleMouseLeave = function handleMouseLeave(event) {
+    if (onMouseLeave) {
+      onMouseLeave(event);
+    }
+
+    var newHover = -1;
+    setState({
+      hover: newHover,
+      focus: newHover
+    });
+
+    if (onChangeActive && hover !== newHover) {
+      onChangeActive(event, newHover);
+    }
+  };
+
+  var handleChange = function handleChange(event) {
+    if (onChange) {
+      onChange(event, parseFloat(event.target.value));
+    }
+  };
+
+  var handleFocus = function handleFocus(event) {
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
+
+    var newFocus = parseFloat(event.target.value);
+    setState(function (prev) {
+      return {
+        hover: prev.hover,
+        focus: newFocus
+      };
+    });
+
+    if (onChangeActive && focus !== newFocus) {
+      onChangeActive(event, newFocus);
+    }
+  };
+
+  var handleBlur = function handleBlur(event) {
+    if (hover !== -1) {
+      return;
+    }
+
+    if (focusVisible !== false) {
+      setFocusVisible(false);
+      onBlurVisible();
+    }
+
+    var newFocus = -1;
+    setState(function (prev) {
+      return {
+        hover: prev.hover,
+        focus: newFocus
+      };
+    });
+
+    if (onChangeActive && focus !== newFocus) {
+      onChangeActive(event, newFocus);
+    }
+  };
+
+  var item = function item(propsItem, state) {
+    var id = "".concat(name, "-").concat(String(propsItem.value).replace('.', '-'));
+    var container = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(IconContainerComponent, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, propsItem, {
+      className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.icon, state.filled ? classes.iconFilled : classes.iconEmpty, state.hover && classes.iconHover, state.focus && classes.iconFocus, state.active && classes.iconActive)
+    }), emptyIcon && !state.filled ? emptyIcon : icon);
+
+    if (readOnly || disabled) {
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, {
+        key: propsItem.value
+      }, container);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, {
+      key: propsItem.value
+    }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
+      className: classes.label,
+      htmlFor: id
+    }, container, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+      className: classes.visuallyhidden
+    }, getLabelText(propsItem.value))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+      onChange: handleChange,
+      value: propsItem.value,
+      id: id,
+      type: "radio",
+      name: name,
+      checked: state.checked,
+      className: classes.visuallyhidden
+    }));
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    ref: handleRef,
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, className, size !== 'medium' && classes["size".concat(Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["capitalize"])(size))], disabled && classes.disabled, focusVisible && classes.focusVisible, readOnly && classes.readOnly),
+    role: readOnly ? 'img' : null,
+    "aria-label": readOnly ? getLabelText(value) : null
+  }, other), !readOnly && !disabled && value == null && react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+    value: "0",
+    id: "".concat(name, "-0"),
+    type: "radio",
+    name: name,
+    defaultChecked: true,
+    className: classes.visuallyhidden
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
+    htmlFor: "".concat(name, "-0"),
+    className: classes.pristine
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+    className: classes.visuallyhidden
+  }, getLabelText(0)))), Array.from(new Array(max)).map(function (_, index) {
+    var itemValue = index + 1;
+
+    if (precision < 1) {
+      var items = Array.from(new Array(1 / precision));
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+        key: itemValue,
+        className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.decimal, itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1) && classes.iconActive)
+      }, items.map(function ($, indexDecimal) {
+        var itemDecimalValue = roundValueToPrecision(itemValue - 1 + (indexDecimal + 1) * precision, precision);
+        return item({
+          value: itemDecimalValue,
+          style: items.length - 1 === indexDecimal ? {} : {
+            width: itemDecimalValue === value ? "".concat((indexDecimal + 1) * precision * 100, "%") : '0%',
+            overflow: 'hidden',
+            zIndex: 1,
+            position: 'absolute'
+          }
+        }, {
+          filled: itemDecimalValue <= value,
+          hover: itemDecimalValue <= hover,
+          focus: itemDecimalValue <= focus,
+          checked: itemDecimalValue === valueProp
+        });
+      }));
+    }
+
+    return item({
+      value: itemValue
+    }, {
+      active: itemValue === value && (hover !== -1 || focus !== -1),
+      filled: itemValue <= value,
+      hover: itemValue <= hover,
+      focus: itemValue <= focus,
+      checked: itemValue === valueProp
+    });
+  }));
+});
+ true ? Rating.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * If `true`, the rating will be disabled.
+   */
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * The icon to display when empty.
+   */
+  emptyIcon: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+   *
+   * @param {number} value The rating label's value to format.
+   * @returns {string}
+   */
+  getLabelText: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+
+  /**
+   * The icon to display.
+   */
+  icon: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.node,
+
+  /**
+   * The component containing the icon.
+   */
+  IconContainerComponent: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.elementType,
+
+  /**
+   * Maximum rating.
+   */
+  max: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+
+  /**
+   * The name attribute of the radio `input` elements.
+   * If `readOnly` is false, the prop is required,
+   * this input name`should be unique within the parent form.
+   */
+  name: Object(_material_ui_utils__WEBPACK_IMPORTED_MODULE_5__["chainPropTypes"])(prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string, function (props) {
+    if (!props.readOnly && !props.name) {
+      return new Error(['Material-UI: the prop `name` is required (when `readOnly` is false).', 'Additionally, the input name should be unique within the parent form.'].join('\n'));
+    }
+
+    return null;
+  }),
+
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} value The new value.
+   */
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+
+  /**
+   * Callback function that is fired when the hover state changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} value The new value.
+   */
+  onChangeActive: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+
+  /**
+   * @ignore
+   */
+  onMouseLeave: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+
+  /**
+   * @ignore
+   */
+  onMouseMove: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+
+  /**
+   * The minimum increment value change allowed.
+   */
+  precision: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+
+  /**
+   * Removes all hover effects and pointer events.
+   */
+  readOnly: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+
+  /**
+   * The size of the rating.
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['small', 'medium', 'large']),
+
+  /**
+   * The rating value.
+   */
+  value: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["withStyles"])(styles, {
+  name: 'MuiRating'
+})(Rating));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/esm/Rating/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material-ui/lab/esm/Rating/index.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Rating__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Rating */ "./node_modules/@material-ui/lab/esm/Rating/Rating.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _Rating__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/esm/internal/svg-icons/Star.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/esm/internal/svg-icons/Star.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _createSvgIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createSvgIcon */ "./node_modules/@material-ui/lab/esm/internal/svg-icons/createSvgIcon.js");
+
+
+/**
+ * @ignore - internal component.
+ */
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_createSvgIcon__WEBPACK_IMPORTED_MODULE_1__["default"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+  d: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+}), 'Star'));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/lab/esm/internal/svg-icons/createSvgIcon.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@material-ui/lab/esm/internal/svg-icons/createSvgIcon.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createSvgIcon; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_SvgIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/SvgIcon */ "./node_modules/@material-ui/core/esm/SvgIcon/index.js");
+
+
+
+function createSvgIcon(path, displayName) {
+  var Component = react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(react__WEBPACK_IMPORTED_MODULE_1___default.a.forwardRef(function (props, ref) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_SvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      ref: ref
+    }, props), path);
+  }));
+
+  if (true) {
+    Component.displayName = "".concat(displayName, "Icon");
+  }
+
+  Component.muiName = _material_ui_core_SvgIcon__WEBPACK_IMPORTED_MODULE_2__["default"].muiName;
   return Component;
 }
 
@@ -37035,7 +37729,7 @@ var flexbox = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(flexBasis
 /*!*******************************************************!*\
   !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
-/*! exports provided: borders, breakpoints, compose, css, display, flexbox, palette, positions, shadows, sizing, spacing, style, typography, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, color, bgcolor, position, zIndex, top, right, bottom, left, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
+/*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39807,68 +40501,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/classnames/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/classnames/index.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
-				}
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if ( true && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
 
 
 /***/ }),
@@ -80070,274 +80702,6 @@ if (true) {
 
 /***/ }),
 
-/***/ "./node_modules/react-star-rating-component/index.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-star-rating-component/index.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var StarRatingComponent = function (_Component) {
-  _inherits(StarRatingComponent, _Component);
-
-  function StarRatingComponent(props) {
-    _classCallCheck(this, StarRatingComponent);
-
-    var _this = _possibleConstructorReturn(this, (StarRatingComponent.__proto__ || Object.getPrototypeOf(StarRatingComponent)).call(this));
-
-    _this.state = {
-      value: props.value
-    };
-    return _this;
-  }
-
-  _createClass(StarRatingComponent, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var value = nextProps.value;
-
-
-      if (value != null && value !== this.state.value) {
-        this.setState({ value: value });
-      }
-    }
-  }, {
-    key: 'onChange',
-    value: function onChange(inputValue) {
-      var _props = this.props,
-          editing = _props.editing,
-          value = _props.value;
-
-
-      if (!editing) {
-        return;
-      }
-
-      // do not update internal state based on input value if prop passed
-      if (value != null) {
-        return;
-      }
-
-      this.setState({ value: inputValue });
-    }
-  }, {
-    key: 'onStarClick',
-    value: function onStarClick(index, value, name, e) {
-      e.stopPropagation();
-
-      var _props2 = this.props,
-          onStarClick = _props2.onStarClick,
-          editing = _props2.editing;
-
-
-      if (!editing) {
-        return;
-      }
-
-      onStarClick && onStarClick(index, value, name, e);
-    }
-  }, {
-    key: 'onStarHover',
-    value: function onStarHover(index, value, name, e) {
-      e.stopPropagation();
-
-      var _props3 = this.props,
-          onStarHover = _props3.onStarHover,
-          editing = _props3.editing;
-
-
-      if (!editing) {
-        return;
-      }
-
-      onStarHover && onStarHover(index, value, name, e);
-    }
-  }, {
-    key: 'onStarHoverOut',
-    value: function onStarHoverOut(index, value, name, e) {
-      e.stopPropagation();
-
-      var _props4 = this.props,
-          onStarHoverOut = _props4.onStarHoverOut,
-          editing = _props4.editing;
-
-
-      if (!editing) {
-        return;
-      }
-
-      onStarHoverOut && onStarHoverOut(index, value, name, e);
-    }
-  }, {
-    key: 'renderStars',
-    value: function renderStars() {
-      var _this2 = this;
-
-      var _props5 = this.props,
-          name = _props5.name,
-          starCount = _props5.starCount,
-          starColor = _props5.starColor,
-          emptyStarColor = _props5.emptyStarColor,
-          editing = _props5.editing;
-      var value = this.state.value;
-
-
-      var starStyles = function starStyles(i, value) {
-        return {
-          float: 'right',
-          cursor: editing ? 'pointer' : 'default',
-          color: value >= i ? starColor : emptyStarColor
-        };
-      };
-      var radioStyles = {
-        display: 'none',
-        position: 'absolute',
-        marginLeft: -9999
-      };
-
-      // populate stars
-      var starNodes = [];
-
-      var _loop = function _loop(i) {
-        var id = name + '_' + i;
-        var starNodeInput = _react2.default.createElement('input', {
-          key: 'input_' + id,
-          style: radioStyles,
-          className: 'dv-star-rating-input',
-          type: 'radio',
-          name: name,
-          id: id,
-          value: i,
-          checked: value === i,
-          onChange: _this2.onChange.bind(_this2, i, name)
-        });
-        var starNodeLabel = _react2.default.createElement(
-          'label',
-          {
-            key: 'label_' + id,
-            style: starStyles(i, value),
-            className: 'dv-star-rating-star ' + (value >= i ? 'dv-star-rating-full-star' : 'dv-star-rating-empty-star'),
-            htmlFor: id,
-            onClick: function onClick(e) {
-              return _this2.onStarClick(i, value, name, e);
-            },
-            onMouseOver: function onMouseOver(e) {
-              return _this2.onStarHover(i, value, name, e);
-            },
-            onMouseLeave: function onMouseLeave(e) {
-              return _this2.onStarHoverOut(i, value, name, e);
-            }
-          },
-          _this2.renderIcon(i, value, name, id)
-        );
-
-        starNodes.push(starNodeInput);
-        starNodes.push(starNodeLabel);
-      };
-
-      for (var i = starCount; i > 0; i--) {
-        _loop(i);
-      }
-
-      return starNodes.length ? starNodes : null;
-    }
-  }, {
-    key: 'renderIcon',
-    value: function renderIcon(index, value, name, id) {
-      var _props6 = this.props,
-          renderStarIcon = _props6.renderStarIcon,
-          renderStarIconHalf = _props6.renderStarIconHalf;
-
-
-      if (typeof renderStarIconHalf === 'function' && Math.ceil(value) === index && value % 1 !== 0) {
-        return renderStarIconHalf(index, value, name, id);
-      }
-
-      if (typeof renderStarIcon === 'function') {
-        return renderStarIcon(index, value, name, id);
-      }
-
-      return _react2.default.createElement(
-        'i',
-        { key: 'icon_' + id, style: { fontStyle: 'normal' } },
-        '\u2605'
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props7 = this.props,
-          editing = _props7.editing,
-          className = _props7.className;
-
-      var classes = (0, _classnames2.default)('dv-star-rating', {
-        'dv-star-rating-non-editable': !editing
-      }, className);
-
-      return _react2.default.createElement(
-        'div',
-        { style: { display: 'inline-block', position: 'relative' }, className: classes },
-        this.renderStars()
-      );
-    }
-  }]);
-
-  return StarRatingComponent;
-}(_react.Component);
-
-StarRatingComponent.propTypes = {
-  name: _propTypes2.default.string.isRequired,
-  value: _propTypes2.default.number,
-  editing: _propTypes2.default.bool,
-  starCount: _propTypes2.default.number,
-  starColor: _propTypes2.default.string,
-  onStarClick: _propTypes2.default.func,
-  onStarHover: _propTypes2.default.func,
-  onStarHoverOut: _propTypes2.default.func,
-  renderStarIcon: _propTypes2.default.func,
-  renderStarIconHalf: _propTypes2.default.func
-};
-StarRatingComponent.defaultProps = {
-  starCount: 5,
-  editing: true,
-  starColor: '#ffb400',
-  emptyStarColor: '#333'
-};
-exports.default = StarRatingComponent;
-module.exports = exports['default'];
-
-
-/***/ }),
-
 /***/ "./node_modules/react-transition-group/esm/CSSTransition.js":
 /*!******************************************************************!*\
   !*** ./node_modules/react-transition-group/esm/CSSTransition.js ***!
@@ -88021,7 +88385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@material-ui/lab/Rating'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/lab/Rating */ "./node_modules/@material-ui/lab/esm/Rating/index.js");
 /* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js");
 /* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/icons/MessageOutlined */ "./node_modules/@material-ui/icons/MessageOutlined.js");
 /* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_6__);
@@ -88067,7 +88431,7 @@ var Product = function Product(_ref) {
     component: "fieldset",
     mb: 3,
     borderColor: "transparent"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@material-ui/lab/Rating'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: "5",
     readOnly: true
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -88108,7 +88472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var _material_ui_core_Container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@material-ui/lab/Rating'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/lab/Rating */ "./node_modules/@material-ui/lab/esm/Rating/index.js");
 /* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js");
 
 
@@ -88178,7 +88542,7 @@ var Products = function Products(_ref) {
       component: "fieldset",
       mb: 3,
       borderColor: "transparent"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@material-ui/lab/Rating'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_12__["default"], {
       value: "5",
       readOnly: true
     }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -88306,8 +88670,7 @@ function Register(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_star_rating_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-star-rating-component */ "./node_modules/react-star-rating-component/index.js");
-/* harmony import */ var react_star_rating_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_star_rating_component__WEBPACK_IMPORTED_MODULE_1__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'react-star-rating-component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 
 
@@ -88318,7 +88681,7 @@ function Valoration(_ref) {
     return count += parseInt(x.rating);
   });
   var prom = count / comments.length;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_star_rating_component__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'react-star-rating-component'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
     name: "rate1",
     starCount: 5,
     value: prom,
