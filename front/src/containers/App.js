@@ -6,6 +6,7 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
+
 import { fetchUser } from "../store/actions/userAction";
 import OrderContainer from "./OrderContainer"
 import store from "../store/store";
@@ -29,6 +30,7 @@ class App extends React.Component {
 
         <br />
         <Switch>
+          <Route exact path="/" component={ProductsContainer} />
           <Route exact path="/signup" component={RegisterContainer} />
           <Route exact path="/logIn" component={LogInContainer} />
           <Route

@@ -2,8 +2,6 @@ const S = require("sequelize");
 const db = require("../config/db");
 const crypto = require("crypto");
 
-// const Comment = require("./Comment");
-
 class User extends S.Model {}
 
 User.init(
@@ -46,6 +44,7 @@ User.init(
     modelName: "user"
   }
 );
+
 User.addHook("beforeCreate", user => {
   user.salt = crypto.randomBytes(20).toString("hex");
   user.password = user.hashPassword(user.password);
@@ -61,6 +60,5 @@ User.prototype.hashPassword = function(password) {
 User.prototype.validPassword = function(password) {
   return this.password === this.hashPassword(password);
 };
-// User.hasMany(Comment, { as: "user" });
 
 module.exports = User;

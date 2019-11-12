@@ -33,7 +33,6 @@ const useStyles = makeStyles({
 
 const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
   const classes = useStyles();
-
   return productsState.map(item => (
     <div style={{ order: "1" }} key={item.name}>
       <Card className={classes.card}>
