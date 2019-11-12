@@ -174,10 +174,10 @@ function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
             {user.email === undefined ? (
               console.log("noooooooo hay user")
             ) : (
-              <Grid item="md-2">
-                <Button>Log Out</Button>
-              </Grid>
-            )}
+                <Grid item="md-2">
+                  <Button>Log Out</Button>
+                </Grid>
+              )}
 
             {user.email === undefined ? (
               <Grid item="md-2">
@@ -186,8 +186,8 @@ function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
                 </Link>
               </Grid>
             ) : (
-              ""
-            )}
+                ""
+              )}
 
             {user.email === undefined ? (
               <Link style={{ textDecoration: "none" }} to="/signup">
@@ -196,14 +196,18 @@ function Header({ handleChange, handleSubmit, search, fetchProducts, user }) {
                 </Grid>
               </Link>
             ) : (
-              ""
-            )}
+                ""
+              )}
 
-            <Grid item="md-2">
-              <Button>
-                <img src={scooter} style={{ height: "30px", width: "30px" }} />
-              </Button>
-            </Grid>
+
+            <Link style={{ textDecoration: "none" }} to="/order">
+              <Grid item="md-2">
+                <Button>
+                  <img src={scooter} style={{ height: "30px", width: "30px" }} />
+                </Button>
+              </Grid>
+            </Link>
+
           </div>
         </Grid>
       </div>

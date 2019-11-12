@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Products = function({ productsState, handleAdd, mostrarBusqueda }) {
+const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
   const classes = useStyles();
 
   return productsState.map(item => (
@@ -69,6 +69,7 @@ const Products = function({ productsState, handleAdd, mostrarBusqueda }) {
         >
           <form>
             <div>
+
               <Button
                 style={{
                   display: "flex",
@@ -89,6 +90,9 @@ const Products = function({ productsState, handleAdd, mostrarBusqueda }) {
                   }}
                 />
               </Button>
+
+
+
             </div>
           </form>
         </CardActions>

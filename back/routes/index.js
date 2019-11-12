@@ -2,18 +2,20 @@ const express = require("express");
 const router = express();
 const Product = require("../models/Product");
 const User = require("../models/User");
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op
 
 const passport = require("passport");
 
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
 
-router.get("/products", function(req, res) {
+router.get("/products", function (req, res) {
   // direccion api/products
   Product.findAll()
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });
@@ -30,7 +32,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   // direccion api/
   Product.findAll({
     where: {
@@ -38,7 +40,7 @@ router.get("/category/:country", function(req, res) {
     }
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
     });
 });
@@ -57,10 +59,12 @@ router.get("/product/:name", (req, res, next) => {
   console.log("---------------------------------------------------");
   console.log(req.params.name);
   console.log("---------------------------------------------------");
-
+  const product = req.params.name
   Product.findOne({
     where: {
-      name: req.params.name
+      name: {
+        [Op.iLike]: `%${product}%`
+      }
     }
   }).then(singleProduct => {
     console.log(singleProduct);
