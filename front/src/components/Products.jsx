@@ -72,8 +72,7 @@ const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
             <div>
 
               <Button
-
-                onClick={handleAdd}
+                // onClick={handleAdd}
                 type="submit"
               >
                 <img
