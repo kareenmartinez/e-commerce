@@ -104,9 +104,16 @@ router.get("/auth/me", (req, res) => {
 
 router.get("/order", function(req, res) {
   Order.findAll({
+<<<<<<< HEAD
     where: {
       userId: 5
     },
+=======
+  where:{
+    userId:1,
+    state:"pending"
+  },
+>>>>>>> 0433d9e9600c8d6a64b8c46a996ba9ad548f2936
     include: [
       {
         model: OrderItem,

@@ -155,6 +155,7 @@ const items = [
 // });
 // 2)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
+<<<<<<< HEAD
 // Comment.bulkCreate(comments).then(() => {
 //   console.log("created comments");
 // });
@@ -167,3 +168,18 @@ const items = [
 OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
 });
+=======
+/*  Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});   */
+
+//4)
+/* Order.bulkCreate(orders).then(() => {
+  console.log("created orders");
+});   */
+
+//5)
+ /* OrderItem.bulkCreate(items).then(() => {
+  console.log("created items");
+ });  */ 
+>>>>>>> 0433d9e9600c8d6a64b8c46a996ba9ad548f2936
