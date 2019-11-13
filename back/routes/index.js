@@ -97,7 +97,8 @@ router.get("/auth/me", (req, res) => {
 router.get("/order", function(req, res) {
   Order.findAll({
   where:{
-    userId:1
+    userId:1,
+    state:"pending"
   },
     include: [
       {
