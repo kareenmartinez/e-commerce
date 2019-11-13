@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express();
-const { Product, Comment, User } = require("../models");
+const { Product, Comment, User, Order, OrderItem } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const passport = require("passport");
@@ -68,11 +68,8 @@ router.get("/products", (req, res) => {
 
 router.get("/product/:name", (req, res, next) => {
   const nameProduct = req.params.name;
-  // console.log(req.params.name);
-
   Product.findOne({
     where: {
-      // name: req.params.name
       name: {
         [Op.iLike]: `%${nameProduct}%`
       }
@@ -96,5 +93,30 @@ router.get("/product/:name", (req, res, next) => {
 router.get("/auth/me", (req, res) => {
   res.send(req.user);
 });
+
+router.get("/order", function(req, res) {
+  Order.findAll({
+  where:{
+    userId:1
+  },
+    include: [
+      {
+        model: OrderItem,
+        as: "item",
+        include: [
+          {
+            model: Product
+            
+          }
+        ]
+      }
+    ]
+  })
+    .then(order => res.json(order))
+    .catch(function(err) {
+      console.log(err, "no trae nadaaaa");
+    });
+});
+
 
 module.exports = router;

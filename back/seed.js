@@ -130,7 +130,7 @@ const orders = [
     state: "pending",
     userId: 1
   }
-];
+ ];
 
 const items = [
   {
@@ -159,16 +159,16 @@ const items = [
 
 // 3)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
-// Comment.bulkCreate(comments).then(() => {
-//   console.log("created comments");
-// });
+/*  Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});  */
 
 //4)
-// Order.bulkCreate(orders).then(() => {
-//   console.log("created orders");
-// });
+ /* Order.bulkCreate(orders).then(() => {
+  console.log("created orders");
+});  */
 
 //5)
-// OrderItem.bulkCreate(items).then(() => {
-//   console.log("created items");
-// });
+/* OrderItem.bulkCreate(items).then(() => {
+  console.log("created items");
+ });  */
