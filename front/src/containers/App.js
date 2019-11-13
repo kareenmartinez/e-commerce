@@ -8,10 +8,12 @@ import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
 import { fetchUser } from "../store/actions/userAction";
-import OrderContainer from "./OrderContainer"
+import OrderContainer from "./OrderContainer";
 import store from "../store/store";
 
 import { connect } from "react-redux";
+
+// import { fetchUserFacebook } from "../store/actions/facebookAction";
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class App extends React.Component {
 
   componentDidMount() {
     store.dispatch(fetchUser());
+    // store.dispatch(fetchUserFacebook(this.props.userFacebook));
   }
 
   render() {
@@ -51,11 +54,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
-    products: state.filterReducer.productsCategory,
-    user: state.userReducer.user
+    // userFacebook: state.facebookReducer.payload
   };
 };
 

@@ -9,7 +9,7 @@ class RegisterContainer extends Component {
     this.state = {
       name: "",
       lastName: "",
-      direction: "",
+      address: "",
       email: "",
       password: ""
     };
@@ -17,7 +17,7 @@ class RegisterContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeLastName = this.handleChangeLastName.bind(this);
-    this.handleChangeDirection = this.handleChangeDirection.bind(this);
+    this.handleChangeAddress = this.handleChangeAddress.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
   }
@@ -38,8 +38,8 @@ class RegisterContainer extends Component {
     this.setState({ lastName: event.target.value });
   }
 
-  handleChangeDirection(event) {
-    this.setState({ direction: event.target.value });
+  handleChangeAddress(event) {
+    this.setState({ address: event.target.value });
   }
 
   handleChangeEmail(event) {
@@ -51,19 +51,19 @@ class RegisterContainer extends Component {
   }
 
   render() {
-    const { name, lastName, direction, email, password } = this.state;
+    const { name, lastName, address, email, password } = this.state;
     return (
       <div>
         <Register
           handleSubmit={this.handleSubmit}
           handleChangeName={this.handleChangeName}
           handleChangeLastName={this.handleChangeLastName}
-          handleChangeDirection={this.handleChangeDirection}
+          handleChangeAddress={this.handleChangeAddress}
           handleChangeEmail={this.handleChangeEmail}
           handleChangePassword={this.handleChangePassword}
           name={name}
           lastname={lastName}
-          direction={direction}
+          address={address}
           email={email}
           password={password}
         />

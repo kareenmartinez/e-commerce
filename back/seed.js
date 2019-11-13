@@ -1,5 +1,5 @@
 const db = require("./config/db");
-const { Product, User, Comment } = require("./models");
+const { Product, User, Comment, Order, OrderItem } = require("./models");
 
 const productos = [
   {
@@ -90,7 +90,7 @@ const user = [
     lastName: "Perez",
     email: "coco@coco.gmail",
     isAdmin: false,
-    direction: "Arenales 2034",
+    address: "Arenales 2034",
     password: 1234
   },
   {
@@ -98,7 +98,7 @@ const user = [
     lastName: "Gomez",
     email: "tere@tere.gmail",
     isAdmin: false,
-    direction: "Juan B Justo 2432",
+    address: "Juan B Justo 2432",
     password: 1234
   }
 ];
@@ -123,17 +123,51 @@ const comments = [
     userId: 2
   }
 ];
+const orders = [
+  {
+    quantity: 2,
+    total: 740,
+    state: "pending"
+  }
+];
 
-/* Product.bulkCreate(productos).then(() => {
-  console.log("created products");
-});
+const items = [
+  {
+    quantity: 1,
+    productId: 1,
+    orderId: 1
+  },
+  {
+    quantity: 1,
+    productId: 2,
+    orderId: 1
+  }
+];
 
-User.bulkCreate(user).then(() => {
-  console.log("created user");
-}); */
+//Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 
-// este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
+//1)
+//Product.bulkCreate(productos).then(() => {
+//   console.log("created products");
+// });
+
+//2)
+// User.bulkCreate(user).then(() => {
+//   console.log("created user");
+// });
+
+// 3)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
-Comment.bulkCreate(comments).then(() => {
-  console.log("created comments");
-});
+// Comment.bulkCreate(comments).then(() => {
+//   console.log("created comments");
+// });
+
+//4)
+// Order.bulkCreate(orders).then(() => {
+//   console.log("created orders");
+// });
+
+//5)
+// OrderItem.bulkCreate(items).then(() => {
+//   console.log("created items");
+// });
