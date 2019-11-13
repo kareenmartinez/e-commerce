@@ -24,3 +24,4 @@ export const CONFIRM_ORDER = "CONFIRM_ORDER";
 
 export const BUY = "BUY"
 
+export const USER_FACEBOOK = "USER_FACEBOOK";

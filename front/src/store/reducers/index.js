@@ -6,6 +6,7 @@ import productsReducer from "./productsReducer";
 import orderReducer from "./orderReducer";
 import { registerReducer } from "./registerReducer";
 import searchReducer from "./searchReducer";
+import facebookReducer from "./facebookReducer";
 
 const reducers = combineReducers({
   registerReducer,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   userReducer,
   filterReducer,
   searchReducer,
-  orderReducer
+  orderReducer,
+  facebookReducer
 });
 
 export default reducers;

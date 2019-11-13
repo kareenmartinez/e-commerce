@@ -58,7 +58,8 @@ function Header({
   search,
   fetchProducts,
   user,
-  logout
+  logout,
+  userFacebook
 }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,8 +77,6 @@ function Header({
   };
   const countries = ["Peru", "Mexico", "Argentina", "Brazil", "Ecuador"];
   countries.sort();
-
-  console.log(user);
 
   return (
     <div>
@@ -178,45 +177,46 @@ function Header({
               flexDirection: "row"
             }}
           >
-            {user.email === undefined ? (
-              console.log("noooooooo hay user")
-            ) : (
-                <Link to="/">
-                  <Grid item="md-2">
-                    <Button onClick={logout}>Log Out</Button>
-                  </Grid>
-                </Link>
-              )}
+            {userFacebook ? (
+              <Link to="/">
+                <Grid item="md-2">
+                  <Button onClick={logout}>Log Out</Button>
+                </Grid>
+              </Link>
+            ) : !user.email ? null : (
+              <Link to="/">
+                <Grid item="md-2">
+                  <Button onClick={logout}>Log Out</Button>
+                </Grid>
+              </Link>
+            )}
 
-            {user.email === undefined ? (
+            {userFacebook ? null : !user.email ? (
               <Grid item="md-2">
                 <Link style={{ textDecoration: "none" }} to="/logIn">
                   <Button>Log In</Button>
                 </Link>
               </Grid>
-            ) : (
-                ""
-              )}
+            ) : null}
 
-            {user.email === undefined ? (
+            {userFacebook ? null : !user.email ? (
               <Link style={{ textDecoration: "none" }} to="/signup">
                 <Grid item="md-2">
                   <Button>Sign Up</Button>
                 </Grid>
               </Link>
-            ) : (
-                ""
-              )}
-
+            ) : null}
 
             <Link style={{ textDecoration: "none" }} to="/order">
               <Grid item="md-2">
                 <Button>
-                  <img src={scooter} style={{ height: "30px", width: "30px" }} />
+                  <img
+                    src={scooter}
+                    style={{ height: "30px", width: "30px" }}
+                  />
                 </Button>
               </Grid>
             </Link>
-
           </div>
         </Grid>
       </div>
