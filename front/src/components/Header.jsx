@@ -171,6 +171,16 @@ function Header({
             </div>
           </Grid>
 
+          <div>
+            {user.name ? (
+              <div>
+                <Typography variant="h8" component="h3">
+                  {user.name} {user.lastName}
+                </Typography>
+              </div>
+            ) : null}
+          </div>
+
           <div
             style={{
               display: "flex",

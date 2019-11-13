@@ -13,7 +13,7 @@ import store from "../store/store";
 
 import { connect } from "react-redux";
 
-// import { fetchUserFacebook } from "../store/actions/facebookAction";
+import { fetchUserFacebook } from "../store/actions/facebookAction";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +22,9 @@ class App extends React.Component {
 
   componentDidMount() {
     store.dispatch(fetchUser());
-    // store.dispatch(fetchUserFacebook(this.props.userFacebook));
+    store.dispatch(fetchUserFacebook(this.props.userFacebook));
+    console.log(this.props.userFacebook);
+    console.log("----------------------------------------------");
   }
 
   render() {
@@ -56,7 +58,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    // userFacebook: state.facebookReducer.payload
+    userFacebook: state.facebookReducer.payload
   };
 };
 

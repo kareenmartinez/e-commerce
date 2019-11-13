@@ -134,6 +134,6 @@ User.bulkCreate(user).then(() => {
 
 // este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
-//Comment.bulkCreate(comments).then(() => {
-//   console.log("created comments");
-// });
+Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});
