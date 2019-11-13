@@ -36,7 +36,8 @@ class FacebookContainer extends React.Component {
         <FacebookLogin
           appId="410515629859037"
           autoLoad={false}
-          fields="name,email,picture"
+          fields="name,email, picture"
+          onClick={this.componentClicked}
           callback={this.responseFacebook}
         />
       );

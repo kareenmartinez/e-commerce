@@ -9,9 +9,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+ import Typography from "@material-ui/core/Typography";
+import ValorationContainer from "../containers/ValorationContainer"
 
-import Container from "@material-ui/core/Container"
+// import Container from "@material-ui/core/Container"
 
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
@@ -55,10 +56,12 @@ const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
               <Typography gutterBottom variant="h8" component="h3">
                 $ {item.price}
               </Typography>
-              <Box component="fieldset" mb={3} borderColor="transparent">
+              {/* <Box component="fieldset" mb={3} borderColor="transparent">
                 <Rating value="5" readOnly />
-              </Box>
+              </Box> */}
+              <ValorationContainer comments={item.commentsP}/>
             </CardContent>
+            
           </CardActionArea>
         </Link>
         <CardActions
@@ -72,8 +75,7 @@ const Products = function ({ productsState, handleAdd, mostrarBusqueda }) {
             <div>
 
               <Button
-
-                onClick={handleAdd}
+                // onClick={handleAdd}
                 type="submit"
               >
                 <img
