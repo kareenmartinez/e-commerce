@@ -35043,6 +35043,7 @@ var styles = function styles(theme) {
       clip: 'rect(0 0 0 0)',
       height: 1,
       margin: -1,
+      color: '#000',
       overflow: 'hidden',
       padding: 0,
       position: 'absolute',
@@ -35132,7 +35133,7 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       IconContainerComponent = _props$IconContainerC === void 0 ? IconContainer : _props$IconContainerC,
       _props$max = props.max,
       max = _props$max === void 0 ? 5 : _props$max,
-      name = props.name,
+      nameProp = props.name,
       onChange = props.onChange,
       onChangeActive = props.onChangeActive,
       onMouseLeave = props.onMouseLeave,
@@ -35147,17 +35148,28 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       valueProp2 = _props$value === void 0 ? null : _props$value,
       other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "disabled", "emptyIcon", "getLabelText", "icon", "IconContainerComponent", "max", "name", "onChange", "onChangeActive", "onMouseLeave", "onMouseMove", "precision", "readOnly", "size", "value"]);
 
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(),
+      defaultName = _React$useState[0],
+      setDefaultName = _React$useState[1];
+
+  var name = nameProp || defaultName;
+  react__WEBPACK_IMPORTED_MODULE_2___default.a.useEffect(function () {
+    // Fallback to this default id when possible.
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultName("mui-rating-".concat(Math.round(Math.random() * 1e5)));
+  }, []);
   var valueProp = roundValueToPrecision(valueProp2, precision);
   var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
+  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
     hover: -1,
     focus: -1
   }),
-      _React$useState$ = _React$useState[0],
-      hover = _React$useState$.hover,
-      focus = _React$useState$.focus,
-      setState = _React$useState[1];
+      _React$useState2$ = _React$useState2[0],
+      hover = _React$useState2$.hover,
+      focus = _React$useState2$.focus,
+      setState = _React$useState2[1];
 
   var value = valueProp;
 
@@ -35174,9 +35186,9 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       onBlurVisible = _useIsFocusVisible.onBlurVisible,
       focusVisibleRef = _useIsFocusVisible.ref;
 
-  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
-      focusVisible = _React$useState2[0],
-      setFocusVisible = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
+      focusVisible = _React$useState3[0],
+      setFocusVisible = _React$useState3[1];
 
   var rootRef = react__WEBPACK_IMPORTED_MODULE_2___default.a.useRef();
   var handleFocusRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(focusVisibleRef, rootRef);
@@ -88734,11 +88746,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scooter_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scooter_png__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
-/* harmony import */ var _material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/lab/Rating */ "./node_modules/@material-ui/lab/esm/Rating/index.js");
-/* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js");
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/MessageOutlined */ "./node_modules/@material-ui/icons/MessageOutlined.js");
-/* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _containers_ValorationContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../containers/ValorationContainer */ "./src/containers/ValorationContainer.jsx");
+/* harmony import */ var _material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/lab/Rating */ "./node_modules/@material-ui/lab/esm/Rating/index.js");
+/* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/MessageOutlined */ "./node_modules/@material-ui/icons/MessageOutlined.js");
+/* harmony import */ var _material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -88779,14 +88793,9 @@ var Product = function Product(_ref) {
       order: "1"
     },
     item: "md-6"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, busqueda.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, busqueda.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, "$", busqueda.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    component: "fieldset",
-    mb: 3,
-    borderColor: "transparent"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    value: "5",
-    readOnly: true
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__["default"] // onClick={handleAdd}
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, busqueda.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, busqueda.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__["default"], null, busqueda.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ValorationContainer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    comments: busqueda.commentsP
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"] // onClick={handleAdd}
   , {
     type: "submit"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -88799,7 +88808,11 @@ var Product = function Product(_ref) {
     style: {
       fontSize: "20px"
     }
-  }, "Comments"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_8___default.a, {
+  }, "Comments"), busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: item.id
+    }, item.comment, " ", item.user["name"]);
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "No se encontro comentarios"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_MessageOutlined__WEBPACK_IMPORTED_MODULE_9___default.a, {
     style: {
       height: "16px"
     }
@@ -88832,7 +88845,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_CardMedia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/CardMedia */ "./node_modules/@material-ui/core/esm/CardMedia/index.js");
 /* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
-/* harmony import */ var _material_ui_core_Container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Container */ "./node_modules/@material-ui/core/esm/Container/index.js");
+/* harmony import */ var _containers_ValorationContainer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../containers/ValorationContainer */ "./src/containers/ValorationContainer.jsx");
 /* harmony import */ var _material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/lab/Rating */ "./node_modules/@material-ui/lab/esm/Rating/index.js");
 /* harmony import */ var _material_ui_core_Box__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/Box */ "./node_modules/@material-ui/core/esm/Box/index.js");
 
@@ -88846,6 +88859,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import Container from "@material-ui/core/Container"
 
 
 
@@ -88899,14 +88913,9 @@ var Products = function Products(_ref) {
       gutterBottom: true,
       variant: "h8",
       component: "h3"
-    }, "$ ", item.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Box__WEBPACK_IMPORTED_MODULE_13__["default"], {
-      component: "fieldset",
-      mb: 3,
-      borderColor: "transparent"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_lab_Rating__WEBPACK_IMPORTED_MODULE_12__["default"], {
-      value: "5",
-      readOnly: true
-    }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, "$ ", item.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ValorationContainer__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      comments: item.commentsP
+    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardActions__WEBPACK_IMPORTED_MODULE_6__["default"], {
       style: {
         display: "flex",
         flexDirection: "row",
@@ -89165,10 +89174,6 @@ function (_React$Component) {
         exact: true,
         path: "/categories/:country",
         component: _FilterCategoryContainer__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/",
-        component: _ProductsContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/order",
@@ -89707,8 +89712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Product */ "./src/components/Product.jsx");
-/* harmony import */ var _components_Valoration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Valoration */ "./src/components/Valoration.jsx");
-/* harmony import */ var _store_actions_searchAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/searchAction */ "./src/store/actions/searchAction.js");
+/* harmony import */ var _store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/searchAction */ "./src/store/actions/searchAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89726,7 +89730,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -89779,7 +89782,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchProduct: function fetchProduct(item) {
-      dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_4__["fetchProduct"])(item));
+      dispatch(Object(_store_actions_searchAction__WEBPACK_IMPORTED_MODULE_3__["fetchProduct"])(item));
     }
   };
 };
@@ -89873,8 +89876,6 @@ function (_React$Component) {
         }));
       }
 
-      console.log(this.props.productsState);
-      console.log(this.props.cargandoBusqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container",
         style: {
@@ -90879,14 +90880,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // const composeEnhancers =
+//   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+//     trace: true,
+//     traceLimit: 25
+//   }) || compose;
 
-var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-  trace: true,
-  traceLimit: 25
-}) || compose;
 var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"], // nos permite despachar funciones
 Object(redux_promise_middleware__WEBPACK_IMPORTED_MODULE_2__["default"])(), Object(redux_logger__WEBPACK_IMPORTED_MODULE_3__["createLogger"])()];
-var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], composeEnhancers(redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"].apply(void 0, middleware)));
+var store = Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"].apply(void 0, middleware));
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ })

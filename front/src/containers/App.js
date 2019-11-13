@@ -41,7 +41,6 @@ class App extends React.Component {
             path="/categories/:country"
             component={FilterCategoryContainer}
           />
-          <Route exact path="/" component={ProductsContainer} />
           <Route exact path="/order" component={OrderContainer} />
           <Route exact path="/product/:name" component={ProductContainer} />
         </Switch>

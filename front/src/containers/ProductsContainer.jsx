@@ -8,8 +8,6 @@ import { fetchProduct } from "../store/actions/searchAction";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 
-
-
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -39,9 +37,6 @@ class ProductsContainer extends React.Component {
         </div>
       );
     }
-
-    console.log(this.props.productsState);
-    console.log(this.props.cargandoBusqueda);
 
     return (
       <div

@@ -129,8 +129,7 @@ const orders = [
     total: 740,
     state: "pending"
   }
-
-]
+];
 
 const items = [
   {
@@ -143,9 +142,7 @@ const items = [
     productId: 2,
     orderId: 1
   }
-
-
-]
+];
 
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 

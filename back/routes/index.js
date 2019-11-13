@@ -1,27 +1,17 @@
 const express = require("express");
 const router = express();
 const { Product, Comment, User } = require("../models");
-
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-
 const passport = require("passport");
 
-router.post("/logIn", passport.authenticate("local"), function (req, res) {
+router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
 });
 
 router.get("/logOut", (req, res) => {
   req.logout(); // passport method for logout
   res.sendStatus(202);
-});
-
-router.get("/products", function (req, res) {
-  Product.findAll()
-    .then(products => res.json(products))
-    .catch(function (err) {
-      console.log(err);
-    });
 });
 
 router.post("/signup", (req, res, next) => {
@@ -35,7 +25,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function (req, res) {
+router.get("/category/:country", function(req, res) {
   Product.findAll({
     where: {
       country: req.params.country
@@ -53,13 +43,25 @@ router.get("/category/:country", function (req, res) {
     ]
   })
     .then(products => res.json(products))
-    .catch(function (err) {
+    .catch(function(err) {
       console.log(err, "no trae nadaaaa");
     });
 });
 
-router.get("/products", (req, res, next) => {
-  Product.findAll().then(products => {
+router.get("/products", (req, res) => {
+  Product.findAll({
+    include: [
+      {
+        model: Comment,
+        as: "commentsP",
+        include: [
+          {
+            model: User
+          }
+        ]
+      }
+    ]
+  }).then(products => {
     res.json(products);
   });
 });
@@ -74,9 +76,20 @@ router.get("/product/:name", (req, res, next) => {
       name: {
         [Op.iLike]: `%${nameProduct}%`
       }
-    }
+    },
+    include: [
+      {
+        model: Comment,
+        as: "commentsP",
+        include: [
+          {
+            model: User
+          }
+        ]
+      }
+    ]
   }).then(singleProduct => {
-    console.log(singleProduct);
+    // console.log(singleProduct);
     res.send(singleProduct);
   });
 });

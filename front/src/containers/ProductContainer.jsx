@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Product from "../components/Product";
-import Valoration from "../components/Valoration";
-
 import { fetchProduct } from "../store/actions/searchAction";
 
 class ProductsContainer extends React.Component {
@@ -10,10 +8,8 @@ class ProductsContainer extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.fetchProduct(this.props.match.params.name)
+    this.props.fetchProduct(this.props.match.params.name);
   }
-
-  
 
   render() {
     console.log(this.props.busqueda);
@@ -46,7 +42,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
