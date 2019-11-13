@@ -5,4 +5,3 @@ const sequelize = new Sequelize("postgres://localhost:5432/e-commerce", {
 });
 // erikaastef99@
 module.exports = sequelize;
-

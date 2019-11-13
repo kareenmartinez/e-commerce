@@ -88812,7 +88812,7 @@ var Product = function Product(_ref) {
     style: {
       fontSize: "20px"
     }
-  }, "Comments"), busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
+  }, "Comments"), busqueda.commentsP && busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: item.id
     }, item.comment, " ", item.user["name"]);
@@ -89052,10 +89052,16 @@ __webpack_require__.r(__webpack_exports__);
 function Valoration(_ref) {
   var comments = _ref.comments;
   var count = 0;
-  comments.map(function (x) {
-    return count += parseInt(x.rating);
-  });
-  var prom = count / comments.length;
+  var prom;
+
+  if (comments) {
+    comments.map(function (x) {
+      return count += parseInt(x.rating);
+    });
+    prom = count / comments.length;
+  }
+
+  ;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_star_rating_component__WEBPACK_IMPORTED_MODULE_1___default.a, {
     name: "rate1",
     starCount: 5,
@@ -89740,18 +89746,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var ProductsContainer =
+var ProductContainer =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ProductsContainer, _React$Component);
+  _inherits(ProductContainer, _React$Component);
 
-  function ProductsContainer(props) {
-    _classCallCheck(this, ProductsContainer);
+  function ProductContainer(props) {
+    _classCallCheck(this, ProductContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductContainer).call(this, props));
   }
 
-  _createClass(ProductsContainer, [{
+  _createClass(ProductContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProduct(this.props.match.params.name);
@@ -89759,7 +89765,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.busqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
@@ -89774,7 +89779,7 @@ function (_React$Component) {
     }
   }]);
 
-  return ProductsContainer;
+  return ProductContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -89791,7 +89796,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductsContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductContainer));
 
 /***/ }),
 
@@ -89994,8 +89999,12 @@ function (_Component) {
 
       console.log("ENTRO AL BOTON");
       event.preventDefault();
-      this.props.fetchRegister(this.state).then(function () {
-        _this2.props.history.push("/login");
+      this.props.fetchRegister(this.state).then(function (res) {
+        if (res !== "ERROR") {
+          _this2.props.history.push("/login");
+        }
+      })["catch"](function (error) {
+        console.log(error, "error de signup");
       });
     }
   }, {

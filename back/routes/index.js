@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express();
-const { Product, Comment } = require("../models");
-const User = require("../models/User");
+const { Product, Comment, User, Order, OrderItem } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -75,18 +74,19 @@ router.get("/products", (req, res) => {
         ]
       }
     ]
-  }).then(products => {
-    res.json(products);
-  });
+  })
+    .then(products => {
+      res.json(products);
+    })
+    .catch(err => {
+      console.log(err, "es un suuuper error");
+    });
 });
 
 router.get("/product/:name", (req, res, next) => {
   const nameProduct = req.params.name;
-  // console.log(req.params.name);
-
   Product.findOne({
     where: {
-      // name: req.params.name
       name: {
         [Op.iLike]: `%${nameProduct}%`
       }
@@ -102,14 +102,40 @@ router.get("/product/:name", (req, res, next) => {
         ]
       }
     ]
-  }).then(singleProduct => {
-    // console.log(singleProduct);
-    res.send(singleProduct);
-  });
+  })
+    .then(singleProduct => {
+      res.send(singleProduct);
+    })
+    .catch(err => {
+      console.log(err, "es un suuuper error");
+    });
 });
 
 router.get("/auth/me", (req, res) => {
   res.send(req.user);
+});
+
+router.get("/order", function(req, res) {
+  Order.findAll({
+    where: {
+      userId: 1
+    },
+    include: [
+      {
+        model: OrderItem,
+        as: "item",
+        include: [
+          {
+            model: Product
+          }
+        ]
+      }
+    ]
+  })
+    .then(order => res.json(order))
+    .catch(function(err) {
+      console.log(err, "no trae nadaaaa");
+    });
 });
 
 module.exports = router;
