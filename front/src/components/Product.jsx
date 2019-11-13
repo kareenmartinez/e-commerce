@@ -46,7 +46,7 @@ const Product = function ({ busqueda }) {
           <Typography>{busqueda.description}</Typography>
 
           <Typography>{busqueda.price}</Typography>
-         
+
 
           <ValorationContainer comments={busqueda.commentsP} />
         </Grid>
@@ -56,7 +56,7 @@ const Product = function ({ busqueda }) {
         <div>
 
           <Button
-            
+
             // onClick={handleAdd}
             type="submit"
           >
@@ -79,12 +79,12 @@ const Product = function ({ busqueda }) {
       <div>
         <hr></hr>
         <Typography style={{ fontSize: "20px" }}>Comments</Typography>
- 
-       {busqueda.commentsP.length > 0?
-        busqueda.commentsP.map(item => (
-        <div key={item.id}>{item.comment} {item.user["name"]}</div>
 
-        )):<div>No se encontro comentarios</div>}
+        {busqueda.commentsP && busqueda.commentsP.length > 0 ?
+          busqueda.commentsP.map(item => (
+            <div key={item.id}>{item.comment} {item.user["name"]}</div>
+
+          )) : <div>No se encontro comentarios</div>}
 
         <p>
           <MessageOutlinedIcon style={{ height: "16px" }} /> email

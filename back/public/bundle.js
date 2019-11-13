@@ -35043,7 +35043,6 @@ var styles = function styles(theme) {
       clip: 'rect(0 0 0 0)',
       height: 1,
       margin: -1,
-      color: '#000',
       overflow: 'hidden',
       padding: 0,
       position: 'absolute',
@@ -35133,7 +35132,7 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       IconContainerComponent = _props$IconContainerC === void 0 ? IconContainer : _props$IconContainerC,
       _props$max = props.max,
       max = _props$max === void 0 ? 5 : _props$max,
-      nameProp = props.name,
+      name = props.name,
       onChange = props.onChange,
       onChangeActive = props.onChangeActive,
       onMouseLeave = props.onMouseLeave,
@@ -35148,28 +35147,17 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       valueProp2 = _props$value === void 0 ? null : _props$value,
       other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "disabled", "emptyIcon", "getLabelText", "icon", "IconContainerComponent", "max", "name", "onChange", "onChangeActive", "onMouseLeave", "onMouseMove", "precision", "readOnly", "size", "value"]);
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(),
-      defaultName = _React$useState[0],
-      setDefaultName = _React$useState[1];
-
-  var name = nameProp || defaultName;
-  react__WEBPACK_IMPORTED_MODULE_2___default.a.useEffect(function () {
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultName("mui-rating-".concat(Math.round(Math.random() * 1e5)));
-  }, []);
   var valueProp = roundValueToPrecision(valueProp2, precision);
   var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
 
-  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
     hover: -1,
     focus: -1
   }),
-      _React$useState2$ = _React$useState2[0],
-      hover = _React$useState2$.hover,
-      focus = _React$useState2$.focus,
-      setState = _React$useState2[1];
+      _React$useState$ = _React$useState[0],
+      hover = _React$useState$.hover,
+      focus = _React$useState$.focus,
+      setState = _React$useState[1];
 
   var value = valueProp;
 
@@ -35186,9 +35174,9 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       onBlurVisible = _useIsFocusVisible.onBlurVisible,
       focusVisibleRef = _useIsFocusVisible.ref;
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
-      focusVisible = _React$useState3[0],
-      setFocusVisible = _React$useState3[1];
+  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
+      focusVisible = _React$useState2[0],
+      setFocusVisible = _React$useState2[1];
 
   var rootRef = react__WEBPACK_IMPORTED_MODULE_2___default.a.useRef();
   var handleFocusRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(focusVisibleRef, rootRef);
@@ -88808,7 +88796,7 @@ var Product = function Product(_ref) {
     style: {
       fontSize: "20px"
     }
-  }, "Comments"), busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
+  }, "Comments"), busqueda.commentsP && busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: item.id
     }, item.comment, " ", item.user["name"]);
@@ -89048,10 +89036,16 @@ __webpack_require__.r(__webpack_exports__);
 function Valoration(_ref) {
   var comments = _ref.comments;
   var count = 0;
-  comments.map(function (x) {
-    return count += parseInt(x.rating);
-  });
-  var prom = count / comments.length;
+  var prom;
+
+  if (comments) {
+    comments.map(function (x) {
+      return count += parseInt(x.rating);
+    });
+    prom = count / comments.length;
+  }
+
+  ;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_star_rating_component__WEBPACK_IMPORTED_MODULE_1___default.a, {
     name: "rate1",
     starCount: 5,
@@ -89282,7 +89276,7 @@ function (_React$Component) {
       if (this.state.isLoggedIn) {} else {
         fbContent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_facebook_login__WEBPACK_IMPORTED_MODULE_2___default.a, {
           appId: "410515629859037",
-          autoLoad: true,
+          autoLoad: false,
           fields: "name,email, picture",
           onClick: this.componentClicked,
           callback: this.responseFacebook
@@ -89736,18 +89730,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var ProductsContainer =
+var ProductContainer =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ProductsContainer, _React$Component);
+  _inherits(ProductContainer, _React$Component);
 
-  function ProductsContainer(props) {
-    _classCallCheck(this, ProductsContainer);
+  function ProductContainer(props) {
+    _classCallCheck(this, ProductContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductContainer).call(this, props));
   }
 
-  _createClass(ProductsContainer, [{
+  _createClass(ProductContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProduct(this.props.match.params.name);
@@ -89755,7 +89749,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.busqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
@@ -89770,7 +89763,7 @@ function (_React$Component) {
     }
   }]);
 
-  return ProductsContainer;
+  return ProductContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -89787,7 +89780,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductsContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductContainer));
 
 /***/ }),
 

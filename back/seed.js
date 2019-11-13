@@ -148,14 +148,14 @@ const items = [
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 
 //1)
-/* Product.bulkCreate(productos).then(() => {
- console.log("created products");
-}); 
+// Product.bulkCreate(productos).then(() => {
+//   console.log("created products");
+// });
 
-//2)
- User.bulkCreate(user).then(() => {
-  console.log("created user");
-});  */
+// // 2)
+// User.bulkCreate(user).then(() => {
+//   console.log("created user");
+// });
 
 // 3)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
