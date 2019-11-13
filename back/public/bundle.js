@@ -88385,7 +88385,10 @@ function Header(_ref) {
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
     onClick: handleSubmit
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_8___default.a, null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_8___default.a, null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.name ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "h8",
+    component: "h3"
+  }, user.name, " ", user.lastName)) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "row"
@@ -88808,7 +88811,7 @@ var Product = function Product(_ref) {
     style: {
       fontSize: "20px"
     }
-  }, "Comments"), busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
+  }, "Comments"), busqueda.commentsP && busqueda.commentsP.length > 0 ? busqueda.commentsP.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: item.id
     }, item.comment, " ", item.user["name"]);
@@ -89048,10 +89051,16 @@ __webpack_require__.r(__webpack_exports__);
 function Valoration(_ref) {
   var comments = _ref.comments;
   var count = 0;
-  comments.map(function (x) {
-    return count += parseInt(x.rating);
-  });
-  var prom = count / comments.length;
+  var prom;
+
+  if (comments) {
+    comments.map(function (x) {
+      return count += parseInt(x.rating);
+    });
+    prom = count / comments.length;
+  }
+
+  ;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_star_rating_component__WEBPACK_IMPORTED_MODULE_1___default.a, {
     name: "rate1",
     starCount: 5,
@@ -89108,6 +89117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OrderContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./OrderContainer */ "./src/containers/OrderContainer.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/store */ "./src/store/store.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/actions/facebookAction */ "./src/store/actions/facebookAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89137,7 +89147,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { fetchUserFacebook } from "../store/actions/facebookAction";
+
+
 
 var App =
 /*#__PURE__*/
@@ -89153,7 +89164,10 @@ function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])()); // store.dispatch(fetchUserFacebook(this.props.userFacebook));
+      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])());
+      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_12__["fetchUserFacebook"])(this.props.userFacebook));
+      console.log(this.props.userFacebook);
+      console.log("----------------------------------------------");
     }
   }, {
     key: "render",
@@ -89194,7 +89208,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {// userFacebook: state.facebookReducer.payload
+  return {
+    userFacebook: state.facebookReducer.payload
   };
 };
 
@@ -89271,8 +89286,8 @@ function (_React$Component) {
   }, {
     key: "responseFacebook",
     value: function responseFacebook(response) {
-      console.log(response.accessToken);
-      this.props.fetchUserFacebook(response.accessToken);
+      console.log(response);
+      this.props.fetchUserFacebook(response.email);
     }
   }, {
     key: "render",
@@ -89479,7 +89494,6 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      console.log(this.state.search);
       this.props.mostrarBusqueda(this.state.search);
       this.props.history.push("/product/".concat(this.state.search));
     }
@@ -89498,7 +89512,8 @@ function (_React$Component) {
         handleChange: this.handleChange,
         search: this.state.search,
         logout: this.props.logout,
-        userFacebook: this.props.userFacebook
+        userFacebook: this.props.userFacebook,
+        user: this.props.user
       }));
     }
   }]);
@@ -89590,8 +89605,8 @@ function (_Component) {
     key: "onSubmit",
     value: function onSubmit(e) {
       e.preventDefault();
-      console.log(this.state.email, this.state.password);
       this.props.logIn(this.state.email, this.state.password);
+      this.props.history.push("/");
     }
   }, {
     key: "handleEmail",
@@ -89736,18 +89751,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var ProductsContainer =
+var ProductContainer =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ProductsContainer, _React$Component);
+  _inherits(ProductContainer, _React$Component);
 
-  function ProductsContainer(props) {
-    _classCallCheck(this, ProductsContainer);
+  function ProductContainer(props) {
+    _classCallCheck(this, ProductContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductsContainer).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductContainer).call(this, props));
   }
 
-  _createClass(ProductsContainer, [{
+  _createClass(ProductContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProduct(this.props.match.params.name);
@@ -89755,7 +89770,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.busqueda);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
           display: "flex",
@@ -89770,7 +89784,7 @@ function (_React$Component) {
     }
   }]);
 
-  return ProductsContainer;
+  return ProductContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -89787,7 +89801,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductsContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(ProductContainer));
 
 /***/ }),
 

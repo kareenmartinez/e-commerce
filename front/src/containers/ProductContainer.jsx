@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 import { fetchProduct } from "../store/actions/searchAction";
 
-class ProductsContainer extends React.Component {
+class ProductContainer extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,6 @@ class ProductsContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props.busqueda);
 
     return (
       <div
@@ -42,4 +41,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);

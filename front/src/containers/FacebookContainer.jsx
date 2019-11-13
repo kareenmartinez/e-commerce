@@ -23,8 +23,8 @@ class FacebookContainer extends React.Component {
   }
 
   responseFacebook(response) {
-    console.log(response.accessToken);
-    this.props.fetchUserFacebook(response.accessToken);
+    console.log(response);
+    this.props.fetchUserFacebook(response.email);
   }
 
   render() {

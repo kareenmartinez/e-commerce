@@ -17,7 +17,7 @@ class ValorationContainer extends React.Component {
   render() {
     return (
       <div>
-        <Valoration comments={this.props.comments}></Valoration>
+        <Valoration comments={this.props.comments} />
       </div>
     );
   }
