@@ -8,6 +8,7 @@ Product.hasMany(Comment, { as: "commentsP" });
 Comment.belongsTo(User);
 Order.hasMany(OrderItem, { as: "item" });
 OrderItem.belongsTo(Product);
+User.hasMany(Order, { as: "order" })
 
 
 //buscar relacion 

@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const passport = require("passport");
 
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
 
@@ -25,7 +25,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   Product.findAll({
     where: {
       country: req.params.country
@@ -43,7 +43,7 @@ router.get("/category/:country", function(req, res) {
     ]
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -63,7 +63,7 @@ router.get("/products", (req, res) => {
     ]
   }).then(products => {
     res.json(products);
-  });
+  }).catch((err) => { console.log(err, "es un suuuper error") });;
 });
 
 router.get("/product/:name", (req, res, next) => {
@@ -89,9 +89,8 @@ router.get("/product/:name", (req, res, next) => {
       }
     ]
   }).then(singleProduct => {
-    // console.log(singleProduct);
     res.send(singleProduct);
-  });
+  }).catch((err) => { console.log(err, "es un suuuper error") });
 });
 
 router.get("/auth/me", (req, res) => {

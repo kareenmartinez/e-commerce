@@ -127,7 +127,8 @@ const orders = [
   {
     quantity: 2,
     total: 740,
-    state: "pending"
+    state: "pending",
+    userId: 1
   }
 ];
 
@@ -147,11 +148,11 @@ const items = [
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 
 //1)
-//Product.bulkCreate(productos).then(() => {
+// Product.bulkCreate(productos).then(() => {
 //   console.log("created products");
 // });
 
-//2)
+// // 2)
 // User.bulkCreate(user).then(() => {
 //   console.log("created user");
 // });
