@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Product = function ({ busqueda }) {
+const Product = function({ busqueda }) {
   const classes = useStyles();
 
   return (
@@ -47,44 +47,42 @@ const Product = function ({ busqueda }) {
 
           <Typography>{busqueda.price}</Typography>
 
-
           <ValorationContainer comments={busqueda.commentsP} />
         </Grid>
-
       </Grid>
       <form>
         <div>
-
           <Button
-
             // onClick={handleAdd}
             type="submit"
+            style={{
+              backgroundColor: "rgb(256,256,256)"
+            }}
           >
             <img
-              src={scooter}
+              src={"/e70570ee529d8e7f5cc3344bf2d8ceb2.png"}
               style={{
+                // filter: "invert(100%)",
                 height: "30px",
                 width: "30px"
               }}
             />
-
-
-
           </Button>
-
-
-
         </div>
       </form>
       <div>
         <hr></hr>
         <Typography style={{ fontSize: "20px" }}>Comments</Typography>
 
-        {busqueda.commentsP && busqueda.commentsP.length > 0 ?
+        {busqueda.commentsP && busqueda.commentsP.length > 0 ? (
           busqueda.commentsP.map(item => (
-            <div key={item.id}>{item.comment} {item.user["name"]}</div>
-
-          )) : <div>No se encontro comentarios</div>}
+            <div key={item.id}>
+              {item.comment} {item.user["name"]}
+            </div>
+          ))
+        ) : (
+          <div>No se encontro comentarios</div>
+        )}
 
         <p>
           <MessageOutlinedIcon style={{ height: "16px" }} /> email

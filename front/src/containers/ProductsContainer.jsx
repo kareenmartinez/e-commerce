@@ -4,9 +4,7 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../store/actions/productsAction";
 import { fetchProduct } from "../store/actions/searchAction";
 
-
 import CircularProgress from "@material-ui/core/CircularProgress";
-
 
 class ProductsContainer extends React.Component {
   constructor(props) {
@@ -18,11 +16,9 @@ class ProductsContainer extends React.Component {
     this.props.mostrarProductos();
   }
   handleAdd(e) {
-    e.preventDefault()
+    e.preventDefault();
     // this.props.fetchItem(e.target.value)
   }
-
-
 
   render() {
     const { productsState } = this.props;
@@ -45,6 +41,7 @@ class ProductsContainer extends React.Component {
           display: "flex",
           frexDirection: "row",
           justifyContent: "space-around",
+          padding: "15px",
           flexWrap: "wrap",
           borderRadius: "7px",
 
@@ -54,7 +51,6 @@ class ProductsContainer extends React.Component {
         <Products
           productsState={productsState}
           mostrarBusqueda={this.props.mostrarBusqueda}
-
         />
       </div>
     );
