@@ -7,8 +7,8 @@ const session = require("express-session"); // req.session || https://www.tutori
 const cookieParser = require("cookie-parser"); // req.cookies
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const Product = require("./models/Product");
-const User = require("./models/User");
+const { Product, Comment, User, Order, OrderItem } = require("./models");
+
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 

@@ -40,14 +40,14 @@ export default function Register(props) {
           name="lastName"
         />
         <Input
-          onChange={props.handleChangeDirection}
+          onChange={props.handleChangeAddress}
           className={classes.input}
           placeholder="Address"
           inputProps={{
             "aria-label": "description"
           }}
-          value={props.direction}
-          name="direction"
+          value={props.address}
+          name="address"
         />
 
         <Input

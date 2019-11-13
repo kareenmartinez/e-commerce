@@ -1,5 +1,6 @@
 const S = require("sequelize");
 const db = require("../config/db");
+const Comment = require("./Comment");
 
 class Product extends S.Model {}
 
@@ -37,5 +38,6 @@ Product.init(
     modelName: "product"
   }
 );
+
 
 module.exports = Product;

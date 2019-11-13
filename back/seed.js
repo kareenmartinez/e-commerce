@@ -1,7 +1,5 @@
 const db = require("./config/db");
-const Product = require("./models/Product");
-
-const User = require("./models/User");
+const { Product, User, Comment, Order, OrderItem } = require("./models");
 
 const productos = [
   {
@@ -28,14 +26,16 @@ const productos = [
     img:
       "https://t1.rg.ltmcdn.com/es/images/5/8/4/img_empanadas_de_carne_cortada_a_cuchillo_7485_600.jpg",
     country: "Argentina",
-    description: "CODIGO ROJO!! NOS QUEDAMOS SIN DESCRIPCIÓN PARA LAS EMPANADAS AAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH "
+    description:
+      "CODIGO ROJO!! NOS QUEDAMOS SIN DESCRIPCIÓN PARA LAS EMPANADAS AAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHH "
   },
   {
     name: "Ravioles",
     price: 200,
     img: "http://biencasero.clarin.com/advf/imagenes/522748b9dbac2.jpg",
     country: "Argentina",
-    description: "Si les soy sincera, no tenia ganas de buscar contenido para los ravioles, aprovechare este espacion para decir que: Karen es lo mas :)"
+    description:
+      "Si les soy sincera, no tenia ganas de buscar contenido para los ravioles, aprovechare este espacion para decir que: Karen es lo mas :)"
   },
   {
     name: "taco salad tradicional",
@@ -84,6 +84,89 @@ const productos = [
   }
 ];
 
+const user = [
+  {
+    name: "Fernando",
+    lastName: "Perez",
+    email: "coco@coco.gmail",
+    isAdmin: false,
+    address: "Arenales 2034",
+    password: 1234
+  },
+  {
+    name: "Teresa",
+    lastName: "Gomez",
+    email: "tere@tere.gmail",
+    isAdmin: false,
+    address: "Juan B Justo 2432",
+    password: 1234
+  }
+];
+
+const comments = [
+  {
+    comment: "muy rico!!",
+    rating: 3,
+    productId: 1,
+    userId: 2
+  },
+  {
+    comment: "excelente!!",
+    rating: 5,
+    productId: 1,
+    userId: 1
+  },
+  {
+    comment: "muy malo!!",
+    rating: 0,
+    productId: 2,
+    userId: 2
+  }
+];
+const orders = [
+  {
+    quantity: 2,
+    total: 740,
+    state: "pending"
+  }
+];
+
+const items = [
+  {
+    quantity: 1,
+    productId: 1,
+    orderId: 1
+  },
+  {
+    quantity: 1,
+    productId: 2,
+    orderId: 1
+  }
+];
+
+//Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
+
+// //1)
 Product.bulkCreate(productos).then(() => {
   console.log("created products");
 });
+
+// //2)
+User.bulkCreate(user).then(() => {
+  console.log("created user");
+});
+
+//3)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para comment, comentando //los bulk de arriba
+//Comment.bulkCreate(comments).then(() => {
+//  console.log("created comments");
+//});
+
+//4)
+//Order.bulkCreate(orders).then(() => {
+//  console.log("created orders");
+//});
+
+//5)
+// OrderItem.bulkCreate(items).then(() => {
+//   console.log("created items");
+// });

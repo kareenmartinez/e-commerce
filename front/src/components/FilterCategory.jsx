@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import ValorationContainer from "../containers/ValorationContainer";
 
 const useStyles = makeStyles({
   card: {
@@ -55,6 +56,7 @@ function FilterCategory({ products }) {
                 <Typography gutterBottom variant="h8" component="h3">
                   $ {item.price}
                 </Typography>
+                <ValorationContainer comments={item.commentsP}/>
               </CardContent>
             </CardActionArea>
           </Card>

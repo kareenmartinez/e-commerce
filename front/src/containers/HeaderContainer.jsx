@@ -35,6 +35,7 @@ class HeaderContainer extends React.Component {
           handleChange={this.handleChange}
           search={this.state.search}
           logout={this.props.logout}
+          userFacebook={this.props.userFacebook}
         />
       </div>
     );
@@ -42,7 +43,8 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.userReducer.user
+  user: state.userReducer.user,
+  userFacebook: state.facebookReducer.user
 });
 
 const mapDispatchToProps = dispatch => {
