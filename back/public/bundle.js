@@ -89276,7 +89276,7 @@ function (_React$Component) {
       if (this.state.isLoggedIn) {} else {
         fbContent = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_facebook_login__WEBPACK_IMPORTED_MODULE_2___default.a, {
           appId: "410515629859037",
-          autoLoad: true,
+          autoLoad: false,
           fields: "name,email, picture",
           onClick: this.componentClicked,
           callback: this.responseFacebook
