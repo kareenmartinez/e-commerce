@@ -154,14 +154,14 @@ const items = [
 //comment, comentando los bulk de arriba
 /*  Comment.bulkCreate(comments).then(() => {
   console.log("created comments");
-});  */
+});   */
 
 //4)
 /* Order.bulkCreate(orders).then(() => {
   console.log("created orders");
-});  */
+});   */
 
 //5)
-/* OrderItem.bulkCreate(items).then(() => {
+ /* OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
- });  */
+ });  */ 
