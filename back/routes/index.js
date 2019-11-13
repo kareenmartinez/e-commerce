@@ -54,7 +54,7 @@ router.get("/category/:country", function (req, res) {
   })
     .then(products => res.json(products))
     .catch(function (err) {
-      console.log(err);
+      console.log(err, "no trae nadaaaa");
     });
 });
 

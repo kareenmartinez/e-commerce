@@ -90,7 +90,7 @@ const user = [
     lastName: "Perez",
     email: "coco@coco.gmail",
     isAdmin: false,
-    direction: "Arenales 2034",
+    address: "Arenales 2034",
     password: 1234
   },
   {
@@ -98,7 +98,7 @@ const user = [
     lastName: "Gomez",
     email: "tere@tere.gmail",
     isAdmin: false,
-    direction: "Juan B Justo 2432",
+    address: "Juan B Justo 2432",
     password: 1234
   }
 ];
