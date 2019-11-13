@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const passport = require("passport");
 
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
 
@@ -25,7 +25,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   Product.findAll({
     where: {
       country: req.params.country
@@ -43,7 +43,7 @@ router.get("/category/:country", function(req, res) {
     ]
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -102,18 +102,11 @@ router.get("/auth/me", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/order", function(req, res) {
+router.get("/order", function (req, res) {
   Order.findAll({
-<<<<<<< HEAD
     where: {
       userId: 5
     },
-=======
-  where:{
-    userId:1,
-    state:"pending"
-  },
->>>>>>> 0433d9e9600c8d6a64b8c46a996ba9ad548f2936
     include: [
       {
         model: OrderItem,
@@ -127,7 +120,7 @@ router.get("/order", function(req, res) {
     ]
   })
     .then(order => res.json(order))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err, "no trae nadaaaa");
     });
 });
