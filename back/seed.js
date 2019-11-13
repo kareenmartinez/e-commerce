@@ -124,16 +124,16 @@ const comments = [
   }
 ];
 
-Product.bulkCreate(productos).then(() => {
+/* Product.bulkCreate(productos).then(() => {
   console.log("created products");
 });
 
 User.bulkCreate(user).then(() => {
   console.log("created user");
-});
+}); */
 
 // este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
-//Comment.bulkCreate(comments).then(() => {
-//   console.log("created comments");
-// });
+Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});

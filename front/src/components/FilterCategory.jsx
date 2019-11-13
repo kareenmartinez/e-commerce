@@ -56,14 +56,11 @@ function FilterCategory({ products }) {
                 <Typography gutterBottom variant="h8" component="h3">
                   $ {item.price}
                 </Typography>
-                <ValorationContainer comments={item.commentsP}></ValorationContainer>
+                <ValorationContainer comments={item.commentsP}/>
               </CardContent>
             </CardActionArea>
           </Card>
         </Link>
-        
-        
-      
       </div>
     ));
   }

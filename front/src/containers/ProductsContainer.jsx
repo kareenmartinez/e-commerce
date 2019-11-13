@@ -7,8 +7,6 @@ import { fetchProduct } from "../store/actions/searchAction";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 
-
-
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -35,9 +33,6 @@ class ProductsContainer extends React.Component {
       );
     }
 
-    console.log(this.props.productsState);
-    console.log(this.props.cargandoBusqueda);
-
     return (
       <div
         className="container"
@@ -53,7 +48,7 @@ class ProductsContainer extends React.Component {
       >
         <Products
           productsState={productsState}
-          mostrarBusqueda={this.props.mostrarBusqueda}
+         mostrarBusqueda={this.props.mostrarBusqueda}
           
         />
       </div>
