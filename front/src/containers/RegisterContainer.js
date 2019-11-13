@@ -28,8 +28,11 @@ class RegisterContainer extends Component {
     this.props
       .fetchRegister(this.state)
       .then(res => {
+        console.log("ESTE ES EL RESSSSS:", res);
         if (res !== "ERROR") {
           this.props.history.push("/login");
+        } else {
+          this.props.history.push("/signup");
         }
       })
       .catch(error => {

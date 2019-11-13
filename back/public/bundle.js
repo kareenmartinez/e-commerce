@@ -88385,7 +88385,10 @@ function Header(_ref) {
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
     onClick: handleSubmit
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_8___default.a, null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_8___default.a, null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.name ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    variant: "h8",
+    component: "h3"
+  }, user.name, " ", user.lastName)) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "row"
@@ -88553,7 +88556,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Order() {
+function Order(_ref) {
+  var user = _ref.user,
+      buyProduct = _ref.buyProduct;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     alignItems: "stretch",
@@ -88721,15 +88726,13 @@ function Order() {
       justifyContent: "flex-end",
       alignSelf: "flex-end"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    method: "POST",
-    action: "send"
-  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
     type: "submit",
     style: {
       fontFamily: "courier"
-    }
-  }, " ", "BUY"), " "))))));
+    },
+    onClick: buyProduct(user)
+  }, "BUY")))))));
 }
 
 /***/ }),
@@ -89118,6 +89121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OrderContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./OrderContainer */ "./src/containers/OrderContainer.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/store */ "./src/store/store.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/actions/facebookAction */ "./src/store/actions/facebookAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89147,7 +89151,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { fetchUserFacebook } from "../store/actions/facebookAction";
+
+
 
 var App =
 /*#__PURE__*/
@@ -89163,7 +89168,10 @@ function (_React$Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])()); // store.dispatch(fetchUserFacebook(this.props.userFacebook));
+      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])());
+      _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_12__["fetchUserFacebook"])(this.props.userFacebook));
+      console.log(this.props.userFacebook);
+      console.log("----------------------------------------------");
     }
   }, {
     key: "render",
@@ -89204,7 +89212,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {// userFacebook: state.facebookReducer.payload
+  return {
+    userFacebook: state.facebookReducer.payload
   };
 };
 
@@ -89281,8 +89290,8 @@ function (_React$Component) {
   }, {
     key: "responseFacebook",
     value: function responseFacebook(response) {
-      console.log(response.accessToken);
-      this.props.fetchUserFacebook(response.accessToken);
+      console.log(response);
+      this.props.fetchUserFacebook(response.email);
     }
   }, {
     key: "render",
@@ -89489,7 +89498,6 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      console.log(this.state.search);
       this.props.mostrarBusqueda(this.state.search);
       this.props.history.push("/product/".concat(this.state.search));
     }
@@ -89508,7 +89516,8 @@ function (_React$Component) {
         handleChange: this.handleChange,
         search: this.state.search,
         logout: this.props.logout,
-        userFacebook: this.props.userFacebook
+        userFacebook: this.props.userFacebook,
+        user: this.props.user
       }));
     }
   }]);
@@ -89600,8 +89609,8 @@ function (_Component) {
     key: "onSubmit",
     value: function onSubmit(e) {
       e.preventDefault();
-      console.log(this.state.email, this.state.password);
       this.props.logIn(this.state.email, this.state.password);
+      this.props.history.push("/");
     }
   }, {
     key: "handleEmail",
@@ -89663,6 +89672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Order__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Order */ "./src/components/Order.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/orderAction */ "./src/store/actions/orderAction.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89684,28 +89695,48 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var OrderContainer =
 /*#__PURE__*/
 function (_Component) {
   _inherits(OrderContainer, _Component);
 
-  function OrderContainer() {
+  function OrderContainer(props) {
     _classCallCheck(this, OrderContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(OrderContainer).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(OrderContainer).call(this, props));
   }
 
   _createClass(OrderContainer, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Order__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      console.log("ESTAS SON LAS PROPS.USER", this.props.user);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Order__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: this.props.user,
+        buyProduct: this.props.buyProduct
+      }));
     }
   }]);
 
   return OrderContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (OrderContainer);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    user: state.userReducer.user
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    buyProduct: function buyProduct(item) {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["buyProduct"])(item));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(OrderContainer));
 
 /***/ }),
 
@@ -90000,8 +90031,12 @@ function (_Component) {
       console.log("ENTRO AL BOTON");
       event.preventDefault();
       this.props.fetchRegister(this.state).then(function (res) {
+        console.log("ESTE ES EL RESSSSS:", res);
+
         if (res !== "ERROR") {
           _this2.props.history.push("/login");
+        } else {
+          _this2.props.history.push("/signup");
         }
       })["catch"](function (error) {
         console.log(error, "error de signup");
@@ -90255,6 +90290,33 @@ var logout = function logout() {
     payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a //pedido
     .get("/api/logOut").then(function (res) {
       res.status;
+    })
+  };
+};
+
+/***/ }),
+
+/***/ "./src/store/actions/orderAction.js":
+/*!******************************************!*\
+  !*** ./src/store/actions/orderAction.js ***!
+  \******************************************/
+/*! exports provided: buyProduct */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buyProduct", function() { return buyProduct; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var buyProduct = function buyProduct(user) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["BUY"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/send", user).then(function (res) {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
     })
   };
 };
@@ -90776,8 +90838,6 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("ENTRPPPPOO");
-  console.log(actions);
 
   switch (actions.type) {
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCT"], "_REJECTED"):
@@ -90830,7 +90890,6 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("ENTRE AL REDUCER");
 
   switch (actions.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"]:

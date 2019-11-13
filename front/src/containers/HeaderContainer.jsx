@@ -18,7 +18,6 @@ class HeaderContainer extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.search);
     this.props.mostrarBusqueda(this.state.search);
     this.props.history.push(`/product/${this.state.search}`);
   }
@@ -36,6 +35,7 @@ class HeaderContainer extends React.Component {
           search={this.state.search}
           logout={this.props.logout}
           userFacebook={this.props.userFacebook}
+          user={this.props.user}
         />
       </div>
     );

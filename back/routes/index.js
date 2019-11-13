@@ -3,20 +3,40 @@ const router = express();
 const { Product, Comment, User, Order, OrderItem } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const nodemailer = require("nodemailer");
 
 const passport = require("passport");
 
-//Confirmation Email route
-// router.post("/send", (req, res) => {
-//   console.log("ESTE ES EL REQ.BODY DEL SEND");
-//   const output = `
-// <h1>Tu pedido ha sido confirmado y esta en camino</h1>
-// <h2>Detalles del envio:</h2>
-// <ul>
-// <li>item:${req.body.name}</li>
-// </ul>
-// `;
-// });
+//Confirmation Email route -nodemailer-
+router.post("/send", (req, res) => {
+  console.log("ESTE ES EL REQ.BODY DEL /SEND", req.body);
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "cosmeckpo@gmail.com",
+      pass: "1561714812puto."
+    }
+  });
+
+  // setup email data with unicode symbols
+  var mailOptions = {
+    from: "cosmeckpo@gmail.com",
+    to: req.body.email,
+    subject: "Tu pedido fue confirmado",
+    text: "Gracias por comprar con nosotros!"
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+});
 
 router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
@@ -118,7 +138,8 @@ router.get("/auth/me", (req, res) => {
 router.get("/order", function(req, res) {
   Order.findAll({
     where: {
-      userId: 1
+      userId: 1,
+      state: "pending"
     },
     include: [
       {

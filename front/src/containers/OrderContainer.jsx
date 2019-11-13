@@ -1,15 +1,36 @@
-import React, { Component } from 'react'
-import Order from "../components/Order"
+import React, { Component } from "react";
+import Order from "../components/Order";
+import { connect } from "react-redux";
+import { buyProduct } from "../store/actions/orderAction";
 
 class OrderContainer extends Component {
-    render() {
-        return (
-            <div>
-                <Order />
+  constructor(props) {
+    super(props);
+  }
 
-            </div>
-        )
-    }
+  render() {
+    console.log("ESTAS SON LAS PROPS.USER", this.props.user);
+
+    return (
+      <div>
+        <Order user={this.props.user} buyProduct={this.props.buyProduct} />
+      </div>
+    );
+  }
 }
 
-export default OrderContainer
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    buyProduct: item => {
+      dispatch(buyProduct(item));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);
