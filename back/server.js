@@ -75,28 +75,28 @@ db.sync({ force: false })
 
 // ///Email confirmation -nodemailer-
 
-// // create reusable transporter object using the default SMTP transport
-// let transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: "cosmeckpo@gmail.com",
-//     pass: "1561714812puto."
-//   }
-// });
+/* create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "cosmeckpo@gmail.com",
+    pass: "1561714812puto."
+  }
+});
 
-// // setup email data with unicode symbols
-// var mailOptions = {
-//   from: "cosmeckpo@gmail.com",
-//   to: "erikastef99@gmail.com",
-//   subject: "Sending Email using Node.js",
-//   text: "That was easy!"
-// };
+// setup email data with unicode symbols
+var mailOptions = {
+  from: "cosmeckpo@gmail.com",
+  to: "erikastef99@gmail.com",
+  subject: "Sending Email using Node.js",
+  text: "That was easy!"
+};
 
-// // send mail with defined transport object
-// transporter.sendMail(mailOptions, function(error, info) {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("Email sent: " + info.response);
-//   }
-// });
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Email sent: " + info.response);
+  }
+}); */

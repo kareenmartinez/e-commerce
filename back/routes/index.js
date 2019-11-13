@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express();
-<<<<<<< HEAD
-const Product = require("../models/Product");
+const { Product, Comment } = require("../models");
 const User = require("../models/User");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
@@ -20,13 +19,6 @@ const passport = require("passport");
 // `;
 // });
 
-=======
-const { Product, Comment, User } = require("../models");
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
-const passport = require("passport");
-
->>>>>>> 167b55a75f4ba47e698890150bc5957320724b1c
 router.post("/logIn", passport.authenticate("local"), function(req, res) {
   res.send(req.user);
 });

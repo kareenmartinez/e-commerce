@@ -12,11 +12,7 @@ export function registerReducer(state = initialState, actions) {
       return {
         ...state,
         isFetching: false,
-<<<<<<< HEAD
         didInvalidate: true
-=======
-        didInvalidate: true,
->>>>>>> 167b55a75f4ba47e698890150bc5957320724b1c
       };
     case `${REGISTER}_PENDING`:
       return {
@@ -29,12 +25,7 @@ export function registerReducer(state = initialState, actions) {
         ...state,
         isFetching: false,
         didInvalidate: false,
-<<<<<<< HEAD
-        register: payload.register,
-        isUnique: true
-=======
-        register: actions.payload,
->>>>>>> 167b55a75f4ba47e698890150bc5957320724b1c
+        register: actions.payload
       };
 
     default:

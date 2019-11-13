@@ -35,7 +35,7 @@ class FacebookContainer extends React.Component {
       fbContent = (
         <FacebookLogin
           appId="410515629859037"
-          autoLoad={true}
+          autoLoad={false}
           fields="name,email, picture"
           onClick={this.componentClicked}
           callback={this.responseFacebook}
@@ -59,7 +59,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FacebookContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FacebookContainer);
