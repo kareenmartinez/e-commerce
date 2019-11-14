@@ -2,56 +2,88 @@ import React, { Component } from "react";
 import Order from "../components/Order";
 import { connect } from "react-redux";
 import {
-  buyProduct,
-  dropOrder,
-  fetchOrder
+    buyProduct,
+    dropOrder,
+    fetchOrder,
+    addOne, minusOne
 } from "../store/actions/orderAction";
 
+
 class OrderContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
 
-  componentDidMount() {
-    console.log(this.props.user.id, "user pasado a orderc");
-    this.props.fetchOrder(this.props.user.id);
-  }
+        };
+        this.handleSum = this.handleSum.bind(this);
+        this.handleSubst = this.handleSubst.bind(this)
 
-  render() {
-    console.log("ESTAS SON LAS PROPS.USER", this.props.user);
-    return (
-      <div>
-        <Order
-          user={this.props.user}
-          buyProduct={this.props.buyProduct}
-          dropOrder={this.props.dropOrder}
-          order={this.props.order}
-        />
-      </div>
-    );
-  }
+    }
+    componentDidMount() {
+        console.log(this.props.user.id, "user pasado a orderc");
+        this.props.fetchOrder(this.props.user.id);
+    }
+    handleSum(e) {
+        e.preventDefault();
+        console.log(this.props.order, "la ordeeer")
+        this.props.addOne(e.currentTarget.id, this.props.user.id)
+
+        console.log(this.props.order, "la ordeeer despues de añadir")
+
+    }
+    handleSubst(e) {
+        e.preventDefault();
+        console.log(this.props.order, "la ordeeer")
+        this.props.minusOne(e.currentTarget.id, this.props.user.id)
+
+
+
+        console.log(this.props.order, "la ordeeer despues de restar")
+
+    }
+
+
+
+
+    render() {
+        return (
+            <div>
+                <Order order={this.props.order} handleSum={this.handleSum} handleSubst={this.handleSubst} user={this.props.user}
+                    buyProduct={this.props.buyProduct}
+                    dropOrder={this.props.dropOrder} />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-    order: state.orderReducer.order,
-    user: state.userReducer.user
-  };
+    return {
+        order: state.orderReducer.order,
+        user: state.userReducer.user,
+    };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    buyProduct: item => {
-      dispatch(buyProduct(item));
-    },
-    dropOrder: () => {
-      dispatch(dropOrder());
-    },
-    fetchOrder: userId => {
-      dispatch(fetchOrder(userId));
-    }
-  };
+    return {
+        fetchOrder: userId => {
+            dispatch(fetchOrder(userId));
+        },
+        addOne: (itemId, userId) => {
+            dispatch(addOne(itemId, userId))
+        },
+        minusOne: (itemId, userId) => {
+            dispatch(minusOne(itemId, userId))
+        },
+        dropOrder: () => {
+            dispatch(dropOrder());
+        },
+        buyProduct: user => {
+            dispatch(buyProduct(user));
+        },
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OrderContainer);

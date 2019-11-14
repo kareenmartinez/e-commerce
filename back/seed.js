@@ -173,4 +173,4 @@ comment, comentando los bulk de arriba */
 /*4) ESTA NO LA CORRI
  OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
- });  */
+ });  */ 

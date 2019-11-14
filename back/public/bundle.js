@@ -35043,7 +35043,6 @@ var styles = function styles(theme) {
       clip: 'rect(0 0 0 0)',
       height: 1,
       margin: -1,
-      color: '#000',
       overflow: 'hidden',
       padding: 0,
       position: 'absolute',
@@ -35133,7 +35132,7 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       IconContainerComponent = _props$IconContainerC === void 0 ? IconContainer : _props$IconContainerC,
       _props$max = props.max,
       max = _props$max === void 0 ? 5 : _props$max,
-      nameProp = props.name,
+      name = props.name,
       onChange = props.onChange,
       onChangeActive = props.onChangeActive,
       onMouseLeave = props.onMouseLeave,
@@ -35148,28 +35147,17 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       valueProp2 = _props$value === void 0 ? null : _props$value,
       other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "disabled", "emptyIcon", "getLabelText", "icon", "IconContainerComponent", "max", "name", "onChange", "onChangeActive", "onMouseLeave", "onMouseMove", "precision", "readOnly", "size", "value"]);
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(),
-      defaultName = _React$useState[0],
-      setDefaultName = _React$useState[1];
-
-  var name = nameProp || defaultName;
-  react__WEBPACK_IMPORTED_MODULE_2___default.a.useEffect(function () {
-    // Fallback to this default id when possible.
-    // Use the random value for client-side rendering only.
-    // We can't use it server-side.
-    setDefaultName("mui-rating-".concat(Math.round(Math.random() * 1e5)));
-  }, []);
   var valueProp = roundValueToPrecision(valueProp2, precision);
   var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
 
-  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
     hover: -1,
     focus: -1
   }),
-      _React$useState2$ = _React$useState2[0],
-      hover = _React$useState2$.hover,
-      focus = _React$useState2$.focus,
-      setState = _React$useState2[1];
+      _React$useState$ = _React$useState[0],
+      hover = _React$useState$.hover,
+      focus = _React$useState$.focus,
+      setState = _React$useState[1];
 
   var value = valueProp;
 
@@ -35186,9 +35174,9 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       onBlurVisible = _useIsFocusVisible.onBlurVisible,
       focusVisibleRef = _useIsFocusVisible.ref;
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
-      focusVisible = _React$useState3[0],
-      setFocusVisible = _React$useState3[1];
+  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
+      focusVisible = _React$useState2[0],
+      setFocusVisible = _React$useState2[1];
 
   var rootRef = react__WEBPACK_IMPORTED_MODULE_2___default.a.useRef();
   var handleFocusRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(focusVisibleRef, rootRef);
@@ -88602,7 +88590,11 @@ function Order(props) {
         flexDirection: "row",
         justifyContent: "space-between"
       }
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AddBoxOutlined__WEBPACK_IMPORTED_MODULE_10___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      type: "button",
+      id: item.id,
+      onClick: props.handleSum
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], null, "+")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         display: "flex",
         justifyContent: "center",
@@ -88612,7 +88604,11 @@ function Order(props) {
       style: {
         fontFamily: "courier"
       }
-    }, item.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, item.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      type: "button",
+      id: item.id,
+      onClick: props.handleSubst
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], null, "-"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         display: "flex",
         alignItems: "center",
@@ -88742,14 +88738,6 @@ function Order(props) {
     item: "md-6",
     style: {
       display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "row"
-    }
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    container: true,
-    item: "md-6",
-    style: {
-      display: "flex",
       justifyContent: "flex-end",
       alignSelf: "flex-end"
     }
@@ -88762,8 +88750,8 @@ function Order(props) {
       margin: 10
     },
     onClick: function onClick() {
-      buyProduct(user);
-      dropOrder();
+      props.buyProduct(props.user);
+      props.dropOrder();
     }
   }, "BUY")))))));
 }
@@ -89226,7 +89214,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_userAction__WEBPACK_IMPORTED_MODULE_8__["fetchUser"])());
       _store_store__WEBPACK_IMPORTED_MODULE_10__["default"].dispatch(Object(_store_actions_facebookAction__WEBPACK_IMPORTED_MODULE_12__["fetchUserFacebook"])(this.props.userFacebook));
-      console.log(this.props.userFacebook);
+      console.log(this.props.user);
       console.log("----------------------------------------------");
     }
   }, {
@@ -89738,9 +89726,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -89763,6 +89751,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(OrderContainer).call(this, props));
     _this.state = {};
+    _this.handleSum = _this.handleSum.bind(_assertThisInitialized(_this));
+    _this.handleSubst = _this.handleSubst.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -89773,14 +89763,31 @@ function (_Component) {
       this.props.fetchOrder(this.props.user.id);
     }
   }, {
+    key: "handleSum",
+    value: function handleSum(e) {
+      e.preventDefault();
+      console.log(this.props.order, "la ordeeer");
+      this.props.addOne(e.currentTarget.id, this.props.user.id);
+      console.log(this.props.order, "la ordeeer despues de añadir");
+    }
+  }, {
+    key: "handleSubst",
+    value: function handleSubst(e) {
+      e.preventDefault();
+      console.log(this.props.order, "la ordeeer");
+      this.props.minusOne(e.currentTarget.id, this.props.user.id);
+      console.log(this.props.order, "la ordeeer despues de restar");
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log("ESTAS SON LAS PROPS.USER", this.props.user);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Order__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        order: this.props.order,
+        handleSum: this.handleSum,
+        handleSubst: this.handleSubst,
         user: this.props.user,
         buyProduct: this.props.buyProduct,
-        dropOrder: this.props.dropOrder,
-        order: this.props.order
+        dropOrder: this.props.dropOrder
       }));
     }
   }]);
@@ -89797,14 +89804,20 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    buyProduct: function buyProduct(item) {
-      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["buyProduct"])(item));
+    fetchOrder: function fetchOrder(userId) {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["fetchOrder"])(userId));
+    },
+    addOne: function addOne(itemId, userId) {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["addOne"])(itemId, userId));
+    },
+    minusOne: function minusOne(itemId, userId) {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["minusOne"])(itemId, userId));
     },
     dropOrder: function dropOrder() {
       dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["dropOrder"])());
     },
-    fetchOrder: function fetchOrder(userId) {
-      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["fetchOrder"])(userId));
+    buyProduct: function buyProduct(user) {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["buyProduct"])(user));
     }
   };
 };
@@ -90382,10 +90395,107 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./src/store/actions/orderAction.js ***!
   \******************************************/
-/*! exports provided: removeProduct, addItem, fetchOrder */
-/***/ (function(module, exports) {
+/*! exports provided: addOne, minusOne, removeProduct, buyProduct, dropOrder, addItem, fetchOrder */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/nataliacc/Documents/p5/e-commerce/front/src/store/actions/orderAction.js: Identifier 'axios' has already been declared (12:7)\n\n\u001b[0m \u001b[90m 10 | \u001b[39m} from \u001b[32m\"../constants\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 | \u001b[39m\u001b[36mimport\u001b[39m axios from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m removeProduct \u001b[33m=\u001b[39m (id\u001b[33m,\u001b[39m userId) \u001b[33m=>\u001b[39m dispatch \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m  \u001b[36mreturn\u001b[39m {\u001b[0m\n    at Object.raise (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:6931:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:4241:12)\n    at ScopeHandler.declareName (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:4207:12)\n    at Object.checkLVal (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:8764:22)\n    at Object.parseImportSpecifierLocal (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11968:10)\n    at Object.maybeParseDefaultImportSpecifier (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11974:12)\n    at Object.parseImport (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11945:31)\n    at Object.parseStatementContent (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10710:27)\n    at Object.parseStatement (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10612:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11188:25)\n    at Object.parseBlockBody (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11175:10)\n    at Object.parseTopLevel (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10543:10)\n    at Object.parse (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12052:10)\n    at parse (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12103:38)\n    at parser (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)\n    at runSync (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at /Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transform.js:34:34\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addOne", function() { return addOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "minusOne", function() { return minusOne; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProduct", function() { return removeProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buyProduct", function() { return buyProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dropOrder", function() { return dropOrder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addItem", function() { return addItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchOrder", function() { return fetchOrder; });
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var addOne = function addOne(itemId, userId) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["ADD"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/sumar", {
+      itemId: itemId,
+      userId: userId
+    }).then(function (res) {
+      return res.data;
+    })["catch"](function (err) {
+      console.log(err, "este error es un dolor de cabeza");
+    })
+  };
+};
+var minusOne = function minusOne(itemId, userId) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["SUBTRACT"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/restar", {
+      itemId: itemId,
+      userId: userId
+    }).then(function (res) {
+      return res.data;
+    })["catch"](function (err) {
+      return console.log(err, "llego el COCOOOOOO 2");
+    })
+  };
+};
+var removeProduct = function removeProduct(id, userId) {
+  return function (dispatch) {
+    return {
+      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/remove/".concat(id, "/").concat(userId)).then(function (res) {
+        return res.data;
+      }).then(function (order) {
+        dispatch(completeOrder(order));
+      })["catch"](function (err) {
+        console.log(err, "error");
+      })
+    };
+  };
+};
+var buyProduct = function buyProduct(user) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["BUY"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/send", user).then(function (res) {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
+    })
+  };
+};
+var dropOrder = function dropOrder() {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DROP_ORDER"]
+  };
+}; // lo crea en la db
+
+var addItem = function addItem(itemId, userId) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/addItem", {
+    itemId: itemId,
+    userId: userId
+  }).then(function (res) {
+    return console.log("se añadio el producto al carrito");
+  });
+}; //lo busca en la db
+
+var completeOrder = function completeOrder(order) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"],
+    payload: order
+  };
+};
+
+var fetchOrder = function fetchOrder(userId) {
+  return function (dispatch) {
+    console.log(userId, "este es el id de fetchorder");
+    return {
+      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/order/".concat(userId)).then(function (res) {
+        return res.data;
+      }).then(function (order) {
+        dispatch(completeOrder(order));
+      })["catch"](function (err) {
+        console.log(err, "hola, necesito un abrazo");
+      })
+    };
+  };
+};
 
 /***/ }),
 
@@ -90548,7 +90658,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, FETCH_ORDER, BUY, USER_FACEBOOK, DROP_ORDER */
+/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, FETCH_ORDER, BUY, ADD, SUBTRACT, USER_FACEBOOK, DROP_ORDER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90566,6 +90676,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONFIRM_ORDER", function() { return CONFIRM_ORDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_ORDER", function() { return FETCH_ORDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BUY", function() { return BUY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD", function() { return ADD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SUBTRACT", function() { return SUBTRACT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_FACEBOOK", function() { return USER_FACEBOOK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DROP_ORDER", function() { return DROP_ORDER; });
 var REGISTER = "REGISTER";
@@ -90581,6 +90693,8 @@ var REMOVE_ITEM = "REMOVE_ITEM";
 var CONFIRM_ORDER = "CONFIRM_ORDER";
 var FETCH_ORDER = "FETCH_ORDER";
 var BUY = "BUY";
+var ADD = "ADD";
+var SUBTRACT = "SUBTRAC";
 var USER_FACEBOOK = "USER_FACEBOOK";
 var DROP_ORDER = "DROP_ORDER";
 
@@ -90739,10 +90853,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   isFetching: false,
   didInvalidate: false,
-  quantity: 0,
   added: [],
   address: "",
-  confirm: false,
   buy: false,
   order: []
 };
@@ -90751,43 +90863,53 @@ function orderReducer() {
   var actions = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (actions.type) {
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"], "_REJECTED"):
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"]:
+      console.log(actions.payload[0], "que onda que esta llegando?", actions.type);
+      return _objectSpread({}, state, {
+        order: actions.payload[0] // input: actions.payload[0].quantity
+        //pon el state que quieras llamar :)
+
+      });
+    //---------
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["ADD"], "_REJECTED"):
       return _objectSpread({}, state, {
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: false
       });
 
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"], "_PENDING"):
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["ADD"], "_PENDING"):
       return _objectSpread({}, state, {
         isFetching: true,
         didInvalidate: false
       });
 
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["ADD_ITEM"], "_FULFILLED"):
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["ADD"], "_FULFILLED"):
       return _objectSpread({}, state, {
         isFetching: false,
-        didInvalidate: false //pon el state que quieras llamar :)
-
+        didInvalidate: false,
+        order: actions.payload[0]
       });
-    //--------------------------------------------------------------
 
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_REJECTED"):
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["SUBTRACT"], "_REJECTED"):
       return _objectSpread({}, state, {
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: false
       });
 
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_PENDING"):
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["SUBTRACT"], "_PENDING"):
+      console.log(actions.payload, "que onda que esta llegando?", actions.type);
       return _objectSpread({}, state, {
         isFetching: true,
         didInvalidate: false
       });
 
-    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_FULFILLED"):
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["SUBTRACT"], "_FULFILLED"):
+      console.log(actions.payload, "que onda que esta llegando?", actions.type);
       return _objectSpread({}, state, {
         isFetching: false,
-        didInvalidate: false //pon el state que quieras llamar :)
-
+        didInvalidate: false,
+        order: actions.payload[0]
       });
 
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["DROP_ORDER"]):
@@ -90797,15 +90919,10 @@ function orderReducer() {
         order: []
       });
 
-    case _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"]:
-      return _objectSpread({}, state, {
-        order: actions.payload[0]
-      });
-
     default:
       return state;
   }
-}
+} //--------------------------------------------------------------
 
 /***/ }),
 

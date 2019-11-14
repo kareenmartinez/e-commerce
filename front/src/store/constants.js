@@ -22,6 +22,9 @@ export const CONFIRM_ORDER = "CONFIRM_ORDER";
 export const FETCH_ORDER = "FETCH_ORDER";
 
 export const BUY = "BUY";
+export const ADD = "ADD";
+export const SUBTRACT = "SUBTRAC";
+
 
 export const USER_FACEBOOK = "USER_FACEBOOK";
 
