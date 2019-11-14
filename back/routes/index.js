@@ -30,6 +30,10 @@ router.post("/send", (req, res) => {
     Your food: (The food you order on a list)
     Total payment amount: ($ total)
     Address: ${req.body.address}
+
+    In a city filled with so many choices, we thank you for choosing us. :)
+            
+    -Super Restaurante
     `
   };
 
@@ -70,13 +74,13 @@ router.post("/send", (req, res) => {
           var mailOptions = {
             from: "cosmeckpo@gmail.com",
             to: req.body.email,
-            subject: "Tu orden ya llego",
-            text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
-    Here's the details:
-    Your food: (The food you order on a list)
-    Total payment amount: ($ total)
-    Address: ${req.body.address}
-    `
+            subject: "Your order has been delivered. Enjoy your meal! :D ",
+            text: `Hi ${req.body.name} ${req.body.lastName}, your order has been delivered! 
+            Please don't forget to rate your overall satisfaction with the service received.
+
+            In a city filled with so many choices, we thank you for choosing us. :)
+            
+            -Super Restaurante`
           };
           // send mail with defined transport object
 
