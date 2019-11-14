@@ -186,9 +186,9 @@ router.get("/addItem", (req, res) => {
 
 //-------------------------------------------------
 
-router.get("/sumar", (req, res) => {
+router.post("/sumar", (req, res) => {
   console.log("------------------------------------");
-  console.log("entro");
+  console.log("entro a /suma");
   OrderItem.findOne({
     where: {
       id: 1
@@ -201,7 +201,7 @@ router.get("/sumar", (req, res) => {
         quantity: sumar
       })
       .then(respuesta => {
-        res.json(respuesta);
+        res.send(respuesta.quantity);
       });
   });
 });
