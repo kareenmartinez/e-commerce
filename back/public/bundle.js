@@ -88758,7 +88758,18 @@ function Order(_ref) {
       buyProduct(user);
       dropOrder();
     }
-  }, "BUY")))))));
+  }, "BUY")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    type: "submit",
+    style: {
+      fontFamily: "courier",
+      justifyContent: "flex-end",
+      alignSelf: "flex-end",
+      margin: 0
+    },
+    onClick: function onClick() {
+      History(user);
+    }
+  }, "HISTORY")))))));
 }
 
 /***/ }),
@@ -90524,13 +90535,13 @@ var fetchProduct = function fetchProduct(data) {
 /*!*****************************************!*\
   !*** ./src/store/actions/userAction.js ***!
   \*****************************************/
-/*! exports provided: logUser, userHistory, logIn, fetchUser */
+/*! exports provided: logUser, History, logIn, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logUser", function() { return logUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userHistory", function() { return userHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "History", function() { return History; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
@@ -90539,8 +90550,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var logUser = function logUser(user) {
-  console.log(user);
-  console.log("----------------------------");
   return {
     type: _constants__WEBPACK_IMPORTED_MODULE_0__["LOG_IN"],
     user: user
@@ -90554,10 +90563,10 @@ var fetcheo = function fetcheo(user) {
   };
 };
 
-var userHistory = function userHistory(user) {
+var History = function History(user) {
   return {
     type: History,
-    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/order/history/:userId", user).then(function (res) {
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/history/:userId", user).then(function (res) {
       res.data;
       console.log("ESTA ES LA RES.DATA DE LA ACTION USERHISTORYYYYY", res.data);
     })

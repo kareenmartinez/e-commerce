@@ -14,18 +14,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function History(props) {
+export function History(props) {
   const { index, style } = props;
 
   return (
     <ListItem button style={style} key={index}>
       <ListItemText primary={`Item ${index + 1}`} />
-      Eu este es un item
     </ListItem>
   );
 }
 
-UserHistory.propTypes = {
+History.propTypes = {
   index: PropTypes.number.isRequired,
   style: PropTypes.object.isRequired
 };
@@ -36,6 +35,10 @@ export default function VirtualizedList() {
   return (
     <div className={classes.root}>
       <FixedSizeList height={400} width={360} itemSize={46} itemCount={200}>
+        <ListItem button style={style} key={index}>
+          <ListItemText primary={`Item ${index + 1}`} />
+          Item de la lista
+        </ListItem>
         {renderRow}
       </FixedSizeList>
     </div>

@@ -240,6 +240,22 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                   BUY
                 </Button>
               </form>
+              <form>
+                <Button
+                  type="submit"
+                  style={{
+                    fontFamily: "courier",
+                    justifyContent: "flex-end",
+                    alignSelf: "flex-end",
+                    margin: 0
+                  }}
+                  onClick={() => {
+                    History(user);
+                  }}
+                >
+                  HISTORY
+                </Button>
+              </form>
             </Grid>
           </Grid>
         </Card>

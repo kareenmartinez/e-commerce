@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 const passport = require("passport");
 
-router.get("/order/history/:userId", (req, res) => {
+router.get("/history/:userId", (req, res) => {
   Order.findAll({
     where: {
       userId: req.body.user
@@ -34,10 +34,7 @@ router.post("/send", (req, res) => {
     to: req.body.email,
     subject: "Your order is on the way :)",
     text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
-    Here's the details:
-    Your food: (The food you order on a list)
-    Total payment amount: ($ total)
-    Address: ${req.body.address}
+    and it's on the way to ${req.body.address}!
 
     In a city filled with so many choices, we thank you for choosing us. :)
             
@@ -99,7 +96,7 @@ router.post("/send", (req, res) => {
               console.log("Email sent: " + info.response);
             }
           });
-        }, 120000);
+        }, 60000);
       });
   });
 });
