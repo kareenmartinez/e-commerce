@@ -88543,6 +88543,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/AddLocationOutlined */ "./node_modules/@material-ui/icons/AddLocationOutlined.js");
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 
 
 
@@ -88736,15 +88738,7 @@ function Order(_ref) {
       justifyContent: "space-between",
       flexDirection: "row"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    style: {
-      fontFamily: "courier"
-    }
-  }, "TOTAL "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    style: {
-      fontFamily: "courier"
-    }
-  }, "$360")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     item: "md-6",
     style: {
@@ -90364,24 +90358,35 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./src/store/actions/orderAction.js ***!
   \******************************************/
-/*! exports provided: buyProduct, dropOrder, addItem, fetchOrder */
+/*! exports provided: removeProduct, buyProduct, dropOrder, addItem, fetchOrder */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProduct", function() { return removeProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buyProduct", function() { return buyProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dropOrder", function() { return dropOrder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addItem", function() { return addItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchOrder", function() { return fetchOrder; });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 
 
+var removeProduct = function removeProduct(id) {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["REMOVE_ITEM"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/remove/".concat(id)).then(function (res) {
+      return res.data;
+    })["catch"](function (error) {
+      return Promise.reject(error);
+    })
+  };
+};
 var buyProduct = function buyProduct(user) {
   return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["BUY"],
-    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/send", user).then(function (res) {
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["BUY"],
+    payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/send", user).then(function (res) {
       res.data;
       console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
     })
@@ -90389,12 +90394,12 @@ var buyProduct = function buyProduct(user) {
 };
 var dropOrder = function dropOrder() {
   return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DROP_ORDER"]
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["DROP_ORDER"]
   };
 }; // lo crea en la db
 
 var addItem = function addItem(itemId, userId) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/addItem", {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/addItem", {
     itemId: itemId,
     userId: userId
   }).then(function (res) {
@@ -90404,7 +90409,7 @@ var addItem = function addItem(itemId, userId) {
 
 var completeOrder = function completeOrder(order) {
   return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"],
+    type: _constants__WEBPACK_IMPORTED_MODULE_1__["FETCH_ORDER"],
     payload: order
   };
 };
@@ -90413,7 +90418,7 @@ var fetchOrder = function fetchOrder(userId) {
   return function (dispatch) {
     console.log(userId, "este es el id de fetchorder");
     return {
-      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/order/".concat(userId)).then(function (res) {
+      payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/order/".concat(userId)).then(function (res) {
         return res.data;
       }).then(function (order) {
         dispatch(completeOrder(order));
@@ -90782,12 +90787,35 @@ var initialState = {
   confirm: false,
   buy: false,
   order: []
-};
+}; //-------------------remove--------------------------------------------------------------------
+
 function orderReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (actions.type) {
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_REJECTED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: true
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_PENDING"):
+      return _objectSpread({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_FULFILLED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        added: actions.payload //traer todo lo del carrito de bd y guardarlo en el array, estaria
+        //actualizado ya que se elimino antes el producto de la bd
+
+      });
+    //-------------------remove--------------------------------------------------------------------
+
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"], "_REJECTED"):
       return _objectSpread({}, state, {
         isFetching: false,

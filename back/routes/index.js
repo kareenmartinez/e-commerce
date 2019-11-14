@@ -33,17 +33,6 @@ router.post("/send", (req, res) => {
     `
   };
 
-  var mailConfirm = {
-    from: "cosmeckpo@gmail.com",
-    to: req.body.email,
-    subject: "Tu orden ya llego",
-    text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
-    Here's the details:
-    Your food: (The food you order on a list)
-    Total payment amount: ($ total)
-    Address: ${req.body.address}
-    `
-  };
   // send mail with defined transport object
 
   transporter.sendMail(mailOptions, function(error, info) {
@@ -66,11 +55,36 @@ router.post("/send", (req, res) => {
       .then(() => {
         res.send("TODO OK");
         setTimeout(() => {
-          transporter.sendMail(mailConfirm, function(error, info) {
+          console.log("ESTE ES EL REQ.BODY DEL /SEND", req.body);
+
+          // create reusable transporter object using the default SMTP transport
+          let transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: "cosmeckpo@gmail.com",
+              pass: "1561714812puto."
+            }
+          });
+
+          // setup email data with unicode symbols
+          var mailOptions = {
+            from: "cosmeckpo@gmail.com",
+            to: req.body.email,
+            subject: "Tu orden ya llego",
+            text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
+    Here's the details:
+    Your food: (The food you order on a list)
+    Total payment amount: ($ total)
+    Address: ${req.body.address}
+    `
+          };
+          // send mail with defined transport object
+
+          transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
               console.log("Hubo un problema, este es el ERROR", error);
             } else {
-              console.log("Confirm email sent " + info.response);
+              console.log("Email sent: " + info.response);
             }
           });
         }, 120000);
@@ -311,6 +325,33 @@ router.get("/restar", (req, res) => {
       });
     }
   });
+});
+
+router.get("/remove/:id", (req, res) => {
+  OrderItem.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(
+      Order.findAll({
+        include: [
+          {
+            model: OrderItem,
+            as: "item",
+            include: [
+              {
+                model: Product
+              }
+            ]
+          }
+        ]
+      })
+    )
+    .then(order => res.json(order))
+    .catch(err => {
+      console.log(err, "error");
+    });
 });
 
 module.exports = router;

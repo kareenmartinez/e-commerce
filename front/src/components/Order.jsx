@@ -1,14 +1,10 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
 import Divider from "@material-ui/core/Divider";
-
 import Card from "@material-ui/core/Card";
-
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
@@ -16,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
+import { connect } from "react-redux";
 
 export default function Order({ user, buyProduct, dropOrder, order }) {
   let total = [];
@@ -217,10 +214,7 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                 justifyContent: "space-between",
                 flexDirection: "row"
               }}
-            >
-              <Typography style={{ fontFamily: "courier" }}>TOTAL </Typography>
-              <Typography style={{ fontFamily: "courier" }}>$360</Typography>
-            </Grid>
+            ></Grid>
             <Grid
               container
               item="md-6"
@@ -239,9 +233,9 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                     alignSelf: "flex-end",
                     margin: 10
                   }}
-                  onClick={()=>{
+                  onClick={() => {
                     buyProduct(user);
-                    dropOrder()
+                    dropOrder();
                   }}
                 >
                   BUY

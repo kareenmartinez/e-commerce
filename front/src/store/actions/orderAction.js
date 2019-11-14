@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   ADD_ITEM,
   ADD_ADDRESS,
@@ -7,7 +8,14 @@ import {
   DROP_ORDER,
   FETCH_ORDER
 } from "../constants";
-import axios from "axios";
+
+export const removeProduct = id => ({
+  type: REMOVE_ITEM,
+  payload: axios
+    .get(`/api/remove/${id}`)
+    .then(res => res.data)
+    .catch(error => Promise.reject(error))
+});
 
 export const buyProduct = user => {
   return {
