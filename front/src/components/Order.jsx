@@ -12,12 +12,15 @@ import Button from "@material-ui/core/Button";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
+import { removeProduct } from "../store/actions/orderAction";
 
-
-export default function Order({ order }) {
+function Order(props) {
   let total = [];
   let verdaderoTotal = 0;
+  const handleClick = item => {
+    props.removeProduct(item, props.userId);
+  };
   return (
     <div>
       <Grid
@@ -34,8 +37,9 @@ export default function Order({ order }) {
               </Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => (
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => (
                 <Grid container item="md-6">
                   <Box
                     key={item.id}
@@ -95,8 +99,11 @@ export default function Order({ order }) {
                       <Typography style={{ fontFamily: "courier" }}>
                         {item.product.price}
                       </Typography>
-
-                      <Button>
+                      <Button
+                        onClick={e => {
+                          handleClick(item.id);
+                        }}
+                      >
                         <DeleteOutlineIcon />
                       </Button>
                     </Container>
@@ -142,8 +149,9 @@ export default function Order({ order }) {
               <Typography style={{ fontFamily: "courier" }}>RESUME</Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => {
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => {
                 total.push(item.quantity * item.product.price);
                 return (
                   <Grid
@@ -225,3 +233,16 @@ export default function Order({ order }) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    userId: state.userReducer.user.id,
+    order: state.orderReducer.order
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  removeProduct: (item, userId) => dispatch(removeProduct(item, userId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Order);
