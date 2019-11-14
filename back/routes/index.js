@@ -331,14 +331,18 @@ router.get("/restar", (req, res) => {
   });
 });
 
-router.get("/remove/:id", (req, res) => {
+router.get("/remove/:id/:userId", (req, res) => {
   OrderItem.destroy({
     where: {
       id: req.params.id
     }
   })
-    .then(
+    .then(() => {
       Order.findAll({
+        where: {
+          userId: req.params.userId,
+          state: "PENDING"
+        },
         include: [
           {
             model: OrderItem,
@@ -350,9 +354,10 @@ router.get("/remove/:id", (req, res) => {
             ]
           }
         ]
-      })
-    )
-    .then(order => res.json(order))
+      }).then(order => {
+        res.json(order);
+      });
+    })
     .catch(err => {
       console.log(err, "error");
     });

@@ -18,34 +18,8 @@ const initialState = {
   order: []
 };
 
-//-------------------remove--------------------------------------------------------------------
-
 export default function orderReducer(state = initialState, actions) {
   switch (actions.type) {
-    case `${REMOVE_ITEM}_REJECTED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: true
-      };
-    case `${REMOVE_ITEM}_PENDING`:
-      return {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
-      };
-    case `${REMOVE_ITEM}_FULFILLED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: false,
-        added: actions.payload
-        //traer todo lo del carrito de bd y guardarlo en el array, estaria
-        //actualizado ya que se elimino antes el producto de la bd
-      };
-
-    //-------------------remove--------------------------------------------------------------------
-
     case `${FETCH_ORDER}_REJECTED`:
       return {
         ...state,
@@ -95,11 +69,9 @@ export default function orderReducer(state = initialState, actions) {
       };
 
     case FETCH_ORDER:
-      console.log(actions.payload, "payloaaaaaaaaad");
       return {
         ...state,
         order: actions.payload[0]
-        //pon el state que quieras llamar :)
       };
 
     default:
