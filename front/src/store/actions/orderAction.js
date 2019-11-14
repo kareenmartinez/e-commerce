@@ -1,28 +1,35 @@
-
 import {
   ADD_ITEM,
   ADD_ADDRESS,
   REMOVE_ITEM,
   CONFIRM_ORDER,
-  BUY, ADD, SUBTRACT, FETCH_ORDER, DROP_ORDER,
+  BUY,
+  CLICK_NEW_ADDRESS,
+  ADDRESS,
+  DROP_ORDER,
+  FETCH_ORDER,
+  ADD,
+  SUBTRACT
 } from "../constants";
 import axios from "axios";
 
 export const addOne = (itemId, userId) => ({
   type: ADD,
-  payload: axios.post("/api/sumar", { itemId: itemId, userId: userId }).then((res) => res.data).catch((err) => {
-    console.log(err, "este error es un dolor de cabeza")
-  })
-})
-
-
+  payload: axios
+    .post("/api/sumar", { itemId: itemId, userId: userId })
+    .then(res => res.data)
+    .catch(err => {
+      console.log(err, "este error es un dolor de cabeza");
+    })
+});
 
 export const minusOne = (itemId, userId) => ({
   type: SUBTRACT,
-  payload: axios.post("/api/restar", { itemId: itemId, userId: userId }).then(res => res.data).catch((err) => console.log(err, "llego el COCOOOOOO 2"))
-})
-
-
+  payload: axios
+    .post("/api/restar", { itemId: itemId, userId: userId })
+    .then(res => res.data)
+    .catch(err => console.log(err, "llego el COCOOOOOO 2"))
+});
 
 export const removeProduct = (id, userId) => dispatch => {
   return {
@@ -80,5 +87,21 @@ export const fetchOrder = userId => dispatch => {
       .catch(err => {
         console.log(err, "hola, necesito un abrazo");
       })
+  };
+};
+
+export const clickNewAddress = () => {
+  return {
+    type: CLICK_NEW_ADDRESS
+  };
+};
+
+export const fetchAddress = address => {
+  console.log(
+    "ENTRPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+  );
+  return {
+    type: ADDRESS,
+    payload: address
   };
 };
