@@ -9,33 +9,36 @@ const initialState = {
     buy: false
 };
 
+
+
+
+//-------------------remove--------------------------------------------------------------------
+
 export default function orderReducer(state = initialState, actions) {
     switch (actions.type) {
-        case `${ADD_ITEM}_REJECTED`:
+        case `${REMOVE_ITEM}_REJECTED`:
             return {
                 ...state,
                 isFetching: false,
                 didInvalidate: true,
             };
-        case `${ADD_ITEM}_PENDING`:
+        case `${REMOVE_ITEM}_PENDING`:
             return {
                 ...state,
                 isFetching: true,
                 didInvalidate: false
             };
-        case `${ADD_ITEM}_FULFILLED`:
+        case `${REMOVE_ITEM}_FULFILLED`:
             return {
                 ...state,
                 isFetching: false,
                 didInvalidate: false,
-                //pon el state que quieras llamar :)
+                added:actions.payload
+                //traer todo lo del carrito de bd y guardarlo en el array, estaria
+                //actualizado ya que se elimino antes el producto de la bd
             };
 
-
-
-
-
-
+//-------------------remove--------------------------------------------------------------------
 
         default:
             return state;

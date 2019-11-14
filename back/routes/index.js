@@ -104,16 +104,10 @@ router.get("/auth/me", (req, res) => {
 
 router.get("/order", function(req, res) {
   Order.findAll({
-<<<<<<< HEAD
-    where: {
-      userId: 5
-    },
-=======
   where:{
     userId:1,
     state:"pending"
   },
->>>>>>> 0433d9e9600c8d6a64b8c46a996ba9ad548f2936
     include: [
       {
         model: OrderItem,
@@ -233,6 +227,32 @@ router.get("/restar", (req, res) => {
         res.send("se borro");
       });
     }
+  });
+});
+
+
+router.get("/remove/:id", (req, res) => {
+  OrderItem.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(Order.findAll({
+      include: [
+        {
+          model: OrderItem,
+          as: "item",
+          include: [
+            {
+              model: Product
+            }
+          ]
+        }
+      ]
+    }))
+  .then(order => res.json(order))
+  .catch(err => {
+    console.log(err, "error");
   });
 });
 
