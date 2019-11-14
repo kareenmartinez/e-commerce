@@ -7,6 +7,14 @@ const nodemailer = require("nodemailer");
 
 const passport = require("passport");
 
+router.get("/order/history/:userId", (req, res) => {
+  Order.findAll({
+    where: {
+      userId: req.body.user
+    }
+  });
+});
+
 //Confirmation Email route -nodemailer-
 router.post("/send", (req, res) => {
   console.log("ESTE ES EL REQ.BODY DEL /SEND", req.body);

@@ -1,4 +1,4 @@
-import { LOG_IN, FETCH_USER } from "../constants";
+import { LOG_IN, FETCH_USER, HISTORY } from "../constants";
 import axios from "axios";
 
 export const logUser = user => {
@@ -16,6 +16,17 @@ const fetcheo = user => {
     user: user
   };
 };
+
+export const userHistory = user => {
+  return {
+    type: History,
+    payload: axios.post("/api/order/history/:userId", user).then(res => {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION USERHISTORYYYYY", res.data);
+    })
+  };
+};
+
 export const logIn = (email, password) => dispatch => ({
   type: LOG_IN,
   payload: axios

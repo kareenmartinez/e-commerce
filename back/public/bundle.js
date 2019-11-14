@@ -90524,12 +90524,13 @@ var fetchProduct = function fetchProduct(data) {
 /*!*****************************************!*\
   !*** ./src/store/actions/userAction.js ***!
   \*****************************************/
-/*! exports provided: logUser, logIn, fetchUser */
+/*! exports provided: logUser, userHistory, logIn, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logUser", function() { return logUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userHistory", function() { return userHistory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
@@ -90553,6 +90554,15 @@ var fetcheo = function fetcheo(user) {
   };
 };
 
+var userHistory = function userHistory(user) {
+  return {
+    type: History,
+    payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/order/history/:userId", user).then(function (res) {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION USERHISTORYYYYY", res.data);
+    })
+  };
+};
 var logIn = function logIn(email, password) {
   return function (dispatch) {
     return {
@@ -90590,7 +90600,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, FETCH_ORDER, BUY, USER_FACEBOOK, DROP_ORDER */
+/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, FETCH_ORDER, BUY, USER_FACEBOOK, DROP_ORDER, HISTORY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90610,6 +90620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BUY", function() { return BUY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_FACEBOOK", function() { return USER_FACEBOOK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DROP_ORDER", function() { return DROP_ORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HISTORY", function() { return HISTORY; });
 var REGISTER = "REGISTER";
 var RECEIVED_PRODUCTS = "RECEIVED_PRODUCTS";
 var PRODUCTS_CATEGORIES = "PRODUCTS_CATEGORIES";
@@ -90625,6 +90636,7 @@ var FETCH_ORDER = "FETCH_ORDER";
 var BUY = "BUY";
 var USER_FACEBOOK = "USER_FACEBOOK";
 var DROP_ORDER = "DROP_ORDER";
+var HISTORY = "HISTORY";
 
 /***/ }),
 
