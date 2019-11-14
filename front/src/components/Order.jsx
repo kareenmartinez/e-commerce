@@ -27,23 +27,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// export default function Order({
-//   order,
-//   handleClick,
-//   confirmState,
-//   user,
-//   clickNewAddressStore,
-//   handleClickNewAddress,
-//   handleChangeAddress,
-//   handleSubmit,
-//   address
-
 function Order(props) {
   let total = [];
   let verdaderoTotal = 0;
 
   const classes = useStyles();
-
   const handleClick = item => {
     props.removeProduct(item, props.userId);
   };
@@ -83,8 +71,12 @@ function Order(props) {
                         justifyContent: "space-between"
                       }}
                     >
-                      <Button>
-                        <AddBoxOutlinedIcon />
+                      <Button
+                        type="button"
+                        id={item.id}
+                        onClick={props.handleSum}
+                      >
+                        <Typography>+</Typography>
                       </Button>
                       <Container
                         style={{
@@ -97,8 +89,12 @@ function Order(props) {
                           {item.quantity}
                         </Typography>
                       </Container>
-                      <Button>
-                        <IndeterminateCheckBoxOutlinedIcon />
+                      <Button
+                        type="button"
+                        id={item.id}
+                        onClick={props.handleSubst}
+                      >
+                        <Typography>-</Typography>
                       </Button>
                     </Container>
 
@@ -123,7 +119,7 @@ function Order(props) {
                       }}
                     >
                       <Typography style={{ fontFamily: "courier" }}>
-                        ${item.product.price}
+                        {item.product.price}
                       </Typography>
                       <Button
                         onClick={e => {
@@ -138,7 +134,6 @@ function Order(props) {
               ))}
 
             <Divider />
-
             <Grid container item="md-6">
               <Box>
                 <Container
@@ -152,19 +147,18 @@ function Order(props) {
                     ORDER OPTIONS
                   </Typography>
                 </Container>
-
                 <Button
                   style={{ fontFamily: "courier" }}
-                  onClick={handleClickNewAddress}
+                  onClick={props.handleClickNewAddress}
                 >
                   <AddLocationOutlinedIcon /> ADD NEW ADDRESS
                 </Button>
 
-                {clickNewAddressStore === true ? (
-                  <form onSubmit={handleSubmit}>
+                {props.clickNewAddressStore === true ? (
+                  <form onSubmit={props.handleSubmit}>
                     <Input
-                      onChange={handleChangeAddress}
-                      value={address}
+                      onChange={props.handleChangeAddress}
+                      value={props.address}
                       className={classes.input}
                       placeholder="Address"
                       inputProps={{
@@ -177,7 +171,7 @@ function Order(props) {
                 ) : null}
 
                 <Typography style={{ fontFamily: "courier" }}>
-                  {user.address}
+                  {props.user.address}
                 </Typography>
               </Box>
             </Grid>
@@ -189,7 +183,10 @@ function Order(props) {
                 justifyContent: "flex-end"
               }}
             >
-              <Button style={{ fontFamily: "courier" }} onClick={handleClick}>
+              <Button
+                style={{ fontFamily: "courier" }}
+                onClick={props.handleClick}
+              >
                 CONFIRM
               </Button>
             </Grid>
@@ -273,20 +270,11 @@ function Order(props) {
               item="md-6"
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                flexDirection: "row"
-              }}
-            ></Grid>
-            <Grid
-              container
-              item="md-6"
-              style={{
-                display: "flex",
                 justifyContent: "flex-end",
                 alignSelf: "flex-end"
               }}
             >
-              {confirmState ? (
+              {props.confirmState ? (
                 <form>
                   <Button
                     type="submit"
@@ -297,8 +285,8 @@ function Order(props) {
                       margin: 10
                     }}
                     onClick={() => {
-                      buyProduct(user);
-                      dropOrder();
+                      props.buyProduct(props.user);
+                      props.dropOrder();
                     }}
                   >
                     BUY

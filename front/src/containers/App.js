@@ -8,14 +8,14 @@ import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
 import { fetchUser } from "../store/actions/userAction";
-import OrderContainer from "./OrderContainer";
-import store from "../store/store";
 
-import { fetchAddress, fetchOrder } from "../store/actions/orderAction";
+import OrderContainer from "./OrderContainer";
+
+// import { fetchOrder } from "../store/actions/orderAction";
 
 import { connect } from "react-redux";
 
-import { fetchUserFacebook } from "../store/actions/facebookAction";
+// import { fetchUserFacebook } from "../store/actions/facebookAction";
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +32,6 @@ class App extends React.Component {
     // store.dispatch(fetchAddress(this.props.address));
 
     console.log(this.props.user.id);
-    console.log("----------------------------------------------");
   }
 
   render() {
@@ -61,9 +60,9 @@ class App extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchOrder: () => {
-      dispatch(fetchOrder());
-    },
+    // fetchOrder: () => {
+    //   dispatch(fetchOrder());
+    // },
     fetchUser: () => dispatch(fetchUser())
   };
 };
@@ -72,8 +71,8 @@ const mapStateToProps = state => {
   return {
     userFacebook: state.facebookReducer.payload,
     address: state.orderReducer.address,
-    user: state.userReducer.user,
-    order: state.orderReducer.order
+    user: state.userReducer.user
+    // order: state.orderReducer.order
   };
 };
 

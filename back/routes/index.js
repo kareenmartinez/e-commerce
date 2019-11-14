@@ -9,8 +9,6 @@ const passport = require("passport");
 
 //Confirmation Email route -nodemailer-
 router.post("/send", (req, res) => {
-  console.log("ESTE ES EL REQ.BODY DEL /SEND", req.body);
-
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -59,8 +57,6 @@ router.post("/send", (req, res) => {
       .then(() => {
         res.send("TODO OK");
         setTimeout(() => {
-          console.log("ESTE ES EL REQ.BODY DEL /SEND", req.body);
-
           // create reusable transporter object using the default SMTP transport
           let transporter = nodemailer.createTransport({
             service: "gmail",
@@ -97,6 +93,7 @@ router.post("/send", (req, res) => {
 });
 
 router.post("/logIn", passport.authenticate("local"), function(req, res) {
+  console.log(req.user);
   res.send(req.user);
 });
 
@@ -190,11 +187,11 @@ router.get("/product/:name", (req, res, next) => {
 });
 
 router.get("/auth/me", (req, res) => {
+  console.log(req.user);
   res.send(req.user);
 });
 
 router.get("/order/:userId", function(req, res) {
-  console.log("-------", req.params.userId, "------- hola");
   Order.findAll({
     where: {
       userId: req.params.userId,
@@ -204,12 +201,23 @@ router.get("/order/:userId", function(req, res) {
       {
         model: OrderItem,
         as: "item",
+
         include: [
           {
             model: Product
           }
         ]
       }
+    ],
+    order: [
+      [
+        {
+          model: OrderItem,
+          as: "item"
+        },
+        "id",
+        "DESC"
+      ]
     ]
   })
     .then(order => res.json(order))
@@ -219,7 +227,6 @@ router.get("/order/:userId", function(req, res) {
 });
 
 router.post("/addItem", (req, res) => {
-  console.log(req.body, "este es el body");
   Order.findOne({
     //aca busca la order
     where: {
@@ -227,7 +234,6 @@ router.post("/addItem", (req, res) => {
       state: "PENDING"
     }
   }).then(respuesta => {
-    console.log("entro", "order findOne");
     if (!respuesta) {
       //si no lo consigue
       Order.create({
@@ -235,13 +241,11 @@ router.post("/addItem", (req, res) => {
         userId: req.body.userId,
         state: "PENDING"
       }).then(respuesta => {
-        console.log("orderCreate");
         //crea los items de la order
         OrderItem.create({
           orderId: respuesta.id,
           productId: req.body.itemId
         }).then(respuesta => {
-          console.log("orderItemCreate");
           res.send(respuesta);
         });
       });
@@ -255,15 +259,12 @@ router.post("/addItem", (req, res) => {
           productId: req.body.itemId
         }
       }).then(respuesta2 => {
-        console.log("else find one");
-        console.log(2, respuesta2);
         if (!respuesta2) {
           //si no existe el item lo crea
           OrderItem.create({
             orderId: respuesta.id,
             productId: req.body.itemId
           }).then(item => {
-            console.log("OrderItemCreate");
             res.json(item);
           });
         } else {
@@ -274,8 +275,6 @@ router.post("/addItem", (req, res) => {
               quantity: nuevaCantidad
             })
             .then(respuesta => {
-              console.log("lo updatea");
-
               res.json(respuesta);
             });
         }
@@ -286,49 +285,107 @@ router.post("/addItem", (req, res) => {
 
 //-------------------------------------------------
 
-router.get("/sumar", (req, res) => {
-  console.log("------------------------------------");
-  console.log("entro");
+router.post("/sumar", (req, res) => {
   OrderItem.findOne({
     where: {
-      id: 1
+      id: req.body.itemId
     }
   }).then(item => {
-    console.log(item);
     let sumar = item.quantity + 1;
+
     item
       .update({
         quantity: sumar
       })
-      .then(respuesta => {
-        res.json(respuesta);
+      .then(() => {
+        Order.findAll({
+          where: {
+            userId: req.body.userId,
+            state: "PENDING"
+          },
+          include: [
+            {
+              model: OrderItem,
+              as: "item",
+              include: [
+                {
+                  model: Product
+                }
+              ]
+            }
+          ],
+          order: [
+            [
+              {
+                model: OrderItem,
+                as: "item"
+              },
+              "id",
+              "DESC"
+            ]
+          ]
+        })
+          .then(order => {
+            res.json(order);
+          })
+          .catch(function(err) {
+            console.log(err, "no trae nadaaaa en suma ");
+          });
       });
   });
 });
 
 //--------------------------------------------------
 
-router.get("/restar", (req, res) => {
+router.post("/restar", (req, res) => {
   OrderItem.findOne({
     where: {
-      id: 1
+      id: req.body.itemId
     }
-  }).then(item => {
-    if (item.quantity > 1) {
-      let restar = item.quantity - 1;
-      item
-        .update({
+  })
+    .then(item => {
+      if (item.quantity > 1) {
+        let restar = item.quantity - 1;
+        return item.update({
           quantity: restar
-        })
-        .then(respuesta => {
-          res.json(respuesta);
         });
-    } else {
-      item.destroy().then(() => {
-        res.send("se borro");
-      });
-    }
-  });
+      } else {
+        return item.destroy();
+      }
+    })
+    .then(() => {
+      Order.findAll({
+        where: {
+          userId: req.body.userId,
+          state: "PENDING"
+        },
+        include: [
+          {
+            model: OrderItem,
+            as: "item",
+            include: [
+              {
+                model: Product
+              }
+            ]
+          }
+        ],
+        order: [
+          [
+            {
+              model: OrderItem,
+              as: "item"
+            },
+            "id",
+            "DESC"
+          ]
+        ]
+      })
+        .then(order => res.json(order))
+        .catch(function(err) {
+          console.log(err, "no trae nadaaaa en resta ");
+        });
+    });
 });
 
 router.get("/remove/:id/:userId", (req, res) => {
