@@ -158,6 +158,21 @@ const comments = [
 // Comment.bulkCreate(comments).then(() => {
 //   console.log("created comments");
 // });
+<<<<<<< HEAD
+// //3)
+// Order.bulkCreate(orders).then(() => {
+//   console.log("created orders");
+// });
+
+//4)
+OrderItem.bulkCreate(items).then(() => {
+  console.log("created items");
+});
+/*  Comment.bulkCreate(comments).then(() => {
+  console.log("created comments");
+});   */
+=======
+>>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3
 
 //4)
 /* Order.bulkCreate(orders).then(() => {
@@ -167,4 +182,8 @@ const comments = [
 //5)
 /* OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
+<<<<<<< HEAD
+ });  */ 
+=======
  });  */
+>>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3

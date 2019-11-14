@@ -35043,6 +35043,7 @@ var styles = function styles(theme) {
       clip: 'rect(0 0 0 0)',
       height: 1,
       margin: -1,
+      color: '#000',
       overflow: 'hidden',
       padding: 0,
       position: 'absolute',
@@ -35132,7 +35133,7 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       IconContainerComponent = _props$IconContainerC === void 0 ? IconContainer : _props$IconContainerC,
       _props$max = props.max,
       max = _props$max === void 0 ? 5 : _props$max,
-      name = props.name,
+      nameProp = props.name,
       onChange = props.onChange,
       onChangeActive = props.onChangeActive,
       onMouseLeave = props.onMouseLeave,
@@ -35147,17 +35148,28 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       valueProp2 = _props$value === void 0 ? null : _props$value,
       other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "disabled", "emptyIcon", "getLabelText", "icon", "IconContainerComponent", "max", "name", "onChange", "onChangeActive", "onMouseLeave", "onMouseMove", "precision", "readOnly", "size", "value"]);
 
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(),
+      defaultName = _React$useState[0],
+      setDefaultName = _React$useState[1];
+
+  var name = nameProp || defaultName;
+  react__WEBPACK_IMPORTED_MODULE_2___default.a.useEffect(function () {
+    // Fallback to this default id when possible.
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultName("mui-rating-".concat(Math.round(Math.random() * 1e5)));
+  }, []);
   var valueProp = roundValueToPrecision(valueProp2, precision);
   var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
+  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState({
     hover: -1,
     focus: -1
   }),
-      _React$useState$ = _React$useState[0],
-      hover = _React$useState$.hover,
-      focus = _React$useState$.focus,
-      setState = _React$useState[1];
+      _React$useState2$ = _React$useState2[0],
+      hover = _React$useState2$.hover,
+      focus = _React$useState2$.focus,
+      setState = _React$useState2[1];
 
   var value = valueProp;
 
@@ -35174,9 +35186,9 @@ var Rating = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ra
       onBlurVisible = _useIsFocusVisible.onBlurVisible,
       focusVisibleRef = _useIsFocusVisible.ref;
 
-  var _React$useState2 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
-      focusVisible = _React$useState2[0],
-      setFocusVisible = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_2___default.a.useState(false),
+      focusVisible = _React$useState3[0],
+      setFocusVisible = _React$useState3[1];
 
   var rootRef = react__WEBPACK_IMPORTED_MODULE_2___default.a.useRef();
   var handleFocusRef = Object(_material_ui_core_utils__WEBPACK_IMPORTED_MODULE_7__["useForkRef"])(focusVisibleRef, rootRef);
@@ -77765,7 +77777,7 @@ if (false) {} else {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js")):undefined}(this,function(e){return function(e){function t(n){if(o[n])return o[n].exports;var r=o[n]={exports:{},id:n,loaded:!1};return e[n].call(r.exports,r,r.exports,t),r.loaded=!0,r.exports}var o={};return t.m=e,t.c=o,t.p="",t(0)}([function(e,t,o){e.exports=o(9)},function(e,t,o){e.exports=o(7)()},function(t,o){t.exports=e},function(e,t,o){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var o=arguments[t];for(var n in o)Object.prototype.hasOwnProperty.call(o,n)&&(e[n]=o[n])}return e},u=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}(),c=o(2),l=n(c),f=o(1),p=n(f),d=o(4),b=n(d),h=function(){var e=!1;try{e=!!(window.navigator&&window.navigator.standalone||navigator.userAgent.match("CriOS")||navigator.userAgent.match(/mobile/i))}catch(t){}return e},y=function(e){function t(){var e,o,n,a;r(this,t);for(var u=arguments.length,c=Array(u),l=0;l<u;l++)c[l]=arguments[l];return o=n=i(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(c))),n.state={isSdkLoaded:!1,isProcessing:!1},n.responseApi=function(e){window.FB.api("/me",{locale:n.props.language,fields:n.props.fields},function(t){s(t,e),n.props.callback(t)})},n.checkLoginState=function(e){n.setStateIfMounted({isProcessing:!1}),e.authResponse?n.responseApi(e.authResponse):n.props.onFailure?n.props.onFailure({status:e.status}):n.props.callback({status:e.status})},n.checkLoginAfterRefresh=function(e){"connected"===e.status?n.checkLoginState(e):window.FB.login(function(e){return n.checkLoginState(e)},!0)},n.click=function(e){if(n.state.isSdkLoaded&&!n.state.isProcessing&&!n.props.isDisabled){n.setState({isProcessing:!0});var t=n.props,o=t.scope,r=t.appId,i=t.onClick,a=t.returnScopes,s=t.responseType,u=t.redirectUri,c=t.disableMobileRedirect,l=t.authType,f=t.state;if("function"!=typeof i||(i(e),!e.defaultPrevented)){var p={client_id:r,redirect_uri:u,state:f,return_scopes:a,scope:o,response_type:s,auth_type:l};n.props.isMobile&&!c?window.location.href="//www.facebook.com/dialog/oauth"+(0,b["default"])(p):window.FB.login(n.checkLoginState,{scope:o,return_scopes:a,auth_type:p.auth_type})}}},a=o,i(n,a)}return a(t,e),u(t,[{key:"componentDidMount",value:function(){if(this._isMounted=!0,document.getElementById("facebook-jssdk"))return void this.sdkLoaded();this.setFbAsyncInit(),this.loadSdkAsynchronously();var e=document.getElementById("fb-root");e||(e=document.createElement("div"),e.id="fb-root",document.body.appendChild(e))}},{key:"componentWillReceiveProps",value:function(e){this.state.isSdkLoaded&&e.autoLoad&&!this.props.autoLoad&&window.FB.getLoginStatus(this.checkLoginAfterRefresh)}},{key:"componentWillUnmount",value:function(){this._isMounted=!1}},{key:"setStateIfMounted",value:function(e){this._isMounted&&this.setState(e)}},{key:"setFbAsyncInit",value:function(){var e=this,t=this.props,o=t.appId,n=t.xfbml,r=t.cookie,i=t.version,a=t.autoLoad,s=t.state;window.fbAsyncInit=function(){window.FB.init({version:"v"+i,appId:o,xfbml:n,cookie:r}),e.setStateIfMounted({isSdkLoaded:!0}),(a||window.location.search.indexOf(s)!==-1)&&window.FB.getLoginStatus(e.checkLoginAfterRefresh)}}},{key:"sdkLoaded",value:function(){this.setState({isSdkLoaded:!0})}},{key:"loadSdkAsynchronously",value:function(){var e=this.props.language;!function(t,o,n){var r=t.getElementsByTagName(o)[0],i=r,a=r;t.getElementById(n)||(a=t.createElement(o),a.id=n,a.src="https://connect.facebook.net/"+e+"/sdk.js",i.parentNode.insertBefore(a,i))}(document,"script","facebook-jssdk")}},{key:"render",value:function o(){var o=this.props.render;if(!o)throw new Error("ReactFacebookLogin requires a render prop to render");var e={onClick:this.click,isDisabled:!!this.props.isDisabled,isProcessing:this.state.isProcessing,isSdkLoaded:this.state.isSdkLoaded};return this.props.render(e)}}]),t}(l["default"].Component);y.propTypes={isDisabled:p["default"].bool,callback:p["default"].func.isRequired,appId:p["default"].string.isRequired,xfbml:p["default"].bool,cookie:p["default"].bool,authType:p["default"].bool,scope:p["default"].string,state:p["default"].string,responseType:p["default"].string,returnScopes:p["default"].bool,redirectUri:p["default"].string,autoLoad:p["default"].bool,disableMobileRedirect:p["default"].bool,isMobile:p["default"].bool,fields:p["default"].string,version:p["default"].string,language:p["default"].string,onClick:p["default"].func,onFailure:p["default"].func,render:p["default"].func.isRequired},y.defaultProps={redirectUri:"undefined"!=typeof window?window.location.href:"/",scope:"public_profile,email",returnScopes:!1,xfbml:!1,cookie:!1,authType:"",fields:"name",version:"2.3",language:"en_US",disableMobileRedirect:!1,isMobile:h(),onFailure:null,state:"facebookdirect",responseType:"code"},t["default"]=y},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t["default"]=function(e){return"?"+Object.keys(e).map(function(t){return t+"="+encodeURIComponent(e[t])}).join("&")}},function(e,t){"use strict";function o(e){return function(){return e}}var n=function(){};n.thatReturns=o,n.thatReturnsFalse=o(!1),n.thatReturnsTrue=o(!0),n.thatReturnsNull=o(null),n.thatReturnsThis=function(){return this},n.thatReturnsArgument=function(e){return e},e.exports=n},function(e,t,o){"use strict";function n(e,t,o,n,i,a,s,u){if(r(t),!e){var c;if(void 0===t)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[o,n,i,a,s,u],f=0;c=new Error(t.replace(/%s/g,function(){return l[f++]})),c.name="Invariant Violation"}throw c.framesToPop=1,c}}var r=function(e){};e.exports=n},function(e,t,o){"use strict";var n=o(5),r=o(6),i=o(8);e.exports=function(){function e(e,t,o,n,a,s){s!==i&&r(!1,"Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types")}function t(){return e}e.isRequired=e;var o={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t};return o.checkPropTypes=n,o.PropTypes=o,o}},function(e,t){"use strict";var o="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";e.exports=o},function(e,t,o){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var o=arguments[t];for(var n in o)Object.prototype.hasOwnProperty.call(o,n)&&(e[n]=o[n])}return e},u=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}(),c=o(2),l=n(c),f=o(1),p=n(f),d=o(10),b=n(d),h=o(3),y=n(h),g=function(e){return["button","input","select","textarea","optgroup","option","fieldset"].indexOf((e+"").toLowerCase())>=0},m=function(e){function t(){return r(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return a(t,e),u(t,[{key:"style",value:function(){var e=this.constructor.defaultProps.cssClass;return this.props.cssClass===e&&l["default"].createElement("style",{dangerouslySetInnerHTML:{__html:b["default"]}})}},{key:"containerStyle",value:function(e){var t=e.isProcessing,o=e.isSdkLoaded,n=e.isDisabled,r={transition:"opacity 0.5s"};return(t||!o||n)&&(r.opacity=.6),s(r,this.props.containerStyle)}},{key:"renderOwnButton",value:function(e){var t=this.props,o=t.cssClass,n=t.size,r=t.icon,i=t.textButton,a=t.typeButton,u=t.buttonStyle,c=e.onClick,f=e.isDisabled,p="string"==typeof r,d={};return f&&g(this.props.tag)&&(d.disabled=!0),l["default"].createElement("span",{style:this.containerStyle(e)},p&&l["default"].createElement("link",{rel:"stylesheet",href:"//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}),l["default"].createElement(this.props.tag,s({type:a,className:o+" "+n,style:u,onClick:c},d),r&&p&&l["default"].createElement("i",{className:"fa "+r}),r&&!p&&r,i),this.style())}},{key:"render",value:function(){var e=this;return l["default"].createElement(y["default"],s({},this.props,{render:function(t){return e.renderOwnButton(t)}}))}}]),t}(l["default"].Component);m.propTypes={textButton:p["default"].string,typeButton:p["default"].string,size:p["default"].string,cssClass:p["default"].string,icon:p["default"].any,containerStyle:p["default"].object,buttonStyle:p["default"].object,tag:p["default"].oneOfType([p["default"].node,p["default"].func])},m.defaultProps={textButton:"Login with Facebook",typeButton:"button",size:"metro",fields:"name",cssClass:"kep-login-facebook",tag:"button"},t["default"]=m},function(e,t,o){t=e.exports=o(11)(),t.push([e.id,".kep-login-facebook{font-family:Helvetica,sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;color:#fff;cursor:pointer;display:inline-block;font-size:calc(.27548vw + 12.71074px);text-decoration:none;text-transform:uppercase;transition:background-color .3s,border-color .3s;background-color:#4c69ba;border:calc(.06887vw + .67769px) solid #4c69ba;padding:calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px)}.kep-login-facebook.small{padding:calc(.34435vw + 3.38843px) calc(.34435vw + 8.38843px)}.kep-login-facebook.medium{padding:calc(.34435vw + 8.38843px) calc(.34435vw + 13.38843px)}.kep-login-facebook.metro{border-radius:0}.kep-login-facebook .fa{margin-right:calc(.34435vw + 3.38843px)}",""]),t.locals={"kep-login-facebook":"kep-login-facebook",small:"small",medium:"medium",metro:"metro",fa:"fa"}},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var o=this[t];o[2]?e.push("@media "+o[2]+"{"+o[1]+"}"):e.push(o[1])}return e.join("")},e.i=function(t,o){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(n[i]=!0)}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&n[a[0]]||(o&&!a[2]?a[2]=o:o&&(a[2]="("+a[2]+") and ("+o+")"),e.push(a))}},e}}])});
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react/index.js")):undefined}(this,function(e){return function(e){function t(n){if(o[n])return o[n].exports;var r=o[n]={exports:{},id:n,loaded:!1};return e[n].call(r.exports,r,r.exports,t),r.loaded=!0,r.exports}var o={};return t.m=e,t.c=o,t.p="",t(0)}([function(e,t,o){e.exports=o(8)},function(e,t,o){e.exports=o(6)()},function(t,o){t.exports=e},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t["default"]=function(e,t){return decodeURIComponent(e.replace(new RegExp("^(?:.*[&\\?]"+encodeURIComponent(t).replace(/[\.\+\*]/g,"\\$&")+"(?:\\=([^&]*))?)?.*$","i"),"$1"))}},function(e,t,o){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var o=arguments[t];for(var n in o)Object.prototype.hasOwnProperty.call(o,n)&&(e[n]=o[n])}return e},c=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}(),u=o(2),l=n(u),f=o(1),p=n(f),d=o(5),b=n(d),y=o(3),h=n(y),g=function(){var e=!1;try{e=!!(window.navigator&&window.navigator.standalone||navigator.userAgent.match("CriOS")||navigator.userAgent.match(/mobile/i))}catch(t){}return e},m=function(e){function t(){var e,o,n,a;r(this,t);for(var c=arguments.length,u=Array(c),l=0;l<c;l++)u[l]=arguments[l];return o=n=i(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(u))),n.state={isSdkLoaded:!1,isProcessing:!1},n.responseApi=function(e){window.FB.api("/me",{locale:n.props.language,fields:n.props.fields},function(t){s(t,e),n.props.callback(t)})},n.checkLoginState=function(e){n.setStateIfMounted({isProcessing:!1}),e.authResponse?n.responseApi(e.authResponse):n.props.onFailure?n.props.onFailure({status:e.status}):n.props.callback({status:e.status})},n.checkLoginAfterRefresh=function(e){"connected"===e.status?n.checkLoginState(e):window.FB.login(function(e){return n.checkLoginState(e)},!0)},n.click=function(e){if(n.state.isSdkLoaded&&!n.state.isProcessing&&!n.props.isDisabled){n.setState({isProcessing:!0});var t=n.props,o=t.scope,r=t.appId,i=t.onClick,a=t.returnScopes,s=t.responseType,c=t.redirectUri,u=t.disableMobileRedirect,l=t.authType,f=t.state;if("function"!=typeof i||(i(e),!e.defaultPrevented)){var p={client_id:r,redirect_uri:c,state:f,return_scopes:a,scope:o,response_type:s,auth_type:l};if(n.props.isMobile&&!u)window.location.href="https://www.facebook.com/dialog/oauth"+(0,b["default"])(p);else{if(!window.FB)return void(n.props.onFailure&&n.props.onFailure({status:"facebookNotLoaded"}));window.FB.login(n.checkLoginState,{scope:o,return_scopes:a,auth_type:p.auth_type})}}}},a=o,i(n,a)}return a(t,e),c(t,[{key:"componentDidMount",value:function(){if(this._isMounted=!0,document.getElementById("facebook-jssdk"))return void this.sdkLoaded();this.setFbAsyncInit(),this.loadSdkAsynchronously();var e=document.getElementById("fb-root");e||(e=document.createElement("div"),e.id="fb-root",document.body.appendChild(e))}},{key:"componentWillReceiveProps",value:function(e){this.state.isSdkLoaded&&e.autoLoad&&!this.props.autoLoad&&window.FB.getLoginStatus(this.checkLoginAfterRefresh)}},{key:"componentWillUnmount",value:function(){this._isMounted=!1}},{key:"setStateIfMounted",value:function(e){this._isMounted&&this.setState(e)}},{key:"setFbAsyncInit",value:function(){var e=this,t=this.props,o=t.appId,n=t.xfbml,r=t.cookie,i=t.version,a=t.autoLoad;window.fbAsyncInit=function(){window.FB.init({version:"v"+i,appId:o,xfbml:n,cookie:r}),e.setStateIfMounted({isSdkLoaded:!0}),(a||e.isRedirectedFromFb())&&window.FB.getLoginStatus(e.checkLoginAfterRefresh)}}},{key:"isRedirectedFromFb",value:function(){var e=window.location.search;return(0,h["default"])(e,"code")||(0,h["default"])(e,"granted_scopes")}},{key:"sdkLoaded",value:function(){this.setState({isSdkLoaded:!0})}},{key:"loadSdkAsynchronously",value:function(){var e=this.props.language;!function(t,o,n){var r=t.getElementsByTagName(o)[0],i=r,a=r;t.getElementById(n)||(a=t.createElement(o),a.id=n,a.src="https://connect.facebook.net/"+e+"/sdk.js",i.parentNode.insertBefore(a,i))}(document,"script","facebook-jssdk")}},{key:"render",value:function o(){var o=this.props.render;if(!o)throw new Error("ReactFacebookLogin requires a render prop to render");var e={onClick:this.click,isDisabled:!!this.props.isDisabled,isProcessing:this.state.isProcessing,isSdkLoaded:this.state.isSdkLoaded};return this.props.render(e)}}]),t}(l["default"].Component);m.propTypes={isDisabled:p["default"].bool,callback:p["default"].func.isRequired,appId:p["default"].string.isRequired,xfbml:p["default"].bool,cookie:p["default"].bool,authType:p["default"].string,scope:p["default"].string,state:p["default"].string,responseType:p["default"].string,returnScopes:p["default"].bool,redirectUri:p["default"].string,autoLoad:p["default"].bool,disableMobileRedirect:p["default"].bool,isMobile:p["default"].bool,fields:p["default"].string,version:p["default"].string,language:p["default"].string,onClick:p["default"].func,onFailure:p["default"].func,render:p["default"].func.isRequired},m.defaultProps={redirectUri:"undefined"!=typeof window?window.location.href:"/",scope:"public_profile,email",returnScopes:!1,xfbml:!1,cookie:!1,authType:"",fields:"name",version:"2.3",language:"en_US",disableMobileRedirect:!1,isMobile:g(),onFailure:null,state:"facebookdirect",responseType:"code"},t["default"]=m},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t["default"]=function(e){return"?"+Object.keys(e).map(function(t){return t+"="+encodeURIComponent(e[t])}).join("&")}},function(e,t,o){"use strict";function n(){}var r=o(7);e.exports=function(){function e(e,t,o,n,i,a){if(a!==r){var s=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw s.name="Invariant Violation",s}}function t(){return e}e.isRequired=e;var o={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t};return o.checkPropTypes=n,o.PropTypes=o,o}},function(e,t){"use strict";var o="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";e.exports=o},function(e,t,o){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var o=arguments[t];for(var n in o)Object.prototype.hasOwnProperty.call(o,n)&&(e[n]=o[n])}return e},c=function(){function e(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,o,n){return o&&e(t.prototype,o),n&&e(t,n),t}}(),u=o(2),l=n(u),f=o(1),p=n(f),d=o(9),b=n(d),y=o(4),h=n(y),g=function(e){return["button","input","select","textarea","optgroup","option","fieldset"].indexOf((e+"").toLowerCase())>=0},m=function(e){function t(){return r(this,t),i(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return a(t,e),c(t,[{key:"style",value:function(){var e=this.constructor.defaultProps.cssClass;return this.props.cssClass===e&&l["default"].createElement("style",{dangerouslySetInnerHTML:{__html:b["default"]}})}},{key:"containerStyle",value:function(e){var t=e.isProcessing,o=e.isSdkLoaded,n=e.isDisabled,r={transition:"opacity 0.5s"};return(t||!o||n)&&(r.opacity=.6),s(r,this.props.containerStyle)}},{key:"renderOwnButton",value:function(e){var t=this.props,o=t.cssClass,n=t.size,r=t.icon,i=t.textButton,a=t.typeButton,c=t.buttonStyle,u=e.onClick,f=e.isDisabled,p="string"==typeof r,d={};return f&&g(this.props.tag)&&(d.disabled=!0),l["default"].createElement("span",{style:this.containerStyle(e)},p&&l["default"].createElement("link",{rel:"stylesheet",href:"https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}),l["default"].createElement(this.props.tag,s({type:a,className:o+" "+n,style:c,onClick:u},d),r&&p&&l["default"].createElement("i",{className:"fa "+r}),r&&!p&&r,i),this.style())}},{key:"render",value:function(){var e=this;return l["default"].createElement(h["default"],s({},this.props,{render:function(t){return e.renderOwnButton(t)}}))}}]),t}(l["default"].Component);m.propTypes={textButton:p["default"].string,typeButton:p["default"].string,size:p["default"].string,cssClass:p["default"].string,icon:p["default"].any,containerStyle:p["default"].object,buttonStyle:p["default"].object,tag:p["default"].oneOfType([p["default"].node,p["default"].func])},m.defaultProps={textButton:"Login with Facebook",typeButton:"button",size:"metro",fields:"name",cssClass:"kep-login-facebook",tag:"button"},t["default"]=m},function(e,t,o){t=e.exports=o(10)(),t.push([e.id,".kep-login-facebook{font-family:Helvetica,sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;color:#fff;cursor:pointer;display:inline-block;font-size:calc(.27548vw + 12.71074px);text-decoration:none;text-transform:uppercase;transition:background-color .3s,border-color .3s;background-color:#4c69ba;border:calc(.06887vw + .67769px) solid #4c69ba;padding:calc(.34435vw + 13.38843px) calc(.34435vw + 18.38843px)}.kep-login-facebook.small{padding:calc(.34435vw + 3.38843px) calc(.34435vw + 8.38843px)}.kep-login-facebook.medium{padding:calc(.34435vw + 8.38843px) calc(.34435vw + 13.38843px)}.kep-login-facebook.metro{border-radius:0}.kep-login-facebook .fa{margin-right:calc(.34435vw + 3.38843px)}",""]),t.locals={"kep-login-facebook":"kep-login-facebook",small:"small",medium:"medium",metro:"metro",fa:"fa"}},function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var o=this[t];o[2]?e.push("@media "+o[2]+"{"+o[1]+"}"):e.push(o[1])}return e.join("")},e.i=function(t,o){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(n[i]=!0)}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&n[a[0]]||(o&&!a[2]?a[2]=o:o&&(a[2]="("+a[2]+") and ("+o+")"),e.push(a))}},e}}])});
 
 /***/ }),
 
@@ -88531,6 +88543,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/AddLocationOutlined */ "./node_modules/@material-ui/icons/AddLocationOutlined.js");
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 
 
 
@@ -89675,6 +89689,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Order__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Order */ "./src/components/Order.jsx");
 /* harmony import */ var _store_actions_orderAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions/orderAction */ "./src/store/actions/orderAction.js");
+/* harmony import */ var _store_actions_orderAction__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -89858,6 +89873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_productsAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/productsAction */ "./src/store/actions/productsAction.js");
 /* harmony import */ var _store_actions_searchAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/searchAction */ "./src/store/actions/searchAction.js");
 /* harmony import */ var _store_actions_orderAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/orderAction */ "./src/store/actions/orderAction.js");
+/* harmony import */ var _store_actions_orderAction__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CircularProgress */ "./node_modules/@material-ui/core/esm/CircularProgress/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -90312,49 +90328,10 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./src/store/actions/orderAction.js ***!
   \******************************************/
-/*! exports provided: addItem, fetchOrder */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addItem", function() { return addItem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchOrder", function() { return fetchOrder; });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
- // lo crea en la db
-
-var addItem = function addItem(itemId, userId) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/addItem", {
-    itemId: itemId,
-    userId: userId
-  }).then(function (res) {
-    return console.log("se añadio el producto al carrito");
-  });
-}; //lo busca en la db
-
-var completeOrder = function completeOrder(order) {
-  return {
-    type: _constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"],
-    payload: order
-  };
-};
-
-var fetchOrder = function fetchOrder(userId) {
-  return function (dispatch) {
-    console.log(userId, "este es el id de fetchorder");
-    return {
-      payload: axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/order/".concat(userId)).then(function (res) {
-        return res.data;
-      }).then(function (order) {
-        dispatch(completeOrder(order));
-      })["catch"](function (err) {
-        console.log(err, "hola, necesito un abrazo");
-      })
-    };
-  };
-};
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/nataliacc/Documents/p5/e-commerce/front/src/store/actions/orderAction.js: Identifier 'REMOVE_ITEM' has already been declared (12:9)\n\n\u001b[0m \u001b[90m 10 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m\u001b[36mimport\u001b[39m axios from \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 | \u001b[39m\u001b[36mimport\u001b[39m { \u001b[33mREMOVE_ITEM\u001b[39m } from \u001b[32m\"../constants\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m removeProduct \u001b[33m=\u001b[39m id \u001b[33m=>\u001b[39m ({\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m  type\u001b[33m:\u001b[39m \u001b[33mREMOVE_ITEM\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Object.raise (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:6931:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:4241:12)\n    at ScopeHandler.declareName (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:4207:12)\n    at Object.checkLVal (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:8764:22)\n    at Object.parseImportSpecifier (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12024:10)\n    at Object.parseNamedImportSpecifiers (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12009:12)\n    at Object.parseImport (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11948:39)\n    at Object.parseStatementContent (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10710:27)\n    at Object.parseStatement (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10612:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11188:25)\n    at Object.parseBlockBody (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:11175:10)\n    at Object.parseTopLevel (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:10543:10)\n    at Object.parse (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12052:10)\n    at parse (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/parser/lib/index.js:12103:38)\n    at parser (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)\n    at runSync (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at /Users/nataliacc/Documents/p5/e-commerce/front/node_modules/@babel/core/lib/transform.js:34:34\n    at processTicksAndRejections (internal/process/task_queues.js:75:11)");
 
 /***/ }),
 
@@ -90713,12 +90690,35 @@ var initialState = {
   confirm: false,
   buy: false,
   order: []
-};
+}; //-------------------remove--------------------------------------------------------------------
+
 function orderReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var actions = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (actions.type) {
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_REJECTED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: true
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_PENDING"):
+      return _objectSpread({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["REMOVE_ITEM"], "_FULFILLED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        added: actions.payload //traer todo lo del carrito de bd y guardarlo en el array, estaria
+        //actualizado ya que se elimino antes el producto de la bd
+
+      });
+    //-------------------remove--------------------------------------------------------------------
+
     case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["FETCH_ORDER"], "_REJECTED"):
       return _objectSpread({}, state, {
         isFetching: false,
