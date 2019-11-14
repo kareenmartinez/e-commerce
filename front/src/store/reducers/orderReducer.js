@@ -4,6 +4,7 @@ import {
   REMOVE_ITEM,
   CONFIRM_ORDER,
   BUY,
+  DROP_ORDER,
   FETCH_ORDER
 } from "../constants";
 const initialState = {
@@ -31,6 +32,42 @@ export default function orderReducer(state = initialState, actions) {
         isFetching: true,
         didInvalidate: false
       };
+    case `${ADD_ITEM}_FULFILLED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false
+        //pon el state que quieras llamar :)
+      };
+    //--------------------------------------------------------------
+    case `${BUY}_REJECTED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: true
+      };
+    case `${BUY}_PENDING`:
+      return {
+        ...state,
+        isFetching: true,
+        didInvalidate: false
+      };
+    case `${BUY}_FULFILLED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false
+        //pon el state que quieras llamar :)
+      };
+
+    case `${DROP_ORDER}`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        order: []
+      };
+
     case FETCH_ORDER:
       return {
         ...state,

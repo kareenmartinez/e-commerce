@@ -220,12 +220,36 @@ function Order(props) {
               item="md-6"
               style={{
                 display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "row"
+              }}
+            ></Grid>
+            <Grid
+              container
+              item="md-6"
+              style={{
+                display: "flex",
                 justifyContent: "flex-end",
-                alignSelf: "flex-end",
-                margin: 10
+                alignSelf: "flex-end"
               }}
             >
-              <Button style={{ fontFamily: "courier" }}> BUY</Button>
+              <form>
+                <Button
+                  type="submit"
+                  style={{
+                    fontFamily: "courier",
+                    justifyContent: "flex-end",
+                    alignSelf: "flex-end",
+                    margin: 10
+                  }}
+                  onClick={() => {
+                    buyProduct(user);
+                    dropOrder();
+                  }}
+                >
+                  BUY
+                </Button>
+              </form>
             </Grid>
           </Grid>
         </Card>
