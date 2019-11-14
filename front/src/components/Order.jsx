@@ -18,7 +18,8 @@ import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateC
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
 
 export default function Order({ order }) {
-  console.log(order);
+  let total = [];
+  let verdaderoTotal = 0;
   return (
     <div>
       <Grid
@@ -48,6 +49,7 @@ export default function Order({ order }) {
                   >
                     <Container
                       style={{
+                        flex: 3,
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "space-between"
@@ -75,8 +77,8 @@ export default function Order({ order }) {
                     <Container
                       style={{
                         display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center"
+                        alignItems: "center",
+                        flex: 2
                       }}
                     >
                       <Typography style={{ fontFamily: "courier" }}>
@@ -87,7 +89,9 @@ export default function Order({ order }) {
                       style={{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: "space-between"
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flex: 1
                       }}
                     >
                       <Typography style={{ fontFamily: "courier" }}>
@@ -141,43 +145,47 @@ export default function Order({ order }) {
             </Container>
             <Divider />
             {order.item &&
-              order.item.map(item => (
-                <Grid
-                  container
-                  item="md-6"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between"
-                  }}
-                >
-                  <Typography style={{ fontFamily: "courier" }}>
-                    {item.product.name}
-                  </Typography>
-                  <Container
+              order.item.map(item => {
+                total.push(item.quantity * item.product.price);
+                return (
+                  <Grid
+                    container
+                    item="md-6"
                     style={{
                       display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center"
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      margin: 10
                     }}
                   >
-                    <Typography style={{ fontFamily: "courier" }}>
-                      {item.quantity}
+                    <Typography style={{ fontFamily: "courier", flex: 4 }}>
+                      {item.product.name}
                     </Typography>
-                  </Container>
-                  <Container
-                    style={{
-                      display: "flex",
-                      alignSelf: "center",
-                      justifyContent: "flex-end"
-                    }}
-                  >
-                    <Typography style={{ fontFamily: "courier" }}>
-                      ${item.quantity * item.product.price}
-                    </Typography>
-                  </Container>
-                </Grid>
-              ))}
+                    <Container
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        justifyContent: "flex-end"
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        {item.quantity}
+                      </Typography>
+                    </Container>
+                    <Container
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        justifyContent: "flex-end"
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        ${item.quantity * item.product.price}
+                      </Typography>
+                    </Container>
+                  </Grid>
+                );
+              })}
 
             <Divider />
 
@@ -191,22 +199,24 @@ export default function Order({ order }) {
               }}
             >
               <Typography style={{ fontFamily: "courier" }}>TOTAL </Typography>
-              <Container
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end"
-                }}
-              >
-                <Typography style={{ fontFamily: "courier" }}>$360</Typography>
-              </Container>
+
+              <Typography style={{ fontFamily: "courier" }}>
+                {total.map(item => {
+                  verdaderoTotal += item;
+                  console.log(verdaderoTotal);
+                })}
+                ${verdaderoTotal}
+              </Typography>
             </Grid>
+
             <Grid
               container
               item="md-6"
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
-                alignSelf: "flex-end"
+                alignSelf: "flex-end",
+                margin: 10
               }}
             >
               <Button style={{ fontFamily: "courier" }}> BUY</Button>

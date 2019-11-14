@@ -88546,7 +88546,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Order(_ref) {
   var order = _ref.order;
-  console.log(order);
+  var total = [];
+  var verdaderoTotal = 0;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     alignItems: "stretch",
@@ -88576,6 +88577,7 @@ function Order(_ref) {
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
+        flex: 3,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between"
@@ -88593,8 +88595,8 @@ function Order(_ref) {
     }, item.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 2
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
       style: {
@@ -88604,7 +88606,9 @@ function Order(_ref) {
       style: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center",
+        flex: 1
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
       style: {
@@ -88654,23 +88658,26 @@ function Order(_ref) {
       fontFamily: "courier"
     }
   }, "RESUME")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_4__["default"], null), order.item && order.item.map(function (item) {
+    total.push(item.quantity * item.product.price);
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
       container: true,
       item: "md-6",
       style: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        margin: 10
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
       style: {
-        fontFamily: "courier"
+        fontFamily: "courier",
+        flex: 4
       }
     }, item.product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
+        flex: 1,
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "flex-end"
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
       style: {
@@ -88678,8 +88685,8 @@ function Order(_ref) {
       }
     }, item.quantity)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
       style: {
+        flex: 1,
         display: "flex",
-        alignSelf: "center",
         justifyContent: "flex-end"
       }
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -88699,22 +88706,21 @@ function Order(_ref) {
     style: {
       fontFamily: "courier"
     }
-  }, "TOTAL "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Container__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    style: {
-      display: "flex",
-      justifyContent: "flex-end"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, "TOTAL "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
     style: {
       fontFamily: "courier"
     }
-  }, "$360"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, total.map(function (item) {
+    verdaderoTotal += item;
+    console.log(verdaderoTotal);
+  }), "$", verdaderoTotal)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     item: "md-6",
     style: {
       display: "flex",
       justifyContent: "flex-end",
-      alignSelf: "flex-end"
+      alignSelf: "flex-end",
+      margin: 10
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
     style: {
