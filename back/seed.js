@@ -123,27 +123,27 @@ const comments = [
     userId: 2
   }
 ];
-const orders = [
-  {
-    quantity: 2,
-    total: 740,
-    state: "pending",
-    userId: 5
-  }
-];
+// const orders = [
+//   {
+//     quantity: 2,
+//     total: 740,
+//     state: "pending",
+//     userId: 5
+//   }
+// ];
 
-const items = [
-  {
-    quantity: 1,
-    productId: 1,
-    orderId: 1
-  },
-  {
-    quantity: 1,
-    productId: 2,
-    orderId: 1
-  }
-];
+// const items = [
+//   {
+//     quantity: 1,
+//     productId: 1,
+//     orderId: 1
+//   },
+//   {
+//     quantity: 1,
+//     productId: 2,
+//     orderId: 1
+//   }
+// ];
 
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 // Product.bulkCreate(productos).then(() => {
@@ -158,6 +158,7 @@ const items = [
 // Comment.bulkCreate(comments).then(() => {
 //   console.log("created comments");
 // });
+<<<<<<< HEAD
 // //3)
 // Order.bulkCreate(orders).then(() => {
 //   console.log("created orders");
@@ -170,6 +171,8 @@ OrderItem.bulkCreate(items).then(() => {
 /*  Comment.bulkCreate(comments).then(() => {
   console.log("created comments");
 });   */
+=======
+>>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3
 
 //4)
 /* Order.bulkCreate(orders).then(() => {
@@ -177,6 +180,10 @@ OrderItem.bulkCreate(items).then(() => {
 });   */
 
 //5)
- /* OrderItem.bulkCreate(items).then(() => {
+/* OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
+<<<<<<< HEAD
  });  */ 
+=======
+ });  */
+>>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3

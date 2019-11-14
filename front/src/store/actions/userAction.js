@@ -30,6 +30,7 @@ export const logIn = (email, password) => dispatch => ({
       console.log(err);
     })
 });
+
 export const fetchUser = () => dispatch => ({
   payload: axios
     .get("/api/auth/me")

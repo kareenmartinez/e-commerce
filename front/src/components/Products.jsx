@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Products = function({ productsState, handleAdd, mostrarBusqueda }) {
+const Products = function({ productsState, handleAdd, mostrarBusqueda, user }) {
   const classes = useStyles();
   return productsState.map(item => (
     <div
@@ -73,22 +73,19 @@ const Products = function({ productsState, handleAdd, mostrarBusqueda }) {
             justifyConten: "flex-end"
           }}
         >
-          <form>
-            <div>
-              <Button
-                // onClick={handleAdd}
-                type="submit"
-              >
-                <img
-                  src={scooter}
-                  style={{
-                    height: "30px",
-                    width: "30px"
-                  }}
-                />
-              </Button>
-            </div>
-          </form>
+          <div>
+            <Button>
+              <img
+                id={item.id}
+                onClick={handleAdd}
+                src={scooter}
+                style={{
+                  height: "30px",
+                  width: "30px"
+                }}
+              />
+            </Button>
+          </div>
         </CardActions>
       </Card>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -14,11 +15,9 @@ import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
 import {connect} from "react-redux"
 
 
-function Order({order}) {
-  
-  const handleClick = event => {
-    document.getElementById("btnBuy").enabled
-  };
+export default function Order({ order }) {
+  let total = [];
+  let verdaderoTotal = 0;
   return (
     <div>
       <Grid
@@ -34,69 +33,77 @@ function Order({order}) {
                 ORDER LIST
               </Typography>
             </Container>
+            <Divider />
+            {order.item &&
+              order.item.map(item => (
+                <Grid container item="md-6">
+                  <Box
+                    key={item.id}
+                    style={{
+                      display: "flex ",
+                      flexDirection: "row",
+                      width: "600px"
+                    }}
+                  >
+                    <Container
+                      style={{
+                        flex: 3,
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <Button>
+                        <AddBoxOutlinedIcon />
+                      </Button>
+                      <Container
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Typography style={{ fontFamily: "courier" }}>
+                          {item.quantity}
+                        </Typography>
+                      </Container>
+                      <Button>
+                        <IndeterminateCheckBoxOutlinedIcon />
+                      </Button>
+                    </Container>
 
-            <Grid container item="md-6">
-              <Box
-                style={{
-                  display: "flex ",
-                  flexDirection: "row",
-                  width: "600px"
-                }}
-              >
-                <Button>
-                  <AddBoxOutlinedIcon />
-                </Button>{" "}
-                <Container
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Typography style={{ fontFamily: "courier" }}>0</Typography>
-                </Container>
-                <Button>
-                  <IndeterminateCheckBoxOutlinedIcon />
-                </Button>
-                <Container
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Typography style={{ fontFamily: "courier" }}>
-                    Aji de gallina
-                  </Typography>
-                </Container>
-                <Container
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  {" "}
-                  <Typography style={{ fontFamily: "courier" }}>
-                    $130
-                  </Typography>
-                </Container>
-                <Container
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-           {/*       ///////////////////REMOVE////////////////////////////////////////    */}
+                    <Container
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flex: 2
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        {item.product.name}
+                      </Typography>
+                    </Container>
+                    <Container
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flex: 1
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        {item.product.price}
+                      </Typography>
 
+                      <Button>
+                        <DeleteOutlineIcon />
+                      </Button>
+                    </Container>
+                  </Box>
+                </Grid>
+              ))}
 
-                  <Button onClick={()=>removeProduct(item.id)}>
-                    <DeleteOutlineIcon />
-                  </Button>
-                </Container>
-              </Box>
-            </Grid>
             <Divider />
             <Grid container item="md-6">
               <Box>
@@ -124,46 +131,60 @@ function Order({order}) {
                 justifyContent: "flex-end"
               }}
             >
-              {/*       ///////////////////BOTON CONFIRM//////////////////////////////////////    */}
-              <Button style={{ fontFamily: "courier" }} onClick={handleClick}> CONFIRM</Button>
+              <Button style={{ fontFamily: "courier" }}> CONFIRM</Button>
             </Grid>
           </Grid>
         </Card>
+
         <Card>
           <Grid item="md-6" style={{ width: "600px" }}>
             <Container style={{ display: "flex", alignItems: "center" }}>
               <Typography style={{ fontFamily: "courier" }}>RESUME</Typography>
             </Container>
-            <Grid
-              container
-              item="md-6"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between"
-              }}
-            >
-              <Typography style={{ fontFamily: "courier" }}>
-                Aji de gallina{" "}
-              </Typography>{" "}
-              <Typography style={{ fontFamily: "courier" }}> 1 </Typography>
-              <Typography style={{ fontFamily: "courier" }}>$130</Typography>
-            </Grid>
-            <Grid
-              container
-              item="md-6"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between"
-              }}
-            >
-              <Typography style={{ fontFamily: "courier" }}>
-                Lomo salteado
-              </Typography>{" "}
-              <Typography style={{ fontFamily: "courier" }}> 1 </Typography>
-              <Typography style={{ fontFamily: "courier" }}>$230</Typography>
-            </Grid>
+            <Divider />
+            {order.item &&
+              order.item.map(item => {
+                total.push(item.quantity * item.product.price);
+                return (
+                  <Grid
+                    container
+                    item="md-6"
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      margin: 10
+                    }}
+                  >
+                    <Typography style={{ fontFamily: "courier", flex: 4 }}>
+                      {item.product.name}
+                    </Typography>
+                    <Container
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        justifyContent: "flex-end"
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        {item.quantity}
+                      </Typography>
+                    </Container>
+                    <Container
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        justifyContent: "flex-end"
+                      }}
+                    >
+                      <Typography style={{ fontFamily: "courier" }}>
+                        ${item.quantity * item.product.price}
+                      </Typography>
+                    </Container>
+                  </Grid>
+                );
+              })}
+
             <Divider />
 
             <Grid
@@ -176,19 +197,27 @@ function Order({order}) {
               }}
             >
               <Typography style={{ fontFamily: "courier" }}>TOTAL </Typography>
-              <Typography style={{ fontFamily: "courier" }}>$360</Typography>
+
+              <Typography style={{ fontFamily: "courier" }}>
+                {total.map(item => {
+                  verdaderoTotal += item;
+                  console.log(verdaderoTotal);
+                })}
+                ${verdaderoTotal}
+              </Typography>
             </Grid>
+
             <Grid
               container
               item="md-6"
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
-                alignSelf: "flex-end"
+                alignSelf: "flex-end",
+                margin: 10
               }}
             >
-         {/*    ////////////////////////////////////////////////////////// */}
-              <Button disabled id="btnBuy" style={{ fontFamily: "courier" }}> BUY</Button>
+              <Button style={{ fontFamily: "courier" }}> BUY</Button>
             </Grid>
           </Grid>
         </Card>
@@ -196,14 +225,3 @@ function Order({order}) {
     </div>
   );
 }
-
-const mapDispatchToProps = dispatch => ({
-  removeProduct: item => {
-    dispatch(removeProduct(item));
-  }
-});
-
-
-
-
-export default connect(null, mapDispatchToProps)(Order)

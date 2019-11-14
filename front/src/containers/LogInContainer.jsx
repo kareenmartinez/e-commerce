@@ -32,6 +32,9 @@ class LogInContainer extends Component {
     this.setState({ password: e.target.value });
   }
   render() {
+    console.log("-----------------------");
+    console.log(this.props.user);
+
     return (
       <div>
         <LogIn
