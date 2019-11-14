@@ -10,7 +10,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const { Product, Comment, User, Order, OrderItem } = require("./models");
 
 const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

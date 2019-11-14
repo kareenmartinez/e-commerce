@@ -3,7 +3,8 @@ import {
   ADD_ADDRESS,
   REMOVE_ITEM,
   CONFIRM_ORDER,
-  BUY
+  BUY,
+  DROP_ORDER
 } from "../constants";
 import axios from "axios";
 
@@ -14,5 +15,11 @@ export const buyProduct = user => {
       res.data;
       console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
     })
+  };
+};
+
+export const dropOrder = () => {
+  return {
+    type: DROP_ORDER
   };
 };

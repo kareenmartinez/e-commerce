@@ -24,17 +24,57 @@ router.post("/send", (req, res) => {
   var mailOptions = {
     from: "cosmeckpo@gmail.com",
     to: req.body.email,
-    subject: "Tu pedido fue confirmado",
-    text: "Gracias por comprar con nosotros!"
+    subject: "Your order is on the way :)",
+    text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
+    Here's the details:
+    Your food: (The food you order on a list)
+    Total payment amount: ($ total)
+    Address: ${req.body.address}
+    `
   };
 
+  var mailConfirm = {
+    from: "cosmeckpo@gmail.com",
+    to: req.body.email,
+    subject: "Tu orden ya llego",
+    text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
+    Here's the details:
+    Your food: (The food you order on a list)
+    Total payment amount: ($ total)
+    Address: ${req.body.address}
+    `
+  };
   // send mail with defined transport object
+
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
-      console.log(error);
+      console.log("Hubo un problema, este es el ERROR", error);
     } else {
       console.log("Email sent: " + info.response);
     }
+  });
+  Order.findOne({
+    where: {
+      userId: req.body.id,
+      state: "PENDING"
+    }
+  }).then(order => {
+    order
+      .update({
+        state: "FULFILLED"
+      })
+      .then(() => {
+        res.send("TODO OK");
+        setTimeout(() => {
+          transporter.sendMail(mailConfirm, function(error, info) {
+            if (error) {
+              console.log("Hubo un problema, este es el ERROR", error);
+            } else {
+              console.log("Confirm email sent " + info.response);
+            }
+          });
+        }, 120000);
+      });
   });
 });
 
@@ -141,6 +181,12 @@ router.get("/order", function(req, res) {
       userId: 1,
       state: "pending"
     },
+
+    where: {
+      userId: 1,
+      state: "pending"
+    },
+
     include: [
       {
         model: OrderItem,
@@ -157,6 +203,110 @@ router.get("/order", function(req, res) {
     .catch(function(err) {
       console.log(err, "no trae nadaaaa");
     });
+});
+
+router.get("/addItem", (req, res) => {
+  Order.findOne({
+    //aca busca la order
+    where: {
+      userId: 5,
+      state: "pending"
+    }
+  }).then(respuesta => {
+    console.log(1, respuesta);
+    if (!respuesta) {
+      //si no lo consigue
+      Order.create({
+        //lo crea
+        userId: 5,
+        state: "pending"
+      }).then(respuesta => {
+        //crea los items de la order
+        OrderItem.create({
+          orderId: respuesta.id,
+          productId: 1
+        }).then(respuesta => {
+          res.send(respuesta);
+        });
+      });
+    } else {
+      //si consigue el order
+      //busca el item
+
+      OrderItem.findOne({
+        where: {
+          orderId: respuesta.id,
+          productId: 3
+        }
+      }).then(respuesta2 => {
+        console.log(2, respuesta2);
+        if (!respuesta2) {
+          //si no existe el item lo crea
+          OrderItem.create({
+            orderId: respuesta.id,
+            productId: 3
+          }).then(item => {
+            res.json(item);
+          });
+        } else {
+          //lo updatea (+,-)
+          let nuevaCantidad = respuesta2.quantity + 1;
+          respuesta2
+            .update({
+              quantity: nuevaCantidad
+            })
+            .then(respuesta => {
+              res.json(respuesta);
+            });
+        }
+      });
+    }
+  });
+});
+
+//-------------------------------------------------
+
+router.get("/sumar", (req, res) => {
+  console.log("------------------------------------");
+  console.log("entro");
+  OrderItem.findOne({
+    where: {
+      id: 1
+    }
+  }).then(item => {
+    console.log(item);
+    let sumar = item.quantity + 1;
+    item
+      .update({
+        quantity: sumar
+      })
+      .then(respuesta => {
+        res.json(respuesta);
+      });
+  });
+});
+
+router.get("/restar", (req, res) => {
+  OrderItem.findOne({
+    where: {
+      id: 1
+    }
+  }).then(item => {
+    if (item.quantity > 1) {
+      let restar = item.quantity - 1;
+      item
+        .update({
+          quantity: restar
+        })
+        .then(respuesta => {
+          res.json(respuesta);
+        });
+    } else {
+      item.destroy().then(() => {
+        res.send("se borro");
+      });
+    }
+  });
 });
 
 module.exports = router;

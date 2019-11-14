@@ -17,7 +17,7 @@ import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
 
-export default function Order({ user, buyProduct }) {
+export default function Order({ user, buyProduct, dropOrder }) {
   return (
     <div>
       <Grid
@@ -187,6 +187,7 @@ export default function Order({ user, buyProduct }) {
                   type="submit"
                   style={{ fontFamily: "courier" }}
                   onClick={buyProduct(user)}
+                  onClick={dropOrder()}
                 >
                   BUY
                 </Button>

@@ -88543,6 +88543,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_IndeterminateCheckBoxOutlined__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/AddLocationOutlined */ "./node_modules/@material-ui/icons/AddLocationOutlined.js");
 /* harmony import */ var _material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_AddLocationOutlined__WEBPACK_IMPORTED_MODULE_12__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -88558,7 +88560,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Order(_ref) {
   var user = _ref.user,
-      buyProduct = _ref.buyProduct;
+      buyProduct = _ref.buyProduct,
+      dropOrder = _ref.dropOrder;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     container: true,
     alignItems: "stretch",
@@ -88726,13 +88729,13 @@ function Order(_ref) {
       justifyContent: "flex-end",
       alignSelf: "flex-end"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], _defineProperty({
     type: "submit",
     style: {
       fontFamily: "courier"
     },
     onClick: buyProduct(user)
-  }, "BUY")))))));
+  }, "onClick", dropOrder()), "BUY")))))));
 }
 
 /***/ }),
@@ -88804,10 +88807,14 @@ var Product = function Product(_ref) {
     comments: busqueda.commentsP
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__["default"] // onClick={handleAdd}
   , {
-    type: "submit"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: _scooter_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+    type: "submit",
     style: {
+      backgroundColor: "rgb(256,256,256)"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "/e70570ee529d8e7f5cc3344bf2d8ceb2.png",
+    style: {
+      // filter: "invert(100%)",
       height: "30px",
       width: "30px"
     }
@@ -88893,7 +88900,9 @@ var Products = function Products(_ref) {
   return productsState.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       style: {
-        order: "1"
+        order: "1",
+        margin: "15px 0",
+        boxSizing: "border-box"
       },
       key: item.name
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -89714,7 +89723,8 @@ function (_Component) {
       console.log("ESTAS SON LAS PROPS.USER", this.props.user);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Order__WEBPACK_IMPORTED_MODULE_1__["default"], {
         user: this.props.user,
-        buyProduct: this.props.buyProduct
+        buyProduct: this.props.buyProduct,
+        dropOrder: this.props.dropOrder
       }));
     }
   }]);
@@ -89732,6 +89742,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     buyProduct: function buyProduct(item) {
       dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["buyProduct"])(item));
+    },
+    dropOrder: function dropOrder() {
+      dispatch(Object(_store_actions_orderAction__WEBPACK_IMPORTED_MODULE_3__["dropOrder"])());
     }
   };
 };
@@ -89922,6 +89935,7 @@ function (_React$Component) {
           display: "flex",
           frexDirection: "row",
           justifyContent: "space-around",
+          padding: "15px",
           flexWrap: "wrap",
           borderRadius: "7px",
           backgroundColor: "black"
@@ -90300,12 +90314,13 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./src/store/actions/orderAction.js ***!
   \******************************************/
-/*! exports provided: buyProduct */
+/*! exports provided: buyProduct, dropOrder */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buyProduct", function() { return buyProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dropOrder", function() { return dropOrder; });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/store/constants.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
@@ -90318,6 +90333,11 @@ var buyProduct = function buyProduct(user) {
       res.data;
       console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
     })
+  };
+};
+var dropOrder = function dropOrder() {
+  return {
+    type: _constants__WEBPACK_IMPORTED_MODULE_0__["DROP_ORDER"]
   };
 };
 
@@ -90482,7 +90502,7 @@ var fetchUser = function fetchUser() {
 /*!********************************!*\
   !*** ./src/store/constants.js ***!
   \********************************/
-/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, BUY, USER_FACEBOOK */
+/*! exports provided: REGISTER, RECEIVED_PRODUCTS, PRODUCTS_CATEGORIES, LOG_IN, FETCH_USER, FETCH_PRODUCT, LOG_OUT, ADD_ITEM, ADD_ADDRESS, REMOVE_ITEM, CONFIRM_ORDER, BUY, USER_FACEBOOK, DROP_ORDER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90500,6 +90520,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONFIRM_ORDER", function() { return CONFIRM_ORDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BUY", function() { return BUY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_FACEBOOK", function() { return USER_FACEBOOK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DROP_ORDER", function() { return DROP_ORDER; });
 var REGISTER = "REGISTER";
 var RECEIVED_PRODUCTS = "RECEIVED_PRODUCTS";
 var PRODUCTS_CATEGORIES = "PRODUCTS_CATEGORIES";
@@ -90513,6 +90534,7 @@ var REMOVE_ITEM = "REMOVE_ITEM";
 var CONFIRM_ORDER = "CONFIRM_ORDER";
 var BUY = "BUY";
 var USER_FACEBOOK = "USER_FACEBOOK";
+var DROP_ORDER = "DROP_ORDER";
 
 /***/ }),
 
@@ -90696,6 +90718,34 @@ function orderReducer() {
       return _objectSpread({}, state, {
         isFetching: false,
         didInvalidate: false //pon el state que quieras llamar :)
+
+      });
+    //--------------------------------------------------------------
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_REJECTED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: true
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_PENDING"):
+      return _objectSpread({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["BUY"], "_FULFILLED"):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: false //pon el state que quieras llamar :)
+
+      });
+
+    case "".concat(_constants__WEBPACK_IMPORTED_MODULE_0__["DROP_ORDER"]):
+      return _objectSpread({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        order: [] //pon el state que quieras llamar :)
 
       });
 
