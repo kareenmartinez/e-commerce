@@ -6,7 +6,7 @@ import ProductsContainer from "./ProductsContainer";
 import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
-
+import UserHistory from "../components/UserHistory";
 import { fetchUser } from "../store/actions/userAction";
 import OrderContainer from "./OrderContainer";
 import store from "../store/store";
@@ -45,6 +45,7 @@ class App extends React.Component {
           />
           <Route exact path="/order" component={OrderContainer} />
           <Route exact path="/product/:name" component={ProductContainer} />
+          <Route exact path="/history" component={UserHistory} />
         </Switch>
       </div>
     );
@@ -61,7 +62,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
