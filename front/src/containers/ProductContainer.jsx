@@ -12,7 +12,6 @@ class ProductContainer extends React.Component {
   }
 
   render() {
-
     return (
       <div
         style={{
@@ -41,4 +40,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductContainer);
