@@ -123,27 +123,27 @@ const comments = [
     userId: 2
   }
 ];
-const orders = [
-  {
-    quantity: 2,
-    total: 740,
-    state: "pending",
-    userId: 5
-  }
-];
+// const orders = [
+//   {
+//     quantity: 2,
+//     total: 740,
+//     state: "pending",
+//     userId: 5
+//   }
+// ];
 
-const items = [
-  {
-    quantity: 1,
-    productId: 1,
-    orderId: 1
-  },
-  {
-    quantity: 1,
-    productId: 2,
-    orderId: 1
-  }
-];
+// const items = [
+//   {
+//     quantity: 1,
+//     productId: 1,
+//     orderId: 1
+//   },
+//   {
+//     quantity: 1,
+//     productId: 2,
+//     orderId: 1
+//   }
+// ];
 
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
 // Product.bulkCreate(productos).then(() => {
@@ -155,9 +155,9 @@ const items = [
 // });
 // 2)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
 //comment, comentando los bulk de arriba
-/*  Comment.bulkCreate(comments).then(() => {
-  console.log("created comments");
-});   */
+// Comment.bulkCreate(comments).then(() => {
+//   console.log("created comments");
+// });
 
 //4)
 /* Order.bulkCreate(orders).then(() => {
@@ -165,6 +165,6 @@ const items = [
 });   */
 
 //5)
- /* OrderItem.bulkCreate(items).then(() => {
+/* OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
  });  */ 
