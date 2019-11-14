@@ -4,7 +4,9 @@ import {
   REMOVE_ITEM,
   CONFIRM_ORDER,
   BUY,
-  FETCH_ORDER
+  FETCH_ORDER,
+  CLICK_NEW_ADDRESS,
+  ADDRESS
 } from "../constants";
 
 import axios from "axios";
@@ -36,5 +38,21 @@ export const fetchOrder = userId => dispatch => {
       .catch(err => {
         console.log(err, "hola, necesito un abrazo");
       })
+  };
+};
+
+export const clickNewAddress = () => {
+  return {
+    type: CLICK_NEW_ADDRESS
+  };
+};
+
+export const fetchAddress = address => {
+  console.log(
+    "ENTRPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+  );
+  return {
+    type: ADDRESS,
+    payload: address
   };
 };

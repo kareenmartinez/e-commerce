@@ -20,6 +20,9 @@ class HeaderContainer extends React.Component {
     event.preventDefault();
     this.props.mostrarBusqueda(this.state.search);
     this.props.history.push(`/product/${this.state.search}`);
+    this.setState({
+      search: ""
+    });
   }
 
   handleChange(event) {

@@ -4,22 +4,27 @@ import {
   REMOVE_ITEM,
   CONFIRM_ORDER,
   BUY,
-  FETCH_ORDER
+  FETCH_ORDER,
+  CLICK_NEW_ADDRESS,
+  ADDRESS
 } from "../constants";
+
+import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  quantity: 0,
   added: [],
   address: "",
-  confirm: false,
+  clickNewAddress: false,
   buy: false,
   order: []
 };
+TouchRipple;
 
 export default function orderReducer(state = initialState, actions) {
   switch (actions.type) {
-    case `${FETCH_ORDER}_REJECTED`:
+    case `${FETCH_ORDER}_REJECTED `:
       return {
         ...state,
         isFetching: false,
@@ -36,7 +41,20 @@ export default function orderReducer(state = initialState, actions) {
       return {
         ...state,
         order: actions.payload[0]
-        //pon el state que quieras llamar :)
+      };
+
+    case CLICK_NEW_ADDRESS:
+      return {
+        ...state,
+        clickNewAddress: true
+      };
+
+    case ADDRESS:
+      console.log("----------------------------------------------------");
+      console.log(actions);
+      return {
+        ...state,
+        address: actions.payload
       };
 
     default:

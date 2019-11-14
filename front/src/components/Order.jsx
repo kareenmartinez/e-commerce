@@ -16,10 +16,36 @@ import Button from "@material-ui/core/Button";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
+import Input from "@material-ui/core/Input";
 
-export default function Order({ order }) {
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  input: {
+    margin: theme.spacing(1)
+  }
+}));
+
+export default function Order({
+  order,
+  handleClick,
+  confirmState,
+  user,
+  clickNewAddressStore,
+  handleClickNewAddress,
+  handleChangeAddress,
+  handleSubmit,
+  address
+}) {
+  const classes = useStyles();
+
+  console.log(clickNewAddressStore);
+
   let total = [];
   let verdaderoTotal = 0;
+
   return (
     <div>
       <Grid
@@ -95,7 +121,7 @@ export default function Order({ order }) {
                       }}
                     >
                       <Typography style={{ fontFamily: "courier" }}>
-                        {item.product.price}
+                        ${item.product.price}
                       </Typography>
 
                       <Button>
@@ -107,6 +133,7 @@ export default function Order({ order }) {
               ))}
 
             <Divider />
+
             <Grid container item="md-6">
               <Box>
                 <Container
@@ -120,9 +147,33 @@ export default function Order({ order }) {
                     ORDER OPTIONS
                   </Typography>
                 </Container>
-                <Button style={{ fontFamily: "courier" }}>
+
+                <Button
+                  style={{ fontFamily: "courier" }}
+                  onClick={handleClickNewAddress}
+                >
                   <AddLocationOutlinedIcon /> ADD NEW ADDRESS
                 </Button>
+
+                {clickNewAddressStore === true ? (
+                  <form onSubmit={handleSubmit}>
+                    <Input
+                      onChange={handleChangeAddress}
+                      value={address}
+                      className={classes.input}
+                      placeholder="Address"
+                      inputProps={{
+                        "aria-label": "description"
+                      }}
+                      name="address"
+                    />
+                    <Button type="submit">Submit</Button>
+                  </form>
+                ) : null}
+
+                <Typography style={{ fontFamily: "courier" }}>
+                  {user.address}
+                </Typography>
               </Box>
             </Grid>
             <Grid
@@ -133,7 +184,9 @@ export default function Order({ order }) {
                 justifyContent: "flex-end"
               }}
             >
-              <Button style={{ fontFamily: "courier" }}> CONFIRM</Button>
+              <Button style={{ fontFamily: "courier" }} onClick={handleClick}>
+                CONFIRM
+              </Button>
             </Grid>
           </Grid>
         </Card>
@@ -219,7 +272,9 @@ export default function Order({ order }) {
                 margin: 10
               }}
             >
-              <Button style={{ fontFamily: "courier" }}> BUY</Button>
+              {confirmState ? (
+                <Button style={{ fontFamily: "courier" }}> BUY</Button>
+              ) : null}
             </Grid>
           </Grid>
         </Card>
