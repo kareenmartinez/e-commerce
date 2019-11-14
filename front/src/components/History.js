@@ -14,12 +14,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function UserHistory(props) {
+function History(props) {
   const { index, style } = props;
 
   return (
     <ListItem button style={style} key={index}>
       <ListItemText primary={`Item ${index + 1}`} />
+      Eu este es un item
     </ListItem>
   );
 }
