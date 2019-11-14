@@ -1,14 +1,10 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
 import Divider from "@material-ui/core/Divider";
-
 import Card from "@material-ui/core/Card";
-
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
@@ -17,6 +13,9 @@ import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
 import Input from "@material-ui/core/Input";
+
+import { connect } from "react-redux";
+import { removeProduct } from "../store/actions/orderAction";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -28,24 +27,26 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Order({
-  order,
-  handleClick,
-  confirmState,
-  user,
-  clickNewAddressStore,
-  handleClickNewAddress,
-  handleChangeAddress,
-  handleSubmit,
-  address
-}) {
-  const classes = useStyles();
+// export default function Order({
+//   order,
+//   handleClick,
+//   confirmState,
+//   user,
+//   clickNewAddressStore,
+//   handleClickNewAddress,
+//   handleChangeAddress,
+//   handleSubmit,
+//   address
 
-  console.log(clickNewAddressStore);
-
+function Order(props) {
   let total = [];
   let verdaderoTotal = 0;
 
+  const classes = useStyles();
+
+  const handleClick = item => {
+    props.removeProduct(item, props.userId);
+  };
   return (
     <div>
       <Grid
@@ -62,8 +63,9 @@ export default function Order({
               </Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => (
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => (
                 <Grid container item="md-6">
                   <Box
                     key={item.id}
@@ -123,8 +125,11 @@ export default function Order({
                       <Typography style={{ fontFamily: "courier" }}>
                         ${item.product.price}
                       </Typography>
-
-                      <Button>
+                      <Button
+                        onClick={e => {
+                          handleClick(item.id);
+                        }}
+                      >
                         <DeleteOutlineIcon />
                       </Button>
                     </Container>
@@ -197,8 +202,9 @@ export default function Order({
               <Typography style={{ fontFamily: "courier" }}>RESUME</Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => {
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => {
                 total.push(item.quantity * item.product.price);
                 return (
                   <Grid
@@ -267,13 +273,37 @@ export default function Order({
               item="md-6"
               style={{
                 display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "row"
+              }}
+            ></Grid>
+            <Grid
+              container
+              item="md-6"
+              style={{
+                display: "flex",
                 justifyContent: "flex-end",
-                alignSelf: "flex-end",
-                margin: 10
+                alignSelf: "flex-end"
               }}
             >
               {confirmState ? (
-                <Button style={{ fontFamily: "courier" }}> BUY</Button>
+                <form>
+                  <Button
+                    type="submit"
+                    style={{
+                      fontFamily: "courier",
+                      justifyContent: "flex-end",
+                      alignSelf: "flex-end",
+                      margin: 10
+                    }}
+                    onClick={() => {
+                      buyProduct(user);
+                      dropOrder();
+                    }}
+                  >
+                    BUY
+                  </Button>
+                </form>
               ) : null}
             </Grid>
           </Grid>
@@ -282,3 +312,19 @@ export default function Order({
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    userId: state.userReducer.user.id,
+    order: state.orderReducer.order
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  removeProduct: (item, userId) => dispatch(removeProduct(item, userId))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Order);

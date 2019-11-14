@@ -10,14 +10,12 @@ export const logUser = user => {
     user: user
   };
 };
-
 const fetcheo = user => {
   return {
     type: FETCH_USER,
     user: user
   };
 };
-
 export const logIn = (email, password) => dispatch => ({
   type: LOG_IN,
   payload: axios

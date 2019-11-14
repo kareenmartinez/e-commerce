@@ -3,8 +3,11 @@ import Order from "../components/Order";
 import {
   fetchOrder,
   clickNewAddress,
-  fetchAddress
+  fetchAddress,
+  buyProduct,
+  dropOrder
 } from "../store/actions/orderAction";
+
 import { connect } from "react-redux";
 
 class OrderContainer extends Component {
@@ -50,6 +53,7 @@ class OrderContainer extends Component {
   }
 
   render() {
+    console.log("ESTAS SON LAS PROPS.USER", this.props.user);
     return (
       <div>
         <Order
@@ -62,6 +66,8 @@ class OrderContainer extends Component {
           handleSubmit={this.handleSubmit}
           handleChangeAddress={this.handleChangeAddress}
           address={this.state.address}
+          buyProduct={this.props.buyProduct}
+          dropOrder={this.props.dropOrder}
         />
       </div>
     );
@@ -78,6 +84,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    buyProduct: item => {
+      dispatch(buyProduct(item));
+    },
+    dropOrder: () => {
+      dispatch(dropOrder());
+    },
     fetchOrder: userId => {
       dispatch(fetchOrder(userId));
     },
