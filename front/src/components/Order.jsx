@@ -239,8 +239,10 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                     alignSelf: "flex-end",
                     margin: 10
                   }}
-                  onClick={buyProduct(user)}
-                  onClick={dropOrder()}
+                  onClick={()=>{
+                    buyProduct(user);
+                    dropOrder()
+                  }}
                 >
                   BUY
                 </Button>

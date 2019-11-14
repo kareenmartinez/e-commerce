@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import Order from "../components/Order";
 import { connect } from "react-redux";
-import { buyProduct, dropOrder, fetchOrder } from "../store/actions/orderAction";
+import {
+  buyProduct,
+  dropOrder,
+  fetchOrder
+} from "../store/actions/orderAction";
 
 class OrderContainer extends Component {
   constructor(props) {
@@ -22,9 +26,9 @@ class OrderContainer extends Component {
           user={this.props.user}
           buyProduct={this.props.buyProduct}
           dropOrder={this.props.dropOrder}
-          order={this.props.order} 
+          order={this.props.order}
         />
-        </div>
+      </div>
     );
   }
 }
@@ -39,14 +43,15 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     buyProduct: item => {
-      dispatch(buyProduct(item)),
-    dropOrder; () => {
-        dispatch(dropOrder()),
-    fetchOrder; userId => {
-        dispatch(fetchOrder(userId));
+      dispatch(buyProduct(item));
+    },
+    dropOrder: () => {
+      dispatch(dropOrder());
+    },
+    fetchOrder: userId => {
+      dispatch(fetchOrder(userId));
     }
-    }
-  }}
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);
