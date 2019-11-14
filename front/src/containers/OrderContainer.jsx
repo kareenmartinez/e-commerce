@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import Order from "../components/Order";
-import { fetchOrder } from "../store/actions/orderAction";
 import { connect } from "react-redux";
+import {
+  buyProduct,
+  dropOrder,
+  fetchOrder
+} from "../store/actions/orderAction";
 
 class OrderContainer extends Component {
   constructor(props) {
@@ -15,9 +19,15 @@ class OrderContainer extends Component {
   }
 
   render() {
+    console.log("ESTAS SON LAS PROPS.USER", this.props.user);
     return (
       <div>
-        <Order order={this.props.order} />
+        <Order
+          user={this.props.user}
+          buyProduct={this.props.buyProduct}
+          dropOrder={this.props.dropOrder}
+          order={this.props.order}
+        />
       </div>
     );
   }
@@ -32,13 +42,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    buyProduct: item => {
+      dispatch(buyProduct(item));
+    },
+    dropOrder: () => {
+      dispatch(dropOrder());
+    },
     fetchOrder: userId => {
       dispatch(fetchOrder(userId));
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OrderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);

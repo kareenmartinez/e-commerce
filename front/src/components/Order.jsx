@@ -12,10 +12,9 @@ import Button from "@material-ui/core/Button";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 
-
-export default function Order({ order }) {
+export default function Order({ user, buyProduct, dropOrder, order }) {
   let total = [];
   let verdaderoTotal = 0;
   return (
@@ -212,12 +211,36 @@ export default function Order({ order }) {
               item="md-6"
               style={{
                 display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "row"
+              }}
+            ></Grid>
+            <Grid
+              container
+              item="md-6"
+              style={{
+                display: "flex",
                 justifyContent: "flex-end",
-                alignSelf: "flex-end",
-                margin: 10
+                alignSelf: "flex-end"
               }}
             >
-              <Button style={{ fontFamily: "courier" }}> BUY</Button>
+              <form>
+                <Button
+                  type="submit"
+                  style={{
+                    fontFamily: "courier",
+                    justifyContent: "flex-end",
+                    alignSelf: "flex-end",
+                    margin: 10
+                  }}
+                  onClick={() => {
+                    buyProduct(user);
+                    dropOrder();
+                  }}
+                >
+                  BUY
+                </Button>
+              </form>
             </Grid>
           </Grid>
         </Card>

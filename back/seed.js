@@ -146,44 +146,31 @@ const comments = [
 // ];
 
 //Seedeen 1 y 2 juntos, luego seedeen uno por uno del 3 al 4 comentando el resto
-// Product.bulkCreate(productos).then(() => {
-//   console.log("created products");
-// });
-// // 1)
-// User.bulkCreate(user).then(() => {
-//   console.log("created user");
-// });
-// 2)este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
-//comment, comentando los bulk de arriba
-// Comment.bulkCreate(comments).then(() => {
-//   console.log("created comments");
-// });
-<<<<<<< HEAD
-// //3)
-// Order.bulkCreate(orders).then(() => {
-//   console.log("created orders");
-// });
 
-//4)
-OrderItem.bulkCreate(items).then(() => {
-  console.log("created items");
-});
-/*  Comment.bulkCreate(comments).then(() => {
+//0)
+/*Product.bulkCreate(productos).then(() => {
+  console.log("created products");
+});*/
+
+//1)
+/*
+User.bulkCreate(user).then(() => {
+  console.log("created user");
+}); */
+
+/*este se ejecuta luego de seedear el producto y user, luego se hace el run seed solo para
+comment, comentando los bulk de arriba */
+
+/*Comment.bulkCreate(comments).then(() => {
   console.log("created comments");
-});   */
-=======
->>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3
+});*/
 
-//4)
-/* Order.bulkCreate(orders).then(() => {
+// 3) ESTA NO LA PUDE CORRER
+/*Order.bulkCreate(orders).then(() => {
   console.log("created orders");
-});   */
+});*/
 
-//5)
-/* OrderItem.bulkCreate(items).then(() => {
+/*4) ESTA NO LA CORRI
+ OrderItem.bulkCreate(items).then(() => {
   console.log("created items");
-<<<<<<< HEAD
- });  */ 
-=======
  });  */
->>>>>>> 35decbf3222f4766cf801716aa7a5744005ce6c3

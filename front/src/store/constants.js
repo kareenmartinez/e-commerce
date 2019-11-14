@@ -24,3 +24,5 @@ export const FETCH_ORDER = "FETCH_ORDER";
 export const BUY = "BUY";
 
 export const USER_FACEBOOK = "USER_FACEBOOK";
+
+export const DROP_ORDER = "DROP_ORDER";

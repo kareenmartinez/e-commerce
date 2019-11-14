@@ -7,9 +7,6 @@ const initialState = {
 };
 
 export default (state = initialState, actions) => {
-  console.log("ENTRPPPPOO");
-  console.log(actions);
-
   switch (actions.type) {
     case `${FETCH_PRODUCT}_REJECTED`:
       return {
