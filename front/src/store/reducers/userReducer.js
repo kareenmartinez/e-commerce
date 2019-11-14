@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, actions) => {
-  console.log("ENTRE AL REDUCER");
   switch (actions.type) {
     case LOG_IN:
       return {

@@ -18,23 +18,17 @@ class LogInContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     this.props.logIn(this.state.email, this.state.password);
     this.props.history.push("/");
   }
 
   handleEmail(e) {
-    console.log(e.target.value);
     this.setState({ email: e.target.value });
   }
   handlePassword(e) {
-    console.log(e.target.value);
     this.setState({ password: e.target.value });
   }
   render() {
-    console.log("-----------------------");
-    console.log(this.props.user);
-
     return (
       <div>
         <LogIn
@@ -58,7 +52,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LogInContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LogInContainer);

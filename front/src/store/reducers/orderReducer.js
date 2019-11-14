@@ -3,7 +3,7 @@ import {
     ADD_ADDRESS,
     REMOVE_ITEM,
     CONFIRM_ORDER,
-    BUY, ADD,
+    BUY, ADD, DROP_ORDER,
     FETCH_ORDER, SUBTRACT
 } from "../constants";
 
@@ -76,7 +76,17 @@ export default function orderReducer(state = initialState, actions) {
                 didInvalidate: false,
                 order: actions.payload[0]
             };
+        case `${DROP_ORDER}`:
+            return {
+                ...state,
+                isFetching: false,
+                didInvalidate: false,
+                order: []
+            };
         default:
             return state;
     }
-}
+}            
+
+
+    //--------------------------------------------------------------

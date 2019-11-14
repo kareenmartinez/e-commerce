@@ -25,9 +25,19 @@ class RegisterContainer extends Component {
   handleSubmit(event) {
     console.log("ENTRO AL BOTON");
     event.preventDefault();
-    this.props.fetchRegister(this.state).then(() => {
-      this.props.history.push("/login");
-    });
+    this.props
+      .fetchRegister(this.state)
+      .then(res => {
+        console.log("ESTE ES EL RESSSSS:", res);
+        if (res !== "ERROR") {
+          this.props.history.push("/login");
+        } else {
+          this.props.history.push("/signup");
+        }
+      })
+      .catch(error => {
+        console.log(error, "error de signup");
+      });
   }
 
   handleChangeName(event) {
@@ -80,7 +90,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RegisterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

@@ -27,3 +27,5 @@ export const SUBTRACT = "SUBTRAC";
 
 
 export const USER_FACEBOOK = "USER_FACEBOOK";
+
+export const DROP_ORDER = "DROP_ORDER";

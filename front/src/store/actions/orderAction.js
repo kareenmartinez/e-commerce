@@ -1,9 +1,10 @@
+
 import {
   ADD_ITEM,
   ADD_ADDRESS,
   REMOVE_ITEM,
   CONFIRM_ORDER,
-  BUY, ADD, SUBTRACT, FETCH_ORDER
+  BUY, ADD, SUBTRACT, FETCH_ORDER, DROP_ORDER,
 } from "../constants";
 import axios from "axios";
 
@@ -23,6 +24,35 @@ export const minusOne = (itemId, userId) => ({
 
 
 
+export const removeProduct = (id, userId) => dispatch => {
+  return {
+    payload: axios
+      .get(`/api/remove/${id}/${userId}`)
+      .then(res => res.data)
+      .then(order => {
+        dispatch(completeOrder(order));
+      })
+      .catch(err => {
+        console.log(err, "error");
+      })
+  };
+};
+
+export const buyProduct = user => {
+  return {
+    type: BUY,
+    payload: axios.post("/api/send", user).then(res => {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION BUYPRODUCT", res.data);
+    })
+  };
+};
+
+export const dropOrder = () => {
+  return {
+    type: DROP_ORDER
+  };
+};
 // lo crea en la db
 export const addItem = (itemId, userId) => {
   axios

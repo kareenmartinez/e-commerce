@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Order from "../components/Order";
-import { fetchOrder } from "../store/actions/orderAction";
 import { connect } from "react-redux";
-
-import { addOne, minusOne } from "../store/actions/orderAction";
+import {
+    buyProduct,
+    dropOrder,
+    fetchOrder,
+    addOne, minusOne
+} from "../store/actions/orderAction";
 
 
 class OrderContainer extends Component {
@@ -45,7 +48,9 @@ class OrderContainer extends Component {
     render() {
         return (
             <div>
-                <Order order={this.props.order} handleSum={this.handleSum} handleSubst={this.handleSubst} />
+                <Order order={this.props.order} handleSum={this.handleSum} handleSubst={this.handleSubst} user={this.props.user}
+                    buyProduct={this.props.buyProduct}
+                    dropOrder={this.props.dropOrder} />
             </div>
         );
     }
@@ -68,7 +73,13 @@ const mapDispatchToProps = dispatch => {
         },
         minusOne: (itemId, userId) => {
             dispatch(minusOne(itemId, userId))
-        }
+        },
+        dropOrder: () => {
+            dispatch(dropOrder());
+        },
+        buyProduct: user => {
+            dispatch(buyProduct(user));
+        },
     };
 };
 

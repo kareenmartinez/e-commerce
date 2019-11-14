@@ -3,7 +3,96 @@ const router = express();
 const { Product, Comment, User, Order, OrderItem } = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const nodemailer = require("nodemailer");
+
 const passport = require("passport");
+
+//Confirmation Email route -nodemailer-
+router.post("/send", (req, res) => {
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "cosmeckpo@gmail.com",
+      pass: "1561714812puto."
+    }
+  });
+
+  // setup email data with unicode symbols
+  var mailOptions = {
+    from: "cosmeckpo@gmail.com",
+    to: req.body.email,
+    subject: "Your order is on the way :)",
+    text: `Dear ${req.body.name} ${req.body.lastName}, your order has shipped! 
+    Here's the details:
+    Your food: (The food you order on a list)
+    Total payment amount: ($ total)
+    Address: ${req.body.address}
+
+    In a city filled with so many choices, we thank you for choosing us. :)
+            
+    -Super Restaurante
+    `
+  };
+
+  // send mail with defined transport object
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log("Hubo un problema, este es el ERROR", error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+  Order.findOne({
+    where: {
+      userId: req.body.id,
+      state: "PENDING"
+    }
+  }).then(order => {
+    order
+      .update({
+        state: "FULFILLED"
+      })
+      .then(() => {
+        res.send("TODO OK");
+        setTimeout(() => {
+
+          // create reusable transporter object using the default SMTP transport
+          let transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: "cosmeckpo@gmail.com",
+              pass: "1561714812puto."
+            }
+          });
+
+          // setup email data with unicode symbols
+          var mailOptions = {
+            from: "cosmeckpo@gmail.com",
+            to: req.body.email,
+            subject: "Your order has been delivered. Enjoy your meal! :D ",
+            text: `Hi ${req.body.name} ${req.body.lastName}, your order has been delivered! 
+            Please don't forget to rate your overall satisfaction with the service received.
+
+            In a city filled with so many choices, we thank you for choosing us. :)
+            
+            -Super Restaurante`
+          };
+          // send mail with defined transport object
+
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log("Hubo un problema, este es el ERROR", error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+        }, 120000);
+      });
+  });
+});
 
 router.post("/logIn", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
@@ -103,7 +192,6 @@ router.get("/auth/me", (req, res) => {
 });
 
 router.get("/order/:userId", function (req, res) {
-  console.log("-------", req.params.userId, "------- hola");
   Order.findAll({
     where: {
       userId: req.params.userId,
@@ -133,7 +221,6 @@ router.get("/order/:userId", function (req, res) {
 });
 
 router.post("/addItem", (req, res) => {
-  console.log(req.body, "este es el body");
   Order.findOne({
     //aca busca la order
     where: {
@@ -141,7 +228,6 @@ router.post("/addItem", (req, res) => {
       state: "PENDING"
     }
   }).then(respuesta => {
-    console.log("entro", "order findOne");
     if (!respuesta) {
       //si no lo consigue
       Order.create({
@@ -149,13 +235,11 @@ router.post("/addItem", (req, res) => {
         userId: req.body.userId,
         state: "PENDING"
       }).then(respuesta => {
-        console.log("orderCreate");
         //crea los items de la order
         OrderItem.create({
           orderId: respuesta.id,
           productId: req.body.itemId
         }).then(respuesta => {
-          console.log("orderItemCreate");
           res.send(respuesta);
         });
       });
@@ -169,15 +253,12 @@ router.post("/addItem", (req, res) => {
           productId: req.body.itemId
         }
       }).then(respuesta2 => {
-        console.log("else find one");
-        console.log(2, respuesta2);
         if (!respuesta2) {
           //si no existe el item lo crea
           OrderItem.create({
             orderId: respuesta.id,
             productId: req.body.itemId
           }).then(item => {
-            console.log("OrderItemCreate");
             res.json(item);
           });
         } else {
@@ -188,7 +269,6 @@ router.post("/addItem", (req, res) => {
               quantity: nuevaCantidad
             })
             .then(respuesta => {
-              console.log("lo updatea");
 
               res.json(respuesta);
             });
@@ -201,17 +281,11 @@ router.post("/addItem", (req, res) => {
 //-------------------------------------------------
 
 router.post("/sumar", (req, res) => {
-  console.log("------------------------------------");
-  console.log("entro a /suma");
-  console.log(req.body.itemId, req.body.userId)
-
-  console.log("------------------------------------");
   OrderItem.findOne({
     where: {
       id: req.body.itemId
     }
   }).then(item => {
-    console.log(item.quantity, "quionda");
     let sumar = item.quantity + 1;
 
     item
@@ -241,7 +315,7 @@ router.post("/sumar", (req, res) => {
           }, 'id', 'DESC']]
         })
           .then(order => {
-            console.log(item.quantity, "quionda2"), res.json(order)
+            res.json(order)
           }
           )
           .catch(function (err) {
@@ -256,11 +330,6 @@ router.post("/sumar", (req, res) => {
 
 router.post("/restar", (req, res) => {
 
-  console.log("------------------------------------");
-  console.log("entro a /resta");
-  console.log(req.body.itemId, req.body.userId)
-
-  console.log("------------------------------------");
   OrderItem.findOne({
     where: {
       id: req.body.itemId
@@ -303,6 +372,38 @@ router.post("/restar", (req, res) => {
       });
 
   });;
+});
+
+router.get("/remove/:id/:userId", (req, res) => {
+  OrderItem.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      Order.findAll({
+        where: {
+          userId: req.params.userId,
+          state: "PENDING"
+        },
+        include: [
+          {
+            model: OrderItem,
+            as: "item",
+            include: [
+              {
+                model: Product
+              }
+            ]
+          }
+        ]
+      }).then(order => {
+        res.json(order);
+      });
+    })
+    .catch(err => {
+      console.log(err, "error");
+    });
 });
 
 module.exports = router;
