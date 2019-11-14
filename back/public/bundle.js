@@ -89653,7 +89653,6 @@ function (_Component) {
   }, {
     key: "handleEmail",
     value: function handleEmail(e) {
-      console.log(e.target.value);
       this.setState({
         email: e.target.value
       });
@@ -89661,7 +89660,6 @@ function (_Component) {
   }, {
     key: "handlePassword",
     value: function handlePassword(e) {
-      console.log(e.target.value);
       this.setState({
         password: e.target.value
       });
@@ -89669,8 +89667,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("-----------------------");
-      console.log(this.props.user);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LogIn__WEBPACK_IMPORTED_MODULE_1__["default"], {
         onSubmit: this.onSubmit,
         handleEmail: this.handleEmail,

@@ -23,17 +23,12 @@ class LogInContainer extends Component {
   }
 
   handleEmail(e) {
-    console.log(e.target.value);
     this.setState({ email: e.target.value });
   }
   handlePassword(e) {
-    console.log(e.target.value);
     this.setState({ password: e.target.value });
   }
   render() {
-    console.log("-----------------------");
-    console.log(this.props.user);
-
     return (
       <div>
         <LogIn
