@@ -8,6 +8,8 @@ import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 
 import { fetchUser } from "../store/actions/userAction";
+
+
 import OrderContainer from "./OrderContainer";
 import store from "../store/store";
 
@@ -22,8 +24,10 @@ class App extends React.Component {
 
   componentDidMount() {
     store.dispatch(fetchUser());
+
     store.dispatch(fetchUserFacebook(this.props.userFacebook));
-    console.log(this.props.userFacebook);
+
+    console.log(this.props.user);
     console.log("----------------------------------------------");
   }
 
@@ -57,7 +61,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    userFacebook: state.facebookReducer.payload
+    userFacebook: state.facebookReducer.payload,
   };
 };
 

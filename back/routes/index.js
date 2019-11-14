@@ -102,7 +102,7 @@ router.get("/auth/me", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/order/:userId", function(req, res) {
+router.get("/order/:userId", function (req, res) {
   console.log("-------", req.params.userId, "------- hola");
   Order.findAll({
     where: {
@@ -113,13 +113,18 @@ router.get("/order/:userId", function(req, res) {
       {
         model: OrderItem,
         as: "item",
+
         include: [
           {
             model: Product
           }
         ]
       }
-    ]
+    ],
+    order: [[{
+      model: OrderItem,
+      as: "item"
+    }, 'id', 'DESC']]
   })
     .then(order => res.json(order))
     .catch(function (err) {
@@ -198,46 +203,106 @@ router.post("/addItem", (req, res) => {
 router.post("/sumar", (req, res) => {
   console.log("------------------------------------");
   console.log("entro a /suma");
+  console.log(req.body.itemId, req.body.userId)
+
+  console.log("------------------------------------");
   OrderItem.findOne({
     where: {
-      id: 1
+      id: req.body.itemId
     }
   }).then(item => {
-    console.log(item);
+    console.log(item.quantity, "quionda");
     let sumar = item.quantity + 1;
+
     item
       .update({
         quantity: sumar
       })
-      .then(respuesta => {
-        res.send(respuesta.quantity);
+      .then(() => {
+        Order.findAll({
+          where: {
+            userId: req.body.userId,
+            state: "PENDING"
+          },
+          include: [
+            {
+              model: OrderItem,
+              as: "item",
+              include: [
+                {
+                  model: Product
+                }
+              ]
+            }
+          ],
+          order: [[{
+            model: OrderItem,
+            as: "item"
+          }, 'id', 'DESC']]
+        })
+          .then(order => {
+            console.log(item.quantity, "quionda2"), res.json(order)
+          }
+          )
+          .catch(function (err) {
+            console.log(err, "no trae nadaaaa en suma ");
+          });
+
       });
   });
 });
 
 //--------------------------------------------------
 
-router.get("/restar", (req, res) => {
+router.post("/restar", (req, res) => {
+
+  console.log("------------------------------------");
+  console.log("entro a /resta");
+  console.log(req.body.itemId, req.body.userId)
+
+  console.log("------------------------------------");
   OrderItem.findOne({
     where: {
-      id: 1
+      id: req.body.itemId
     }
   }).then(item => {
     if (item.quantity > 1) {
       let restar = item.quantity - 1;
-      item
+      return item
         .update({
           quantity: restar
         })
-        .then(respuesta => {
-          res.json(respuesta);
-        });
     } else {
-      item.destroy().then(() => {
-        res.send("se borro");
-      });
+      return item.destroy()
     }
-  });
+  }).then(() => {
+    Order.findAll({
+      where: {
+        userId: req.body.userId,
+        state: "PENDING"
+      },
+      include: [
+        {
+          model: OrderItem,
+          as: "item",
+          include: [
+            {
+              model: Product
+            }
+          ]
+        }
+      ],
+      order: [[{
+        model: OrderItem,
+        as: "item"
+      }, 'id', 'DESC']]
+    })
+      .then(order => res.json(order))
+      .catch(function (err) {
+        console.log(err, "no trae nadaaaa en resta ");
+      });
+
+  });;
 });
 
 module.exports = router;
