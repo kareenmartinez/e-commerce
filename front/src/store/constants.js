@@ -19,6 +19,7 @@ export const ADD_ADDRESS = "ADD_ADDRESS";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 
 export const CONFIRM_ORDER = "CONFIRM_ORDER";
+export const FETCH_ORDER = "FETCH_ORDER";
 
 export const BUY = "BUY";
 

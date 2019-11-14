@@ -175,18 +175,13 @@ router.get("/auth/me", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/order", function(req, res) {
+router.get("/order/:userId", function(req, res) {
+  console.log("-------", req.params.userId, "------- hola");
   Order.findAll({
     where: {
-      userId: 1,
-      state: "pending"
+      userId: req.params.userId,
+      state: "PENDING"
     },
-
-    where: {
-      userId: 1,
-      state: "pending"
-    },
-
     include: [
       {
         model: OrderItem,
@@ -205,27 +200,30 @@ router.get("/order", function(req, res) {
     });
 });
 
-router.get("/addItem", (req, res) => {
+router.post("/addItem", (req, res) => {
+  console.log(req.body, "este es el body");
   Order.findOne({
     //aca busca la order
     where: {
-      userId: 5,
-      state: "pending"
+      userId: req.body.userId,
+      state: "PENDING"
     }
   }).then(respuesta => {
-    console.log(1, respuesta);
+    console.log("entro", "order findOne");
     if (!respuesta) {
       //si no lo consigue
       Order.create({
         //lo crea
-        userId: 5,
-        state: "pending"
+        userId: req.body.userId,
+        state: "PENDING"
       }).then(respuesta => {
+        console.log("orderCreate");
         //crea los items de la order
         OrderItem.create({
           orderId: respuesta.id,
-          productId: 1
+          productId: req.body.itemId
         }).then(respuesta => {
+          console.log("orderItemCreate");
           res.send(respuesta);
         });
       });
@@ -236,16 +234,18 @@ router.get("/addItem", (req, res) => {
       OrderItem.findOne({
         where: {
           orderId: respuesta.id,
-          productId: 3
+          productId: req.body.itemId
         }
       }).then(respuesta2 => {
+        console.log("else find one");
         console.log(2, respuesta2);
         if (!respuesta2) {
           //si no existe el item lo crea
           OrderItem.create({
             orderId: respuesta.id,
-            productId: 3
+            productId: req.body.itemId
           }).then(item => {
+            console.log("OrderItemCreate");
             res.json(item);
           });
         } else {
@@ -256,6 +256,8 @@ router.get("/addItem", (req, res) => {
               quantity: nuevaCantidad
             })
             .then(respuesta => {
+              console.log("lo updatea");
+
               res.json(respuesta);
             });
         }
@@ -285,6 +287,8 @@ router.get("/sumar", (req, res) => {
       });
   });
 });
+
+//--------------------------------------------------
 
 router.get("/restar", (req, res) => {
   OrderItem.findOne({

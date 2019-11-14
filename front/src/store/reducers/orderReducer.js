@@ -4,7 +4,8 @@ import {
   REMOVE_ITEM,
   CONFIRM_ORDER,
   BUY,
-  DROP_ORDER
+  DROP_ORDER,
+  FETCH_ORDER
 } from "../constants";
 const initialState = {
   isFetching: false,
@@ -13,18 +14,19 @@ const initialState = {
   added: [],
   address: "",
   confirm: false,
-  buy: false
+  buy: false,
+  order: []
 };
 
 export default function orderReducer(state = initialState, actions) {
   switch (actions.type) {
-    case `${ADD_ITEM}_REJECTED`:
+    case `${FETCH_ORDER}_REJECTED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: true
       };
-    case `${ADD_ITEM}_PENDING`:
+    case `${FETCH_ORDER}_PENDING`:
       return {
         ...state,
         isFetching: true,
@@ -64,7 +66,13 @@ export default function orderReducer(state = initialState, actions) {
         isFetching: false,
         didInvalidate: false,
         order: []
+      };
 
+    case FETCH_ORDER:
+      console.log(actions.payload, "payloaaaaaaaaad");
+      return {
+        ...state,
+        order: actions.payload[0]
         //pon el state que quieras llamar :)
       };
 
