@@ -28,4 +28,8 @@ export const SUBTRACT = "SUBTRAC";
 
 export const USER_FACEBOOK = "USER_FACEBOOK";
 
+export const CLICK_NEW_ADDRESS = "CLICK_NEW_ADDRESS";
+
+export const ADDRESS = "ADDRESS";
+
 export const DROP_ORDER = "DROP_ORDER";

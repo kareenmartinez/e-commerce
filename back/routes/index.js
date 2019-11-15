@@ -9,7 +9,6 @@ const passport = require("passport");
 
 //Confirmation Email route -nodemailer-
 router.post("/send", (req, res) => {
-
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -38,7 +37,7 @@ router.post("/send", (req, res) => {
 
   // send mail with defined transport object
 
-  transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
       console.log("Hubo un problema, este es el ERROR", error);
     } else {
@@ -58,7 +57,6 @@ router.post("/send", (req, res) => {
       .then(() => {
         res.send("TODO OK");
         setTimeout(() => {
-
           // create reusable transporter object using the default SMTP transport
           let transporter = nodemailer.createTransport({
             service: "gmail",
@@ -82,7 +80,7 @@ router.post("/send", (req, res) => {
           };
           // send mail with defined transport object
 
-          transporter.sendMail(mailOptions, function (error, info) {
+          transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
               console.log("Hubo un problema, este es el ERROR", error);
             } else {
@@ -94,7 +92,8 @@ router.post("/send", (req, res) => {
   });
 });
 
-router.post("/logIn", passport.authenticate("local"), function (req, res) {
+router.post("/logIn", passport.authenticate("local"), function(req, res) {
+  console.log(req.user);
   res.send(req.user);
 });
 
@@ -114,7 +113,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function (req, res) {
+router.get("/category/:country", function(req, res) {
   Product.findAll({
     where: {
       country: req.params.country
@@ -132,7 +131,7 @@ router.get("/category/:country", function (req, res) {
     ]
   })
     .then(products => res.json(products))
-    .catch(function (err) {
+    .catch(function(err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -188,10 +187,11 @@ router.get("/product/:name", (req, res, next) => {
 });
 
 router.get("/auth/me", (req, res) => {
+  console.log(req.user);
   res.send(req.user);
 });
 
-router.get("/order/:userId", function (req, res) {
+router.get("/order/:userId", function(req, res) {
   Order.findAll({
     where: {
       userId: req.params.userId,
@@ -209,13 +209,19 @@ router.get("/order/:userId", function (req, res) {
         ]
       }
     ],
-    order: [[{
-      model: OrderItem,
-      as: "item"
-    }, 'id', 'DESC']]
+    order: [
+      [
+        {
+          model: OrderItem,
+          as: "item"
+        },
+        "id",
+        "DESC"
+      ]
+    ]
   })
     .then(order => res.json(order))
-    .catch(function (err) {
+    .catch(function(err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -269,7 +275,6 @@ router.post("/addItem", (req, res) => {
               quantity: nuevaCantidad
             })
             .then(respuesta => {
-
               res.json(respuesta);
             });
         }
@@ -309,19 +314,23 @@ router.post("/sumar", (req, res) => {
               ]
             }
           ],
-          order: [[{
-            model: OrderItem,
-            as: "item"
-          }, 'id', 'DESC']]
+          order: [
+            [
+              {
+                model: OrderItem,
+                as: "item"
+              },
+              "id",
+              "DESC"
+            ]
+          ]
         })
           .then(order => {
-            res.json(order)
-          }
-          )
-          .catch(function (err) {
+            res.json(order);
+          })
+          .catch(function(err) {
             console.log(err, "no trae nadaaaa en suma ");
           });
-
       });
   });
 });
@@ -329,49 +338,54 @@ router.post("/sumar", (req, res) => {
 //--------------------------------------------------
 
 router.post("/restar", (req, res) => {
-
   OrderItem.findOne({
     where: {
       id: req.body.itemId
     }
-  }).then(item => {
-    if (item.quantity > 1) {
-      let restar = item.quantity - 1;
-      return item
-        .update({
+  })
+    .then(item => {
+      if (item.quantity > 1) {
+        let restar = item.quantity - 1;
+        return item.update({
           quantity: restar
-        })
-    } else {
-      return item.destroy()
-    }
-  }).then(() => {
-    Order.findAll({
-      where: {
-        userId: req.body.userId,
-        state: "PENDING"
-      },
-      include: [
-        {
-          model: OrderItem,
-          as: "item",
-          include: [
-            {
-              model: Product
-            }
-          ]
-        }
-      ],
-      order: [[{
-        model: OrderItem,
-        as: "item"
-      }, 'id', 'DESC']]
+        });
+      } else {
+        return item.destroy();
+      }
     })
-      .then(order => res.json(order))
-      .catch(function (err) {
-        console.log(err, "no trae nadaaaa en resta ");
-      });
-
-  });;
+    .then(() => {
+      Order.findAll({
+        where: {
+          userId: req.body.userId,
+          state: "PENDING"
+        },
+        include: [
+          {
+            model: OrderItem,
+            as: "item",
+            include: [
+              {
+                model: Product
+              }
+            ]
+          }
+        ],
+        order: [
+          [
+            {
+              model: OrderItem,
+              as: "item"
+            },
+            "id",
+            "DESC"
+          ]
+        ]
+      })
+        .then(order => res.json(order))
+        .catch(function(err) {
+          console.log(err, "no trae nadaaaa en resta ");
+        });
+    });
 });
 
 router.get("/remove/:id/:userId", (req, res) => {

@@ -29,8 +29,8 @@ export const logIn = (email, password) => dispatch => ({
     })
 });
 
-export const fetchUser = () => dispatch => ({
-  payload: axios
+export const fetchUser = () => dispatch =>
+  axios
     .get("/api/auth/me")
     .then(res => res.data)
     .then(user => {
@@ -38,5 +38,4 @@ export const fetchUser = () => dispatch => ({
     })
     .catch(err => {
       console.log(err, "hola, necesito un abrazo");
-    })
-});
+    });
