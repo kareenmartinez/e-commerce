@@ -275,23 +275,20 @@ function Order(props) {
               }}
             >
               {props.confirmState ? (
-                <form>
-                  <Button
-                    type="submit"
-                    style={{
-                      fontFamily: "courier",
-                      justifyContent: "flex-end",
-                      alignSelf: "flex-end",
-                      margin: 10
-                    }}
-                    onClick={() => {
-                      props.buyProduct(props.user);
-                      props.dropOrder();
-                    }}
-                  >
-                    BUY
-                  </Button>
-                </form>
+                <Button
+                  style={{
+                    fontFamily: "courier",
+                    justifyContent: "flex-end",
+                    alignSelf: "flex-end",
+                    margin: 10
+                  }}
+                  onClick={() => {
+                    props.buyProduct(props.user);
+                    props.dropOrder();
+                  }}
+                >
+                  BUY
+                </Button>
               ) : null}
             </Grid>
           </Grid>
