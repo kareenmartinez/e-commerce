@@ -217,16 +217,18 @@ function Header({
               </Link>
             ) : null}
 
-            <Link style={{ textDecoration: "none" }} to="/order">
-              <Grid item="md-2">
-                <Button>
-                  <img
-                    src={scooter}
-                    style={{ height: "30px", width: "30px" }}
-                  />
-                </Button>
-              </Grid>
-            </Link>
+            {user.id ? (
+              <Link style={{ textDecoration: "none" }} to={`/order/${user.id}`}>
+                <Grid item="md-2">
+                  <Button>
+                    <img
+                      src={scooter}
+                      style={{ height: "30px", width: "30px" }}
+                    />
+                  </Button>
+                </Grid>
+              </Link>
+            ) : null}
           </div>
         </Grid>
       </div>

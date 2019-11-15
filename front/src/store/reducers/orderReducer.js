@@ -1,91 +1,87 @@
+// import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 import {
   ADD_ITEM,
   ADD_ADDRESS,
-  REMOVE_ITEM,
   CONFIRM_ORDER,
+  FETCH_ORDER,
+  CLICK_NEW_ADDRESS,
+  ADDRESS,
+  SUBTRACT,
+  REMOVE_ITEM,
   BUY,
-  DROP_ORDER,
-  FETCH_ORDER
+  ADD,
+  DROP_ORDER
 } from "../constants";
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  quantity: 0,
   added: [],
   address: "",
-  confirm: false,
+  clickNewAddress: false,
   buy: false,
   order: []
 };
 
-//-------------------remove--------------------------------------------------------------------
-
 export default function orderReducer(state = initialState, actions) {
   switch (actions.type) {
-    case `${REMOVE_ITEM}_REJECTED`:
+    case FETCH_ORDER:
+      return {
+        ...state,
+        order: actions.payload[0]
+        // input: actions.payload[0].quantity
+        //pon el state que quieras llamar :)
+      };
+    case CLICK_NEW_ADDRESS:
+      return {
+        ...state,
+        clickNewAddress: true
+      };
+
+    case ADDRESS:
+      return {
+        ...state,
+        address: actions.payload
+      };
+
+    case `${ADD}_REJECTED`:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: false
       };
-    case `${REMOVE_ITEM}_PENDING`:
+    case `${ADD}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${REMOVE_ITEM}_FULFILLED`:
+    case `${ADD}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        added: actions.payload
-        //traer todo lo del carrito de bd y guardarlo en el array, estaria
-        //actualizado ya que se elimino antes el producto de la bd
+        order: actions.payload[0]
       };
-
-    //-------------------remove--------------------------------------------------------------------
-
-    case `${FETCH_ORDER}_REJECTED`:
+    case `${SUBTRACT}_REJECTED`:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: true
+        didInvalidate: false
       };
-    case `${FETCH_ORDER}_PENDING`:
+    case `${SUBTRACT}_PENDING`:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case `${ADD_ITEM}_FULFILLED`:
+    case `${SUBTRACT}_FULFILLED`:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false
-        //pon el state que quieras llamar :)
+        didInvalidate: false,
+        order: actions.payload[0]
       };
-    //--------------------------------------------------------------
-    case `${BUY}_REJECTED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: true
-      };
-    case `${BUY}_PENDING`:
-      return {
-        ...state,
-        isFetching: true,
-        didInvalidate: false
-      };
-    case `${BUY}_FULFILLED`:
-      return {
-        ...state,
-        isFetching: false,
-        didInvalidate: false
-        //pon el state que quieras llamar :)
-      };
-
     case `${DROP_ORDER}`:
       return {
         ...state,
@@ -93,16 +89,9 @@ export default function orderReducer(state = initialState, actions) {
         didInvalidate: false,
         order: []
       };
-
-    case FETCH_ORDER:
-      console.log(actions.payload, "payloaaaaaaaaad");
-      return {
-        ...state,
-        order: actions.payload[0]
-        //pon el state que quieras llamar :)
-      };
-
     default:
       return state;
   }
 }
+
+//--------------------------------------------------------------

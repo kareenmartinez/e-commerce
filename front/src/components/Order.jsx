@@ -11,11 +11,29 @@ import Button from "@material-ui/core/Button";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@material-ui/icons/IndeterminateCheckBoxOutlined";
 import AddLocationOutlinedIcon from "@material-ui/icons/AddLocationOutlined";
-import { connect } from "react-redux";
+import Input from "@material-ui/core/Input";
 
-export default function Order({ user, buyProduct, dropOrder, order }) {
+import { connect } from "react-redux";
+import { removeProduct } from "../store/actions/orderAction";
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  input: {
+    margin: theme.spacing(1)
+  }
+}));
+
+function Order(props) {
   let total = [];
   let verdaderoTotal = 0;
+
+  const classes = useStyles();
+  const handleClick = item => {
+    props.removeProduct(item, props.userId);
+  };
   return (
     <div>
       <Grid
@@ -32,8 +50,9 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
               </Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => (
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => (
                 <Grid container item="md-6">
                   <Box
                     key={item.id}
@@ -51,8 +70,12 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                         justifyContent: "space-between"
                       }}
                     >
-                      <Button>
-                        <AddBoxOutlinedIcon />
+                      <Button
+                        type="button"
+                        id={item.id}
+                        onClick={props.handleSum}
+                      >
+                        <Typography>+</Typography>
                       </Button>
                       <Container
                         style={{
@@ -65,8 +88,12 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                           {item.quantity}
                         </Typography>
                       </Container>
-                      <Button>
-                        <IndeterminateCheckBoxOutlinedIcon />
+                      <Button
+                        type="button"
+                        id={item.id}
+                        onClick={props.handleSubst}
+                      >
+                        <Typography>-</Typography>
                       </Button>
                     </Container>
 
@@ -93,8 +120,11 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                       <Typography style={{ fontFamily: "courier" }}>
                         {item.product.price}
                       </Typography>
-
-                      <Button>
+                      <Button
+                        onClick={e => {
+                          handleClick(item.id);
+                        }}
+                      >
                         <DeleteOutlineIcon />
                       </Button>
                     </Container>
@@ -116,9 +146,32 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                     ORDER OPTIONS
                   </Typography>
                 </Container>
-                <Button style={{ fontFamily: "courier" }}>
+                <Button
+                  style={{ fontFamily: "courier" }}
+                  onClick={props.handleClickNewAddress}
+                >
                   <AddLocationOutlinedIcon /> ADD NEW ADDRESS
                 </Button>
+
+                {props.clickNewAddressStore === true ? (
+                  <form onSubmit={props.handleSubmit}>
+                    <Input
+                      onChange={props.handleChangeAddress}
+                      value={props.address}
+                      className={classes.input}
+                      placeholder="Address"
+                      inputProps={{
+                        "aria-label": "description"
+                      }}
+                      name="address"
+                    />
+                    <Button type="submit">Submit</Button>
+                  </form>
+                ) : null}
+
+                <Typography style={{ fontFamily: "courier" }}>
+                  {props.user.address}
+                </Typography>
               </Box>
             </Grid>
             <Grid
@@ -129,7 +182,12 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
                 justifyContent: "flex-end"
               }}
             >
-              <Button style={{ fontFamily: "courier" }}> CONFIRM</Button>
+              <Button
+                style={{ fontFamily: "courier" }}
+                onClick={props.handleClick}
+              >
+                CONFIRM
+              </Button>
             </Grid>
           </Grid>
         </Card>
@@ -140,8 +198,9 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
               <Typography style={{ fontFamily: "courier" }}>RESUME</Typography>
             </Container>
             <Divider />
-            {order.item &&
-              order.item.map(item => {
+            {props.order &&
+              props.order.item &&
+              props.order.item.map(item => {
                 total.push(item.quantity * item.product.price);
                 return (
                   <Grid
@@ -210,52 +269,29 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
               item="md-6"
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                flexDirection: "row"
-              }}
-            ></Grid>
-            <Grid
-              container
-              item="md-6"
-              style={{
-                display: "flex",
                 justifyContent: "flex-end",
                 alignSelf: "flex-end"
               }}
             >
-              <form>
-                <Button
-                  type="submit"
-                  style={{
-                    fontFamily: "courier",
-                    justifyContent: "flex-end",
-                    alignSelf: "flex-end",
-                    margin: 10
-                  }}
-                  onClick={() => {
-                    buyProduct(user);
-                    dropOrder();
-                  }}
-                >
-                  BUY
-                </Button>
-              </form>
-              <form>
-                <Button
-                  type="submit"
-                  style={{
-                    fontFamily: "courier",
-                    justifyContent: "flex-end",
-                    alignSelf: "flex-end",
-                    margin: 0
-                  }}
-                  onClick={() => {
-                    History(user);
-                  }}
-                >
-                  HISTORY
-                </Button>
-              </form>
+              {props.confirmState ? (
+                <form>
+                  <Button
+                    type="submit"
+                    style={{
+                      fontFamily: "courier",
+                      justifyContent: "flex-end",
+                      alignSelf: "flex-end",
+                      margin: 10
+                    }}
+                    onClick={() => {
+                      props.buyProduct(props.user);
+                      props.dropOrder();
+                    }}
+                  >
+                    BUY
+                  </Button>
+                </form>
+              ) : null}
             </Grid>
           </Grid>
         </Card>
@@ -263,3 +299,16 @@ export default function Order({ user, buyProduct, dropOrder, order }) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    userId: state.userReducer.user.id,
+    order: state.orderReducer.order
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  removeProduct: (item, userId) => dispatch(removeProduct(item, userId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Order);

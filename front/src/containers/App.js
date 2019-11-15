@@ -7,12 +7,14 @@ import FilterCategoryContainer from "./FilterCategoryContainer";
 import LogInContainer from "./LogInContainer";
 import ProductContainer from "./ProductContainer";
 import { fetchUser } from "../store/actions/userAction";
+
 import OrderContainer from "./OrderContainer";
-import store from "../store/store";
+
+// import { fetchOrder } from "../store/actions/orderAction";
 
 import { connect } from "react-redux";
 
-import { fetchUserFacebook } from "../store/actions/facebookAction";
+// import { fetchUserFacebook } from "../store/actions/facebookAction";
 
 class App extends React.Component {
   constructor(props) {
@@ -20,10 +22,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    store.dispatch(fetchUser());
-    store.dispatch(fetchUserFacebook(this.props.userFacebook));
-    console.log(this.props.userFacebook);
-    console.log("----------------------------------------------");
+    this.props.fetchUser();
+    // this.props.fetchOrder(this.props.user.id);
+
+    console.log(fetchUser);
+
+    // store.dispatch(fetchUserFacebook(this.props.userFacebook));
+    // store.dispatch(fetchAddress(this.props.address));
+
+    console.log(this.props.user.id);
   }
 
   render() {
@@ -42,7 +49,7 @@ class App extends React.Component {
             path="/categories/:country"
             component={FilterCategoryContainer}
           />
-          <Route exact path="/order" component={OrderContainer} />
+          <Route exact path="/order/:userId" component={OrderContainer} />
           <Route exact path="/product/:name" component={ProductContainer} />
         </Switch>
       </div>
@@ -51,12 +58,20 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    // fetchOrder: () => {
+    //   dispatch(fetchOrder());
+    // },
+    fetchUser: () => dispatch(fetchUser())
+  };
 };
 
 const mapStateToProps = state => {
   return {
-    userFacebook: state.facebookReducer.payload
+    userFacebook: state.facebookReducer.payload,
+    address: state.orderReducer.address,
+    user: state.userReducer.user
+    // order: state.orderReducer.order
   };
 };
 

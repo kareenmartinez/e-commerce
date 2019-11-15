@@ -24,6 +24,15 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+// serialize: how we save the user and stored in session object by express-session
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+// deserialize: how we look for the user
+passport.deserializeUser(function(id, done) {
+  User.findByPk(id).then(user => done(null, user));
+});
 passport.use(
   new LocalStrategy(
     {
@@ -33,6 +42,7 @@ passport.use(
     function(inputEmail, inputPassword, done) {
       User.findOne({ where: { email: inputEmail } }) // searching for the User
         .then(user => {
+          console.log(user);
           if (!user) {
             return done(null, false, { message: "Incorrect username." });
           }
@@ -45,16 +55,6 @@ passport.use(
     }
   )
 );
-
-// serialize: how we save the user and stored in session object by express-session
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-// deserialize: how we look for the user
-passport.deserializeUser(function(id, done) {
-  User.findByPk(id).then(user => done(null, user));
-});
 
 app.use("/api", routes);
 
@@ -71,3 +71,5 @@ db.sync({ force: false })
   .catch(error => {
     console.log(error);
   });
+
+module.exports = { passport };
