@@ -1,29 +1,26 @@
-/**Natalia 2- Como usuario no logueado quiero poder 
- * filtrar productos por categoría para acortar la búsqueda
- * 
- * Descripcion:
-Si presionamos una categoría debe mostrar los productos de la 
-categoría seleccionada, si, presiono otra categoría, debería dejar 
-de mostrar los productos de la categoría anterior y mostrar los 
-productos de la categoría nueva.
-
-Si al presionar un filtro no consigue coincidencias debe mostrar 
-un "not found"
-*/
 
 import React from "react";
 import { connect } from "react-redux";
 import { fetchProducts } from "../store/actions/CategoriesAction";
 import FilterCategory from "../components/FilterCategory";
 
+
+import { addItem } from "../store/actions/orderAction";
+
 class FilterCategoryContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleAdd = this.handleAdd.bind(this);
   }
   componentDidMount() {
     this.props.fetchProducts(this.props.match.params.country);
   }
-
+  handleAdd(e) {
+    e.preventDefault();
+    console.log(e.target);
+    addItem(e.currentTarget.id, this.props.user.id);
+  }
   render() {
     return (
       <div
@@ -35,7 +32,8 @@ class FilterCategoryContainer extends React.Component {
           flexWrap: "wrap"
         }}
       >
-        <FilterCategory products={this.props.products} />
+        <FilterCategory products={this.props.products}
+          handleAdd={this.handleAdd} />
       </div>
     );
   }
@@ -49,7 +47,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => ({
-  products: state.filterReducer.productsCategory
+  products: state.filterReducer.productsCategory,
+
+
+  user: state.userReducer.user
 });
 
 export default connect(

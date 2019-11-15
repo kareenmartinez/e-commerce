@@ -37,7 +37,7 @@ router.post("/send", (req, res) => {
 
   // send mail with defined transport object
 
-  transporter.sendMail(mailOptions, function(error, info) {
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log("Hubo un problema, este es el ERROR", error);
     } else {
@@ -80,7 +80,7 @@ router.post("/send", (req, res) => {
           };
           // send mail with defined transport object
 
-          transporter.sendMail(mailOptions, function(error, info) {
+          transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               console.log("Hubo un problema, este es el ERROR", error);
             } else {
@@ -92,7 +92,7 @@ router.post("/send", (req, res) => {
   });
 });
 
-router.post("/logIn", passport.authenticate("local"), function(req, res) {
+router.post("/logIn", passport.authenticate("local"), function (req, res) {
   console.log(req.user);
   res.send(req.user);
 });
@@ -113,7 +113,7 @@ router.post("/signup", (req, res, next) => {
     });
 });
 
-router.get("/category/:country", function(req, res) {
+router.get("/category/:country", function (req, res) {
   Product.findAll({
     where: {
       country: req.params.country
@@ -131,7 +131,7 @@ router.get("/category/:country", function(req, res) {
     ]
   })
     .then(products => res.json(products))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -191,7 +191,7 @@ router.get("/auth/me", (req, res) => {
   res.send(req.user);
 });
 
-router.get("/order/:userId", function(req, res) {
+router.get("/order/:userId", function (req, res) {
   Order.findAll({
     where: {
       userId: req.params.userId,
@@ -221,7 +221,7 @@ router.get("/order/:userId", function(req, res) {
     ]
   })
     .then(order => res.json(order))
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err, "no trae nadaaaa");
     });
 });
@@ -328,7 +328,7 @@ router.post("/sumar", (req, res) => {
           .then(order => {
             res.json(order);
           })
-          .catch(function(err) {
+          .catch(function (err) {
             console.log(err, "no trae nadaaaa en suma ");
           });
       });
@@ -382,7 +382,7 @@ router.post("/restar", (req, res) => {
         ]
       })
         .then(order => res.json(order))
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err, "no trae nadaaaa en resta ");
         });
     });
