@@ -3,6 +3,7 @@ import {
   ADD_ADDRESS,
   REMOVE_ITEM,
   CONFIRM_ORDER,
+  FETCH_HISTORY,
   BUY,
   CLICK_NEW_ADDRESS,
   ADDRESS,
@@ -12,6 +13,16 @@ import {
   SUBTRACT
 } from "../constants";
 import axios from "axios";
+
+export const fetchHistory = user => {
+  return {
+    type: FETCH_HISTORY,
+    payload: axios.get(`/api/history/${user}`).then(res => {
+      res.data;
+      console.log("ESTA ES LA RES.DATA DE LA ACTION USERHISTORYYYYY", res.data);
+    })
+  };
+};
 
 export const addOne = (itemId, userId) => ({
   type: ADD,

@@ -7,8 +7,10 @@ import {
   addOne,
   minusOne,
   clickNewAddress,
-  fetchAddress
+  fetchAddress,
+  fetchHistory
 } from "../store/actions/orderAction";
+import History from "../components/History";
 
 import { connect } from "react-redux";
 
@@ -17,7 +19,8 @@ class OrderContainer extends Component {
     super(props);
     this.state = {
       confirm: false,
-      address: ""
+      address: "",
+      historyClick: false
     };
     this.handleSum = this.handleSum.bind(this);
     this.handleSubst = this.handleSubst.bind(this);
@@ -26,6 +29,7 @@ class OrderContainer extends Component {
     this.handleClickNewAddress = this.handleClickNewAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeAddress = this.handleChangeAddress.bind(this);
+    this.handleHistory = this.handleHistory.bind(this);
   }
   componentDidMount() {
     console.log(this.props.user.id, "user pasado a orderc");
@@ -67,6 +71,11 @@ class OrderContainer extends Component {
     this.setState({ address: e.target.value });
     console.log(this.state.address);
   }
+  handleHistory(e) {
+    e.preventDefault();
+    this.props.fetchHistory(e.currentTarget.id);
+    this.setState({ historyClick: true });
+  }
 
   render() {
     return (
@@ -86,6 +95,12 @@ class OrderContainer extends Component {
           handleChangeAddress={this.handleChangeAddress}
           address={this.state.address}
         />
+        <History
+          handleHistory={this.handleHistory}
+          user={this.props.user}
+          history={this.props.history}
+          historyClick={this.state.historyClick}
+        />
       </div>
     );
   }
@@ -93,6 +108,7 @@ class OrderContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    history: state.orderReducer.history,
     order: state.orderReducer.order,
     user: state.userReducer.user,
     clickNewAddressStore: state.orderReducer.clickNewAddress
@@ -121,11 +137,11 @@ const mapDispatchToProps = dispatch => {
     },
     fetchAddress: item => {
       dispatch(fetchAddress(item));
+    },
+    fetchHistory: userId => {
+      dispatch(fetchHistory(userId));
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OrderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);

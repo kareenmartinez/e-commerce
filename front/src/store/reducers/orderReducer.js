@@ -7,6 +7,7 @@ import {
   CLICK_NEW_ADDRESS,
   ADDRESS,
   SUBTRACT,
+  FETCH_HISTORY,
   REMOVE_ITEM,
   BUY,
   ADD,
@@ -20,7 +21,8 @@ const initialState = {
   address: "",
   clickNewAddress: false,
   buy: false,
-  order: []
+  order: [],
+  history: []
 };
 
 export default function orderReducer(state = initialState, actions) {
@@ -32,6 +34,26 @@ export default function orderReducer(state = initialState, actions) {
         // input: actions.payload[0].quantity
         //pon el state que quieras llamar :)
       };
+    case `${FETCH_HISTORY}_REJECTED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false
+      };
+    case `${FETCH_HISTORY}_PENDING`:
+      return {
+        ...state,
+        isFetching: true,
+        didInvalidate: false
+      };
+    case `${FETCH_HISTORY}_FULFILLED`:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        order: actions.payload[0]
+      };
+
     case CLICK_NEW_ADDRESS:
       return {
         ...state,
