@@ -10,7 +10,7 @@ const passport = require("passport");
 router.get("/history/:userId", (req, res) => {
   Order.findAll({
     where: {
-      userId: req.body.user
+      userId: req.params.userId
     }
   });
 });
