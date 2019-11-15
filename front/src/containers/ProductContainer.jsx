@@ -3,12 +3,21 @@ import { connect } from "react-redux";
 import Product from "../components/Product";
 import { fetchProduct } from "../store/actions/searchAction";
 
+import { addItem } from "../store/actions/orderAction";
+
 class ProductContainer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleAdd = this.handleAdd.bind(this);
   }
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params.name);
+  }
+  handleAdd(e) {
+    e.preventDefault();
+    console.log(e.target);
+    addItem(e.currentTarget.id, this.props.user.id);
   }
 
   render() {
@@ -17,19 +26,21 @@ class ProductContainer extends React.Component {
         style={{
           display: "flex",
           flexDirection: "row",
-          backgroundColor: "black",
-          color: "white",
+          color: "black",
           borderRadius: "7px"
         }}
       >
-        <Product busqueda={this.props.busqueda} />
+        <Product busqueda={this.props.busqueda}
+          handleAdd={this.handleAdd} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  busqueda: state.searchReducer.search
+  busqueda: state.searchReducer.search,
+
+  user: state.userReducer.user
 });
 
 const mapDispatchToProps = dispatch => {

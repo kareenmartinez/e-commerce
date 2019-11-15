@@ -73,7 +73,7 @@ export default function Register(props) {
           type="password"
         />
 
-        <Button type="submit">Submit</Button>
+        <Button style={{ fontFamily: "courier" }} type="submit">Submit</Button>
       </form>
     </div>
   );

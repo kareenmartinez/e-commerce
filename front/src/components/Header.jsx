@@ -95,13 +95,13 @@ function Header({
         >
           <Link style={{ textDecoration: "none", color: "white" }} to="/">
             <Grid style={{ order: "1" }} className="col-md-6">
-              <img style={{ height: "60px", width: "70px" }} src={logo} />
+              <img style={{ height: "60px", width: "70px" }} src={"/5b590c7b0688493b8205456bdaa91b92.png"} />
             </Grid>
           </Link>
 
           <Grid style={{ order: "5" }} className="col-md-6">
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              <Typography style={{ fontFamily: "courier", fontSize: "40px" }}>
+              <Typography style={{ fontFamily: "roboto", fontSize: "40px" }}>
                 SUPER RESTAURANTE
               </Typography>
             </Link>
@@ -114,7 +114,8 @@ function Header({
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            alignItems: "center"
           }}
           container
         >
@@ -124,6 +125,7 @@ function Header({
                 aria-controls="simple-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
+                style={{ fontFamily: "courier", size: "large" }}
               >
                 Menu
               </Button>
@@ -141,6 +143,7 @@ function Header({
                     key={pais}
                   >
                     <MenuItem
+                      style={{ fontFamily: "courier" }}
                       onClick={e => {
                         closeAndFetch(pais);
                       }}
@@ -165,7 +168,7 @@ function Header({
                 }}
                 inputProps={{ "aria-label": "search" }}
               />
-              <Button onClick={handleSubmit}>
+              <Button style={{ size: "large" }} onClick={handleSubmit}>
                 <SearchIcon />
               </Button>
             </div>
@@ -174,8 +177,8 @@ function Header({
           <div>
             {user.name ? (
               <div>
-                <Typography variant="h8" component="h3">
-                  {user.name} {user.lastName}
+                <Typography style={{ fontFamily: "roboto", fontSize: "15px" }} variant="h8" component="h3">
+                  <i>{user.name} {user.lastName}</i>
                 </Typography>
               </div>
             ) : null}
@@ -188,15 +191,15 @@ function Header({
             }}
           >
             {userFacebook ? (
-              <Link to="/">
-                <Grid item="md-2">
-                  <Button onClick={logout}>Log Out</Button>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <Grid item="md-2" >
+                  <Button style={{ fontFamily: "courier", size: "large" }} onClick={logout}>Log Out</Button>
                 </Grid>
               </Link>
             ) : !user.email ? null : (
-              <Link to="/">
+              <Link style={{ textDecoration: "none" }} to="/">
                 <Grid item="md-2">
-                  <Button onClick={logout}>Log Out</Button>
+                  <Button style={{ fontFamily: "courier", size: "large" }} onClick={logout}>Log Out</Button>
                 </Grid>
               </Link>
             )}
@@ -204,7 +207,7 @@ function Header({
             {userFacebook ? null : !user.email ? (
               <Grid item="md-2">
                 <Link style={{ textDecoration: "none" }} to="/logIn">
-                  <Button>Log In</Button>
+                  <Button style={{ fontFamily: "courier", size: "large" }}>Log In</Button>
                 </Link>
               </Grid>
             ) : null}
@@ -212,7 +215,7 @@ function Header({
             {userFacebook ? null : !user.email ? (
               <Link style={{ textDecoration: "none" }} to="/signup">
                 <Grid item="md-2">
-                  <Button>Sign Up</Button>
+                  <Button style={{ fontFamily: "courier", size: "large" }}>Sign Up</Button>
                 </Grid>
               </Link>
             ) : null}
@@ -220,9 +223,10 @@ function Header({
             {user.id ? (
               <Link style={{ textDecoration: "none" }} to={`/order/${user.id}`}>
                 <Grid item="md-2">
-                  <Button>
+                  <Button style={{ size: "large" }}>
                     <img
-                      src={scooter}
+
+                      src={"/e70570ee529d8e7f5cc3344bf2d8ceb2.png"}
                       style={{ height: "30px", width: "30px" }}
                     />
                   </Button>
@@ -232,7 +236,7 @@ function Header({
           </div>
         </Grid>
       </div>
-    </div>
+    </div >
   );
 }
 
