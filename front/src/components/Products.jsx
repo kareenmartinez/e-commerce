@@ -21,18 +21,21 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 400,
     maxHeigth: 600,
-    border: 0
+    paddingTop: 10
   },
   media: {
     height: 300,
-    width: 400
+    width: 400,
+    margin: 0,
+
+    borderRadius: "2px",
   },
   height: {
     height: 400
   }
 });
 
-const Products = function({ productsState, handleAdd, mostrarBusqueda, user }) {
+const Products = function ({ productsState, handleAdd, mostrarBusqueda, user }) {
   const classes = useStyles();
   return productsState.map(item => (
     <div
@@ -53,10 +56,10 @@ const Products = function({ productsState, handleAdd, mostrarBusqueda, user }) {
               image={item.img}
             />
             <CardContent>
-              <Typography gutterBottom variant="h8" component="h2">
-                {item.name}
+              <Typography style={{ fontFamily: "courier" }} gutterBottom variant="h8" component="h2">
+                {String(item.name).toUpperCase()}
               </Typography>
-              <Typography gutterBottom variant="h8" component="h3">
+              <Typography style={{ fontFamily: "courier" }} gutterBottom variant="h8" component="h3">
                 $ {item.price}
               </Typography>
               {/* <Box component="fieldset" mb={3} borderColor="transparent">
@@ -78,7 +81,8 @@ const Products = function({ productsState, handleAdd, mostrarBusqueda, user }) {
               <img
                 id={item.id}
                 onClick={handleAdd}
-                src={scooter}
+
+                src={"/e70570ee529d8e7f5cc3344bf2d8ceb2.png"}
                 style={{
                   height: "30px",
                   width: "30px"
