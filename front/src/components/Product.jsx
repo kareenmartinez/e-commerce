@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Product = function({ busqueda }) {
+const Product = function ({ busqueda }) {
   const classes = useStyles();
 
   return (
@@ -81,8 +81,8 @@ const Product = function({ busqueda }) {
             </div>
           ))
         ) : (
-          <div>No se encontro comentarios</div>
-        )}
+            <div>No se encontro comentarios</div>
+          )}
 
         <p>
           <MessageOutlinedIcon style={{ height: "16px" }} /> email
