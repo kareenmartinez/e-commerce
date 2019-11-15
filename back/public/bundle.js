@@ -88844,8 +88844,7 @@ function Order(props) {
       justifyContent: "flex-end",
       alignSelf: "flex-end"
     }
-  }, props.confirmState ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    type: "submit",
+  }, props.confirmState ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
     style: {
       fontFamily: "courier",
       justifyContent: "flex-end",
@@ -88856,7 +88855,7 @@ function Order(props) {
       props.buyProduct(props.user);
       props.dropOrder();
     }
-  }, "BUY")) : null)))));
+  }, "BUY") : null)))));
 }
 
 var mapStateToProps = function mapStateToProps(state) {
