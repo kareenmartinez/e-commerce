@@ -37,7 +37,7 @@ export default function LogIn({ onSubmit, handleEmail, handlePassword }) {
             "aria-label": "description"
           }}
         />
-        <Button type="submit">Submit</Button>
+        <Button style={{ fontFamily: "courier" }} type="submit">Submit</Button>
       </form>
 
       <FacebookContainer />

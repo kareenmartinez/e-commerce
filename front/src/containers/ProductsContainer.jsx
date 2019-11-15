@@ -48,7 +48,7 @@ class ProductsContainer extends React.Component {
           flexWrap: "wrap",
           borderRadius: "7px",
 
-          backgroundColor: "black"
+
         }}
       >
         <Products

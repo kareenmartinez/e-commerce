@@ -26,13 +26,13 @@ const useStyles = makeStyles({
   }
 });
 
-function FilterCategory({ products }) {
+function FilterCategory({ products, handleAdd }) {
   const classes = useStyles();
 
   if (products.length === 0) {
     return (
       <div>
-        <Typography style={{ fontFamily: "courier", fontSize: "30px", display:"flex",flexDirection:"row", marginTop:"70px", alignItems:"center",  }}>
+        <Typography style={{ fontFamily: "courier", fontSize: "30px", display: "flex", flexDirection: "row", marginTop: "70px", alignItems: "center", }}>
           404 Not found
         </Typography>
       </div>
@@ -40,7 +40,7 @@ function FilterCategory({ products }) {
   } else {
     return products.map(item => (
       <div style={{ order: "1" }} key={item.name}>
-        <Link to={`/product/${item.name}`}>
+        <Link style={{ textDecoration: "none" }} to={`/product/${item.name}`}>
           <Card className={classes.card}>
             <CardActionArea className={classes.height}>
               <CardMedia
@@ -50,15 +50,38 @@ function FilterCategory({ products }) {
                 image={item.img}
               />
               <CardContent>
-                <Typography gutterBottom variant="h8" component="h2">
-                  {item.name}
+                <Typography style={{ fontFamily: "courier" }} gutterBottom variant="h8" component="h2">
+                  {String(item.name).toUpperCase()}
                 </Typography>
-                <Typography gutterBottom variant="h8" component="h3">
+                <Typography style={{ fontFamily: "courier" }} gutterBottom variant="h8" component="h3">
                   $ {item.price}
                 </Typography>
-                <ValorationContainer comments={item.commentsP}/>
+                <ValorationContainer comments={item.commentsP} />
               </CardContent>
+
             </CardActionArea>
+            <CardActions
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyConten: "flex-end"
+              }}
+            >
+              <div>
+                <Button>
+                  <img
+                    id={item.id}
+                    onClick={handleAdd}
+
+                    src={"/e70570ee529d8e7f5cc3344bf2d8ceb2.png"}
+                    style={{
+                      height: "30px",
+                      width: "30px"
+                    }}
+                  />
+                </Button>
+              </div>
+            </CardActions>
           </Card>
         </Link>
       </div>
